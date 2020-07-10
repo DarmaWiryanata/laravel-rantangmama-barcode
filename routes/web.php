@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 
 Route::get('/', function () {
     // return view('welcome');
-    echo DNS2D::getBarcodeHTML('http://website.com/'.Str::random(), 'QRCODE');
+    echo DNS2D::getBarcodeHTML('http://barcode.kataback.com/'.Str::random(), 'QRCODE');
 });
 
 Auth::routes();
