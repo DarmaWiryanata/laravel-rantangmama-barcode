@@ -16,10 +16,11 @@ use Illuminate\Support\Str;
 
 Route::get('/', function () {
     // return view('welcome');
-    echo DNS2D::getBarcodeHTML('http://barcode.kataback.com/'.Str::random(), 'QRCODE');
+    echo DNS2D::getBarcodeHTML('http://barcode.kataback.com/1BKAFzkIaePhh2tQ', 'QRCODE');
 });
 
 Auth::routes();
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('{id}', 'HomeController@checkCode')->name('checkCode');
+Route::get('{id}/error', 'HomeController@codeError')->name('codeError');

@@ -80,11 +80,8 @@
             @endif --}}
 
             <div class="content">
-                <div class="title m-b-md">
-                    Produk Terdaftar
-                </div>
-                <div class="subtitle m-b-md">
-                    Kode: 1BKAFzkIaePhh2tQ
+                <div class="title m-b-md" style="color:red">
+                    Produk Tidak Terdaftar
                 </div>
             </div>
         </div>

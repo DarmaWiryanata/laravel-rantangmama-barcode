@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('checkcode');
     }
+
+    public function codeError()
+    {
+        return view('checkcodeerror');
+    }
 }
