@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    echo DNS2D::getBarcodeHTML('http://website.com/'.Str::random(), 'QRCODE');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
+Route::get('{id}', 'HomeController@checkCode')->name('checkCode');

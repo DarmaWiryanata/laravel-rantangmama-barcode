@@ -165,6 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Milon\Barcode\BarcodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -202,6 +204,8 @@ return [
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
         'Crypt' => Illuminate\Support\Facades\Crypt::class,
         'DB' => Illuminate\Support\Facades\DB::class,
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
@@ -213,6 +217,7 @@ return [
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Password' => Illuminate\Support\Facades\Password::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
         'Redis' => Illuminate\Support\Facades\Redis::class,
