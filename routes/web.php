@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
+use App\RoleUser;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,12 +16,20 @@ use Illuminate\Support\Str;
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
-    echo DNS2D::getBarcodeHTML('http://barcode.kataback.com/1BKAFzkIaePhh2tQ', 'QRCODE');
+Auth::routes();
+
+// Using Closure based composers...
+View::composer(['*'], function ($view) {
+	if (isset(Auth::user()->id)) {
+		$role = RoleUser::getRole();
+		$view->with('role', $role);
+	}
 });
 
-Auth::routes();
+Route::get('/', function () {
+    return view('welcome');
+    // echo DNS2D::getBarcodeHTML('http://barcode.kataback.com/1BKAFzkIaePhh2tQ', 'QRCODE');
+});
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('{id}', 'HomeController@checkCode')->name('checkCode');
