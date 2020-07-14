@@ -24,6 +24,16 @@ class UserSeeder extends Seeder
             'username'  => 'eksekutif',
             'password'  => Hash::make('eksekutif123'),
         ])->roles()->attach(Role::where('name', 'executive')->first());
+        
+        User::create([
+            'username'  => 'supervisor',
+            'password'  => Hash::make('supervisor123'),
+        ])->roles()->attach(Role::where('name', 'supervisor')->first());
+        
+        User::create([
+            'username'  => 'marketing',
+            'password'  => Hash::make('marketing123'),
+        ])->roles()->attach(Role::where('name', 'marketing')->first());
 
         User::create([
             'username'  => 'produksi',

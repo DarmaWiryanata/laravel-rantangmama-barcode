@@ -24,6 +24,16 @@ class RoleSeeder extends Seeder
         ]);
         
         Role::create([
+            'name' => 'supervisor',
+            'description' => 'Supervisor Marketing'
+        ]);
+        
+        Role::create([
+            'name' => 'marketing',
+            'description' => 'Marketing'
+        ]);
+        
+        Role::create([
             'name' => 'production',
             'description' => 'Produksi'
         ]);
@@ -32,6 +42,5 @@ class RoleSeeder extends Seeder
             'name' => 'shipping',
             'description' => 'Pengiriman'
         ]);
-        
     }
 }

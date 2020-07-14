@@ -27,10 +27,17 @@ class HomeController extends Controller
     public function index()
     {
         if (RoleUser::getRole()->name == 'admin') {
-            return "admin dong";
-            // return redirect('/admin');
-        } elseif (RoleUser::getRole()->name == 'pimpinan') {
-            return redirect('/pimpinan');
+            return redirect()->route('admin.home');
+        } elseif (RoleUser::getRole()->name == 'executive') {
+            return redirect()->route('executive.home');
+        } elseif (RoleUser::getRole()->name == 'supervisor') {
+            return redirect()->route('supervisor.home');
+        } elseif (RoleUser::getRole()->name == 'marketing') {
+            return redirect()->route('marketing.home');
+        } elseif (RoleUser::getRole()->name == 'production') {
+            return redirect()->route('production.home');
+        } elseif (RoleUser::getRole()->name == 'shipping') {
+            return redirect()->route('shipping.home');
         }
     }
 
