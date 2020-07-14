@@ -37,6 +37,42 @@ Route::get('{id}/error', 'HomeController@codeError')->name('codeError');
 
 Route::group(['prefix' => 'admin'], function () {
 	Route::get('home', 'Admin\HomeController@index')->name('admin.home');
+	Route::resource('produk', 'Admin\ProdukController', [
+		'only' => ['index', 'show', 'store', 'update', 'destroy']
+	])->names([
+		'index'		=> 'admin.produk.index',
+		'show'		=> 'admin.produk.show',
+		'store'		=> 'admin.produk.store',
+		'update'	=> 'admin.produk.update',
+		'destroy'	=> 'admin.produk.destroy'
+	]);
+	Route::resource('produksi', 'Admin\ProduksiController', [
+		'only' => ['index', 'show', 'store', 'update', 'destroy']
+	])->names([
+		'index'		=> 'admin.produksi.index',
+		'show'		=> 'admin.produksi.show',
+		'store'		=> 'admin.produksi.store',
+		'update'	=> 'admin.produksi.update',
+		'destroy'	=> 'admin.produksi.destroy'
+	]);
+	Route::resource('reseller', 'Admin\ResellerController', [
+		'only' => ['index', 'show', 'store', 'update', 'destroy']
+	])->names([
+		'index'		=> 'admin.reseller.index',
+		'show'		=> 'admin.reseller.show',
+		'store'		=> 'admin.reseller.store',
+		'update'	=> 'admin.reseller.update',
+		'destroy'	=> 'admin.reseller.destroy'
+	]);
+	Route::resource('user', 'Admin\UserController', [
+		'only' => ['index', 'show', 'store', 'update', 'destroy']
+	])->names([
+		'index'		=> 'admin.user.index',
+		'show'		=> 'admin.user.show',
+		'store'		=> 'admin.user.store',
+		'update'	=> 'admin.user.update',
+		'destroy'	=> 'admin.user.destroy'
+	]);
 });
 
 Route::group(['prefix' => 'executive'], function () {
