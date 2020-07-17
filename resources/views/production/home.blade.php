@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('navbar')
+    <x-navbar-expand name='Data Master' status=''>
+        <a class="dropdown-item" href="">Produk</a>
+        <a class="dropdown-item" href="#">Produksi</a>
+        <a class="dropdown-item" href="#">User</a>
+    </x-navbar-expand>
+    <x-navbar name='User' :route="route('production.home')" status='' />
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
