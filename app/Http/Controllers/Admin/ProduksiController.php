@@ -15,7 +15,7 @@ class ProduksiController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.tambahproduksi');
     }
 
     /**
@@ -36,7 +36,7 @@ class ProduksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return back();
     }
 
     /**

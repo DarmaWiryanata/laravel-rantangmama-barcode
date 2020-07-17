@@ -81,10 +81,12 @@ Route::group(['prefix' => 'executive'], function () {
 
 Route::group(['prefix' => 'supervisor'], function () {
 	Route::get('home', 'Supervisor\HomeController@index')->name('supervisor.home');
+	Route::get('produk', 'Supervisor\HomeController@produk')->name('supervisor.produk');
 });
 
 Route::group(['prefix' => 'marketing'], function () {
 	Route::get('home', 'Marketing\HomeController@index')->name('marketing.home');
+	Route::get('produk', 'Marketing\HomeController@produk')->name('marketing.produk');
 });
 
 Route::group(['prefix' => 'production'], function () {
