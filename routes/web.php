@@ -92,5 +92,6 @@ Route::group(['prefix' => 'production'], function () {
 });
 
 Route::group(['prefix' => 'shipping'], function () {
+	Route::resource('/pengiriman', 'Shipping\ShippingController');
 	Route::get('home', 'Shipping\HomeController@index')->name('shipping.home');
 });
