@@ -89,6 +89,12 @@ Route::group(['prefix' => 'marketing'], function () {
 
 Route::group(['prefix' => 'production'], function () {
 	Route::get('home', 'Production\HomeController@index')->name('production.home');
+	Route::resource('produksi', 'Production\ProduksiController', [
+		'only' => ['index', 'store']
+	])->names([
+		'index'		=> 'production.produksi.index',
+		'store'		=> 'production.produksi.store',
+	]);
 });
 
 Route::group(['prefix' => 'shipping'], function () {

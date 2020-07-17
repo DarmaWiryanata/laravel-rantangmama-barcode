@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('navbar')
-    <x-navbar-expand name='Data Master'>
+    <x-navbar-expand name='Data Master' status=''>
         <a class="dropdown-item" href="#">Produk</a>
         <a class="dropdown-item" href="#">Produksi</a>
         <a class="dropdown-item" href="#">User</a>
