@@ -8,18 +8,16 @@ class Navbar extends Component
 {
     public $name;
     public $route;
-    public $status;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $route, $status)
+    public function __construct($name, $route)
     {
         $this->name = $name;
         $this->route = $route;
-        $this->status = $status;
     }
 
     /**

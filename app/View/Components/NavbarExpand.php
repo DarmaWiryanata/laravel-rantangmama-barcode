@@ -7,17 +7,15 @@ use Illuminate\View\Component;
 class NavbarExpand extends Component
 {
     public $name;
-    public $status;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $status)
+    public function __construct($name)
     {
         $this->name = $name;
-        $this->status = $status;
     }
 
     /**

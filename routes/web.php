@@ -21,7 +21,7 @@ Auth::routes();
 // Using Closure based composers...
 View::composer(['*'], function ($view) {
 	if (isset(Auth::user()->id)) {
-		$role = RoleUser::getRole();
+		$role = RoleUser::firstRole(Auth::user()->id);
 		$view->with('role', $role);
 	}
 });
