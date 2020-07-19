@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Reseller;
+use App\Member;
 use Illuminate\Http\Request;
 
-class ResellerController extends Controller
+class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +41,10 @@ class ResellerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Reseller  $reseller
+     * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function show(Reseller $reseller)
+    public function show(Member $member)
     {
         //
     }
@@ -53,10 +52,10 @@ class ResellerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Reseller  $reseller
+     * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reseller $reseller)
+    public function edit(Member $member)
     {
         //
     }
@@ -65,10 +64,10 @@ class ResellerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Reseller  $reseller
+     * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reseller $reseller)
+    public function update(Request $request, Member $member)
     {
         //
     }
@@ -76,10 +75,10 @@ class ResellerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Reseller  $reseller
+     * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reseller $reseller)
+    public function destroy(Member $member)
     {
         //
     }

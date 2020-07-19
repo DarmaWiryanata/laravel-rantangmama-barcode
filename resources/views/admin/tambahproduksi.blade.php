@@ -83,7 +83,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST" action="{{ route('production.produksi.store') }}">
+                <form method="POST" action="#">
                     @csrf
                     
                 </form>
