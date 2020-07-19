@@ -11,11 +11,11 @@ class RoleUser extends Model
 
     protected $fillable = ['role_id', 'user_id'];
 
-    static function getRole()
+    static function firstRole($userId)
     {
         $data = RoleUser::select('roles.name as name', 'roles.description as description')
                     ->join('roles', 'role_user.role_id', 'roles.id')
-                    ->firstWhere('role_user.user_id', Auth::user()->id);
+                    ->firstWhere('role_user.user_id', $userId);
                             
         return $data;
     }
