@@ -1,15 +1,11 @@
 @extends('layouts.app')
 
-@section('navbar')
-    <x-navbar name='Produk' :route="route('supervisor.produk')" status='active' />
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('custom.product') }}</div>
+                <div class="card-header">Data Produk Konsinyasi</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -21,7 +17,7 @@
                     <table class="table table-striped">
                         <thead class="thead-light">
                             <tr>
-                                <th>Agen</th>
+                                <th>Member</th>
                                 <th>Tujuan</th>
                                 <th>Tanggal Pengiriman</th>
                                 <th>Aksi</th>
@@ -123,73 +119,80 @@
 {{-- Modal --}}
 <div class="modal fade" id="detail" tabindex="-1" role="dialog"
   aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Detail</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <table class="table table-striped">
-        <thead class="thead-light">
-            <tr>
-                <th>Nama</th>
-                <th>Stok</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    BBQ CHICKEN WING MT 8 pcs
-                </td>
-                <td>
-                    12
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    BBQ CHICKEN WING MT12 pcs
-                </td>
-                <td>
-                    12
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    BBQ CHICKEN WING RM 10 pcs
-                </td>
-                <td>
-                    12
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    CHICKEN PANDAN MT 8 pcs
-                </td>
-                <td>
-                    12
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    CHICKEN PANDAN RM 6 pcs
-                </td>
-                <td>
-                    12
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    BAKSO AYAM MADU RM 15 pcs
-                </td>
-                <td>
-                    12
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="#" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input disabled type="name" class="form-control" name="nama" value="Agen A" placeholder="<Kosong>">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tujuan</label>
+                        <input disabled type="name" class="form-control" name="tujuan" value="Ubud" placeholder="<Kosong>">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tanggal</label>
+                        <input disabled type="name" class="form-control" name="tanggal" value="2020-07-19 12:39:07" placeholder="<Kosong>">
+                    </div>
+
+                    <hr>
+                    <label>Ubah Data Penjualan</label>
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Nama</th>
+                                <th>Sisa Stok</th>
+                                <th style="width: 43px;">Terjual</th>
+                                <th style="width: 67px;">Retur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    BBQ CHICKEN WING MT
+                                </td>
+                                <td>
+                                    12
+                                </td>
+                                <td>
+                                    <input type="name" class="form-control" name="terjual[]" placeholder="0">
+                                </td>
+                                <td>
+                                    <input type="name" class="form-control" name="retur[]" placeholder="0">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    BBQ CHICKEN WING RM
+                                </td>
+                                <td>
+                                    12
+                                </td>
+                                <td>
+                                    <input type="name" class="form-control" name="terjual[]" placeholder="0">
+                                </td>
+                                <td>
+                                    <input type="name" class="form-control" name="retur[]" placeholder="0">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Ubah</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 @endsection

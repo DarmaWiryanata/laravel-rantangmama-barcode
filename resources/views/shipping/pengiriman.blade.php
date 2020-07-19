@@ -34,17 +34,42 @@
                               @if (session('tujuan') == 1)
                               selected
                               @endif
-                              >Ubud</option>  
+                              >Agen A</option>  
                               <option value="2"
                               @if (session('tujuan') == 2)
                               selected
                               @endif
-                              >Denpasar</option>
+                              >Agen B</option>
                               <option value="3"
                               @if (session('tujuan') == 3)
                               selected
                               @endif
-                              >Tabanan</option>
+                              >Agen C</option>
+                            </select>
+                          </div>
+                        </div>
+              
+                        <div class="form-group">
+                          <label>Alamat: </label>
+                          <div class="controls">
+                            <textarea name="alamat" cols="30" rows="3" class="form-control" disabled>Padang Tegal, Jl. Hanoman, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571</textarea>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Status: </label>
+                          <div class="controls">
+                            <select class="form-control" name="status" id="status">
+                              <option value="1"
+                              @if (session('status') == 1)
+                              selected
+                              @endif
+                              >Terjual</option>  
+                              <option value="2"
+                              @if (session('status') == 2)
+                              selected
+                              @endif
+                              >Konsinyasi</option>
                             </select>
                           </div>
                         </div>

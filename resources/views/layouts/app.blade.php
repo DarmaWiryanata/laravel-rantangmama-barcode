@@ -33,7 +33,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        @yield('navbar')
+                        {{-- @include('layouts.navbar') --}}
+                        @auth
+                            @include('layouts.navbar.' . Auth::user()->getActiveRole(Auth::user()->id))
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->

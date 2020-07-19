@@ -1,21 +1,11 @@
 @extends('layouts.app')
 
-@section('navbar')
-    <x-navbar-expand name='Data Master' status="active">
-        <a class="dropdown-item active" href="#">Produk</a>
-        <a class="dropdown-item" href="#">Produksi</a>
-        <a class="dropdown-item" href="#">User</a>
-    </x-navbar-expand>
-    <x-navbar name='User' :route="route('admin.home')" status='' />
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('custom.product') }}
-                <div class="float-right btn btn-sm btn-success">ajhsdgasdgasjhds</div>
+                <div class="card-header">Data Produk
                 </div>
 
                 <div class="card-body">

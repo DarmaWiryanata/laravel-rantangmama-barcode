@@ -15,6 +15,16 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        return view('production.produksi');
+    }
+    
+    public function store(Request $request)
+    {
+        return back()->with('success', 'Produk '.$request->barcode.' berhasil diperbaharui');
+    }
+
+    public function validasi()
+    {
+        return view('production.validasi');
     }
 }

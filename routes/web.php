@@ -27,13 +27,13 @@ View::composer(['*'], function ($view) {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
     // echo DNS2D::getBarcodeHTML('http://barcode.kataback.com/1BKAFzkIaePhh2tQ', 'QRCODE');
 });
 
 Route::get('home', 'HomeController@index')->name('home');
-Route::get('{id}', 'HomeController@checkCode')->name('checkCode');
-Route::get('{id}/error', 'HomeController@codeError')->name('codeError');
+Route::get('cek/{id}', 'HomeController@checkCode')->name('checkCode');
+Route::get('cek/{id}/error', 'HomeController@codeError')->name('codeError');
 
 Route::group(['prefix' => 'admin'], function () {
 	Route::get('home', 'Admin\HomeController@index')->name('admin.home');
@@ -64,7 +64,7 @@ Route::group(['prefix' => 'admin'], function () {
 		'update'	=> 'admin.reseller.update',
 		'destroy'	=> 'admin.reseller.destroy'
 	]);
-	Route::resource('user', 'Admin\UserController', [
+	Route::resource('member', 'Admin\UserController', [
 		'only' => ['index', 'show', 'store', 'update', 'destroy']
 	])->names([
 		'index'		=> 'admin.user.index',
@@ -77,11 +77,13 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => 'executive'], function () {
 	Route::get('home', 'Executive\HomeController@index')->name('executive.home');
+	Route::get('produk', 'Executive\HomeController@produk')->name('executive.produk');
+	Route::get('produksi', 'Executive\HomeController@produksi')->name('executive.produksi');
+	Route::get('user', 'Executive\HomeController@user')->name('executive.user');
 });
 
 Route::group(['prefix' => 'supervisor'], function () {
-	Route::get('home', 'Supervisor\HomeController@index')->name('supervisor.home');
-	Route::get('produk', 'Supervisor\HomeController@produk')->name('supervisor.produk');
+	Route::get('produk', 'Supervisor\HomeController@index')->name('supervisor.home');
 });
 
 Route::group(['prefix' => 'marketing'], function () {
@@ -90,13 +92,8 @@ Route::group(['prefix' => 'marketing'], function () {
 });
 
 Route::group(['prefix' => 'production'], function () {
-	Route::get('home', 'Production\HomeController@index')->name('production.home');
-	Route::resource('produksi', 'Production\ProduksiController', [
-		'only' => ['index', 'store']
-	])->names([
-		'index'		=> 'production.produksi.index',
-		'store'		=> 'production.produksi.store',
-	]);
+	Route::get('/', 'Production\HomeController@index')->name('production.produksi');
+	Route::get('validasi', 'Production\HomeController@validasi')->name('production.validasi');
 });
 
 Route::group(['prefix' => 'shipping'], function () {

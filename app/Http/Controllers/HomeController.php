@@ -31,13 +31,13 @@ class HomeController extends Controller
         } elseif (RoleUser::getRole()->name == 'executive') {
             return redirect()->route('executive.home');
         } elseif (RoleUser::getRole()->name == 'supervisor') {
-            return redirect()->route('supervisor.produk');
+            return redirect()->route('supervisor.home');
         } elseif (RoleUser::getRole()->name == 'marketing') {
             return redirect()->route('marketing.produk');
         } elseif (RoleUser::getRole()->name == 'production') {
-            return redirect()->route('production.produksi.index');
+            return redirect()->route('production.produksi');
         } elseif (RoleUser::getRole()->name == 'shipping') {
-            return redirect()->route('shipping.home');
+            return redirect()->route('pengiriman.index');
         }
     }
 

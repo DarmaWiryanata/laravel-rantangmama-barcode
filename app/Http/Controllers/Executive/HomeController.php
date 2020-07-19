@@ -17,4 +17,19 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function produk()
+    {
+        return view('executive.produk');
+    }
+
+    public function produksi()
+    {
+        return view('executive.produksi');
+    }
+
+    public function user()
+    {
+        return view('executive.user');
+    }
 }

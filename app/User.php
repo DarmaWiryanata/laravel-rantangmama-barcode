@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use DB;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -62,5 +64,11 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return null !== $this->roles()->where('name', $role)->first();
+    }
+
+    public static function getActiveRole($id){
+        $role_id = DB::table('role_user')->select('role_id')->where('user_id',$id)->first();
+        $role = Role::find($role_id->role_id);
+        return $role->name;
     }
 }

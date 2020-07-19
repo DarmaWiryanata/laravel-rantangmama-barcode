@@ -1,21 +1,12 @@
 @extends('layouts.app')
 
-@section('navbar')
-    <x-navbar-expand name='Data Master' status="active">
-        <a class="dropdown-item active" href="#">Produk</a>
-        <a class="dropdown-item" href="#">Produksi</a>
-        <a class="dropdown-item" href="#">User</a>
-    </x-navbar-expand>
-    <x-navbar name='User' :route="route('admin.home')" status='' />
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('custom.product') }}
-                <div class="float-right btn btn-sm btn-success">ajhsdgasdgasjhds</div>
+                <button type="button" class="float-right btn btn-sm btn-success" data-toggle="modal" data-target="#tambah">Tambah Produk</button>
                 </div>
 
                 <div class="card-body">
@@ -30,6 +21,7 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>Stok</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,6 +32,14 @@
                                 <td>
                                     12
                                 </td>
+                                <td>
+                                    <form method="POST" action="#">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                        <button type="submit" class="ml-1 btn btn-sm btn-danger">Hapus</button>
+                                    </form>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -47,6 +47,14 @@
                                 </td>
                                 <td>
                                     12
+                                </td>
+                                <td>
+                                    <form method="POST" action="#">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                        <button type="submit" class="ml-1 btn btn-sm btn-danger">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                             <tr>
@@ -56,6 +64,14 @@
                                 <td>
                                     12
                                 </td>
+                                <td>
+                                    <form method="POST" action="#">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                        <button type="submit" class="ml-1 btn btn-sm btn-danger">Hapus</button>
+                                    </form>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -63,6 +79,14 @@
                                 </td>
                                 <td>
                                     12
+                                </td>
+                                <td>
+                                    <form method="POST" action="#">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                        <button type="submit" class="ml-1 btn btn-sm btn-danger">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                             <tr>
@@ -72,6 +96,14 @@
                                 <td>
                                     12
                                 </td>
+                                <td>
+                                    <form method="POST" action="#">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                        <button type="submit" class="ml-1 btn btn-sm btn-danger">Hapus</button>
+                                    </form>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -79,6 +111,14 @@
                                 </td>
                                 <td>
                                     12
+                                </td>
+                                <td>
+                                    <form method="POST" action="#">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                        <button type="submit" class="ml-1 btn btn-sm btn-danger">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                             <tr>
@@ -88,6 +128,14 @@
                                 <td>
                                     12
                                 </td>
+                                <td>
+                                    <form method="POST" action="#">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                        <button type="submit" class="ml-1 btn btn-sm btn-danger">Hapus</button>
+                                    </form>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -95,6 +143,14 @@
                                 </td>
                                 <td>
                                     12
+                                </td>
+                                <td>
+                                    <form method="POST" action="#">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                        <button type="submit" class="ml-1 btn btn-sm btn-danger">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                             <tr>
@@ -104,10 +160,69 @@
                                 <td>
                                     12
                                 </td>
+                                <td>
+                                    <form method="POST" action="#">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                        <button type="submit" class="ml-1 btn btn-sm btn-danger">Hapus</button>
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="#" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="name" class="form-control" name="nama" placeholder="Nama Produk">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Tambah</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="ubah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Produk</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="#" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="name" class="form-control" name="nama" value="BBQ CHICKEN WING MT" placeholder="Nama Produk">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Ubah</button>
+                    </div>
+                </form>
+            </div>
             </div>
         </div>
     </div>
