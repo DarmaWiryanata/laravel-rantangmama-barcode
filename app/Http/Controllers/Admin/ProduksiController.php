@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Produksi;
+use App\Product;
+use App\Production;
+use App\ProductionDetail;
 use Illuminate\Http\Request;
 
 class ProduksiController extends Controller
@@ -15,7 +17,11 @@ class ProduksiController extends Controller
      */
     public function index()
     {
-        return view('admin.tambahproduksi');
+        $product = Product::orderBy('name')->get();
+        $production = Production::getProduction();
+        // Production::all();
+
+        return view('admin.produksi', compact('product', 'production'));
     }
 
     /**
@@ -36,7 +42,16 @@ class ProduksiController extends Controller
      */
     public function store(Request $request)
     {
-        return back();
+        $request->validate([
+            'product_id' => 'required',
+            'expire_date' => 'required',
+            'stock' => 'required'
+        ]);
+        $production_id = Production::storeProduction($request);
+        ProductionDetail::storeProductionDetail($request, $production_id->id);
+        Product::incrementStock($request);
+
+        return redirect()->route('admin.produksi.index')->with('success', 'Produksi berhasil ditambahkan');
     }
 
     /**
@@ -68,9 +83,18 @@ class ProduksiController extends Controller
      * @param  \App\Produksi  $produksi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produksi $produksi)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id' => 'required',
+            'code' => 'required',
+            'name' => 'required',
+            'address' => 'required',
+            'status' => 'required'
+        ]);
+        Member::updateMember($request, $id);
+
+        return redirect()->route('admin.produksi.index')->with('success', 'Produksi berhasil diubah');
     }
 
     /**
@@ -81,6 +105,8 @@ class ProduksiController extends Controller
      */
     public function destroy(Produksi $produksi)
     {
-        //
+        Member::destroyMember($id);
+
+        return redirect()->route('admin.member.index')->with('success', 'Member berhasil dihapus');
     }
 }

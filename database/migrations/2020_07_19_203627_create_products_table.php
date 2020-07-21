@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->mediumInteger('stock')->unsigned();
+            $table->mediumInteger('stock')->unsigned()->default(0);
             $table->timestamps();
         });
     }

@@ -27,8 +27,10 @@ View::composer(['*'], function ($view) {
 });
 
 Route::get('/', function () {
-    return redirect('/login');
-    // echo DNS2D::getBarcodeHTML('http://barcode.kataback.com/1BKAFzkIaePhh2tQ', 'QRCODE');
+	return redirect('/login');
+	// echo DNS1D::getBarcodeHTML('GusMangGanteng', 'CODE11');
+	// echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG(Str::random(10), 'C128',1,50,array(1,1,1), true) . '" alt="barcode"   />';
+    // echo DNS2D::getBarcodeHTML('1BKAFzkIaePhh2tQ', 'QRCODE');
 });
 
 Route::get('home', 'HomeController@index')->name('home');

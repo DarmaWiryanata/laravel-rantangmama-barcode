@@ -16,12 +16,8 @@ class CreateProductionsTable extends Migration
         Schema::create('productions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('product_id')->unsigned();
-            $table->bigInteger('member_id')->unsigned()->fillable();
-            $table->string('code');
-            $table->boolean('production_scan')->fillable();
-            $table->boolean('shipping_scan')->fillable();
             $table->date('expire_date');
-            $table->boolean('status');
+            $table->integer('qty')->unsigned();
             $table->timestamps();
         });
     }

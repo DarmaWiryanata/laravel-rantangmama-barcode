@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Member;
 use Illuminate\Http\Request;
+
+use App\Member;
 
 class MemberController extends Controller
 {
@@ -15,7 +16,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('admin.member');
+        $member = Member::all();
+
+        return view('admin.member', compact('member'));
     }
 
     /**
@@ -36,7 +39,14 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'status' => 'required'
+        ]);
+        Member::storeMember($request);
+
+        return redirect()->route('admin.member.index')->with('success', 'Member berhasil ditambahkan');
     }
 
     /**
@@ -68,9 +78,18 @@ class MemberController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id' => 'required',
+            'code' => 'required',
+            'name' => 'required',
+            'address' => 'required',
+            'status' => 'required'
+        ]);
+        Member::updateMember($request, $id);
+
+        return redirect()->route('admin.member.index')->with('success', 'Member berhasil diubah');
     }
 
     /**
@@ -79,8 +98,10 @@ class MemberController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        Member::destroyMember($id);
+
+        return redirect()->route('admin.member.index')->with('success', 'Member berhasil dihapus');
     }
 }

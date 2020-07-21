@@ -18,7 +18,7 @@ class MemberSeeder extends Seeder
             'name' => 'I MADE ARIANTO',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
         
         Member::create([
@@ -26,7 +26,7 @@ class MemberSeeder extends Seeder
             'name' => 'I KETUT ARYANA',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -34,7 +34,7 @@ class MemberSeeder extends Seeder
             'name' => 'NI PUTU LILIK ANDAYANI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -42,7 +42,7 @@ class MemberSeeder extends Seeder
             'name' => 'NI PUTU DEWI LEONI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -50,7 +50,7 @@ class MemberSeeder extends Seeder
             'name' => 'LUH ADE SARI CITRAWATI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -58,7 +58,7 @@ class MemberSeeder extends Seeder
             'name' => 'PUTU AGUS WIDIARTHA WIGUNA',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -66,7 +66,7 @@ class MemberSeeder extends Seeder
             'name' => 'I MADE GEDE PARIMARTA',
             'address' => 'test',
             'bank' => 'BRI',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -74,7 +74,7 @@ class MemberSeeder extends Seeder
             'name' => 'PUTU INDAH WAHYUNI SE',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -82,7 +82,7 @@ class MemberSeeder extends Seeder
             'name' => 'IDA AYU AGUNG EKASTUTI',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -90,7 +90,7 @@ class MemberSeeder extends Seeder
             'name' => 'NI MADE SUDERNI',
             'address' => 'test',
             'bank' => 'SINARMAS',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -98,7 +98,7 @@ class MemberSeeder extends Seeder
             'name' => 'PUTU ROBBY RUDITA',
             'address' => 'test',
             'bank' => 'BRI',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -106,7 +106,7 @@ class MemberSeeder extends Seeder
             'name' => 'Posma',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -114,7 +114,7 @@ class MemberSeeder extends Seeder
             'name' => 'RATIH WULANDARI',
             'address' => 'test',
             'bank' => 'SIMAS-EMONEY',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -122,7 +122,7 @@ class MemberSeeder extends Seeder
             'name' => 'NI MADE RESMIATI. A. PAR.',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -130,7 +130,7 @@ class MemberSeeder extends Seeder
             'name' => 'MADE JUNIARI',
             'address' => 'test',
             'bank' => 'BPD',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -138,7 +138,7 @@ class MemberSeeder extends Seeder
             'name' => 'KENI',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -146,7 +146,7 @@ class MemberSeeder extends Seeder
             'name' => 'AFRI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -154,7 +154,7 @@ class MemberSeeder extends Seeder
             'name' => 'I KADEK YOGA ADI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -162,7 +162,7 @@ class MemberSeeder extends Seeder
             'name' => 'YOSEVINA',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -170,7 +170,7 @@ class MemberSeeder extends Seeder
             'name' => 'IR. LINAWATI CANDRA',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -178,7 +178,7 @@ class MemberSeeder extends Seeder
             'name' => 'KADEK WIRMANDIYANTHI',
             'address' => 'test',
             'bank' => 'BNI',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -186,7 +186,7 @@ class MemberSeeder extends Seeder
             'name' => 'ANAK AGUNG INTAN RATNASARI',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -194,7 +194,7 @@ class MemberSeeder extends Seeder
             'name' => 'ANNE KRISTANTI',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -202,7 +202,7 @@ class MemberSeeder extends Seeder
             'name' => 'GUSTI KOMANG ADITYA',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -210,7 +210,7 @@ class MemberSeeder extends Seeder
             'name' => 'NI KOMANG JULIANA',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -218,7 +218,7 @@ class MemberSeeder extends Seeder
             'name' => 'NYOMAN SUTRISNI HANDAYANI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -226,7 +226,7 @@ class MemberSeeder extends Seeder
             'name' => 'KADEK PENDY MULYAWATI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -234,7 +234,7 @@ class MemberSeeder extends Seeder
             'name' => 'BOGGIE AHMAD DWI PUTRA',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -242,7 +242,7 @@ class MemberSeeder extends Seeder
             'name' => 'ANTIE',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -250,7 +250,7 @@ class MemberSeeder extends Seeder
             'name' => 'NI MADE DEWI YANI',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -258,7 +258,7 @@ class MemberSeeder extends Seeder
             'name' => 'NI LUH GEDE SRI MARTINI',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -266,7 +266,7 @@ class MemberSeeder extends Seeder
             'name' => 'NGURAH GEDE ALAPURNA SE',
             'address' => 'test',
             'bank' => 'BRI',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -274,7 +274,7 @@ class MemberSeeder extends Seeder
             'name' => 'NI LUH PUTU KAMAYANI',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -282,7 +282,7 @@ class MemberSeeder extends Seeder
             'name' => 'NI PUTU SUWENDEWI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -290,7 +290,7 @@ class MemberSeeder extends Seeder
             'name' => 'ANDRIANA',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -298,7 +298,7 @@ class MemberSeeder extends Seeder
             'name' => 'PAK ERIK',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -306,7 +306,7 @@ class MemberSeeder extends Seeder
             'name' => 'I GEDE DEVA AGUS KRISNA',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -314,7 +314,7 @@ class MemberSeeder extends Seeder
             'name' => 'I KADEK AGUS LEONARDI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -322,7 +322,7 @@ class MemberSeeder extends Seeder
             'name' => 'I KADEK KRISNA ADI DARMAWAN',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -330,7 +330,7 @@ class MemberSeeder extends Seeder
             'name' => 'IDA AYU OKA SRI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -338,7 +338,7 @@ class MemberSeeder extends Seeder
             'name' => 'NI WAYAN NADILA PUTRI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -346,7 +346,7 @@ class MemberSeeder extends Seeder
             'name' => 'SALVINUS DARMIN',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -354,7 +354,7 @@ class MemberSeeder extends Seeder
             'name' => 'ANAK AGUNG AYU WARTINI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -362,7 +362,7 @@ class MemberSeeder extends Seeder
             'name' => 'PUTU SUDIASA',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -370,7 +370,7 @@ class MemberSeeder extends Seeder
             'name' => 'KLEMENSIUS BAHAL',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -378,7 +378,7 @@ class MemberSeeder extends Seeder
             'name' => 'I GST.LN.VIRA PARAMITHA',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -386,7 +386,7 @@ class MemberSeeder extends Seeder
             'name' => 'RITA HERLIANI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -394,7 +394,7 @@ class MemberSeeder extends Seeder
             'name' => 'NI MADE AGUSTINI / kadek tohpati',
             'address' => 'test',
             'bank' => 'BRI',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -402,7 +402,7 @@ class MemberSeeder extends Seeder
             'name' => 'I GUSTI AYU KASTILANI',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -410,7 +410,7 @@ class MemberSeeder extends Seeder
             'name' => 'DEBIE AGUSANTHI HARTONO',
             'address' => 'test',
             'bank' => '',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -418,7 +418,7 @@ class MemberSeeder extends Seeder
             'name' => 'I NYOMAN ADIANA',
             'address' => 'test',
             'bank' => 'BNI',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -426,7 +426,7 @@ class MemberSeeder extends Seeder
             'name' => 'CYNTHIA MIRANDA',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
         Member::create([
@@ -434,7 +434,7 @@ class MemberSeeder extends Seeder
             'name' => 'PUTU SINTYA ARTIKAYANTI',
             'address' => 'test',
             'bank' => 'BCA',
-            'status' => ''
+            'status' => 'Reseller'
         ]);
 
     }

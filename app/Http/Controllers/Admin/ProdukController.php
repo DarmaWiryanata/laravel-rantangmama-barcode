@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Produk;
 use Illuminate\Http\Request;
+
+use App\Product;
 
 class ProdukController extends Controller
 {
@@ -15,7 +16,9 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        return view('admin.produk');
+        $product = Product::all();
+
+        return view('admin.produk', compact('product'));
     }
 
     /**
@@ -36,7 +39,12 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+        Product::storeProduct($request);
+
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil ditambahkan');
     }
 
     /**
@@ -68,9 +76,15 @@ class ProdukController extends Controller
      * @param  \App\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produk $produk)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id' => 'required',
+            'name' => 'required'
+        ]);
+        Product::updateProduct($request, $id);
+
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diubah');
     }
 
     /**
@@ -79,8 +93,10 @@ class ProdukController extends Controller
      * @param  \App\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produk $produk)
+    public function destroy($id)
     {
-        //
+        Product::destroyProduct($id);
+
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil dihapus');
     }
 }
