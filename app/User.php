@@ -2,11 +2,11 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
-use DB;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -66,9 +66,45 @@ class User extends Authenticatable
         return null !== $this->roles()->where('name', $role)->first();
     }
 
+    static function destroyUser($id)
+    {
+        User::findOrFail($id)->destroy();
+    }
+
     public static function getActiveRole($id){
         $role_id = DB::table('role_user')->select('role_id')->where('user_id',$id)->first();
         $role = Role::find($role_id->role_id);
         return $role->name;
+    }
+
+    static function getUser()
+    {
+        return User::select('users.id as id', 'users.username as name', 'role_user.id as role_id', 'roles.description as role_name')
+                    ->join('role_user', 'users.id', 'role_user.user_id')
+                    ->join('roles', 'role_user.role_id', 'roles.id')
+                    ->get();
+    }
+
+    static function resetPassword($id)
+    {
+        User::whereId($id)->update(['password' => Hash::make('12345678')]);
+    }
+
+    static function storeUser($request)
+    {
+        User::create([
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+        ])->roles()->attach(Role::where('name', $request->role)->first());
+    }
+
+    static function updatePassword($id, $password)
+    {
+        User::whereId($id)->update(['password' => Hash::make($password)]);
+    }
+
+    static function updateUser($request)
+    {
+        User::findOrFail($request->id)->update(['name' => $request->name]);
     }
 }

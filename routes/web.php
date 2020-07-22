@@ -16,7 +16,7 @@ use App\RoleUser;
 |
 */
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 // Using Closure based composers...
 View::composer(['*'], function ($view) {
@@ -33,12 +33,16 @@ Route::get('/', function () {
     // echo DNS2D::getBarcodeHTML('1BKAFzkIaePhh2tQ', 'QRCODE');
 });
 
+Route::get('password/{id}', 'HomeController@editPassword')->name('password.edit');
+Route::post('password/{id}', 'HomeController@updatePassword')->name('password.update');
+
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('cek/{id}', 'HomeController@checkCode')->name('checkCode');
 Route::get('cek/{id}/error', 'HomeController@codeError')->name('codeError');
 
 Route::group(['prefix' => 'admin'], function () {
 	Route::get('home', 'Admin\HomeController@index')->name('admin.home');
+	Route::post('reset-password/{id}', 'Admin\UserController@resetPassword')->name('admin.resetPassword');
 
 	Route::resource('produk', 'Admin\ProdukController', [
 		'only' => ['index', 'show', 'store', 'update', 'destroy']

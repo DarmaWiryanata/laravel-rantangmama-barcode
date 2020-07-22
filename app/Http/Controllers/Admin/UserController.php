@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\User;
 use Illuminate\Http\Request;
+
+use App\Role;
+use App\RoleUser;
+use App\User;
+
+use DB;
 
 class UserController extends Controller
 {
@@ -15,7 +20,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        // return $role = DB::table('roles')->where('id', 2)->get();
+        $user = User::getUser();
+
+        return view('admin.user', compact('user'));
     }
 
     /**
@@ -36,7 +44,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'username'  => ['required', 'string', 'max:255', 'unique:users'],
+            'password'  => ['required', 'string', 'min:8', 'confirmed'],
+            'role'      => ['required'],
+        ]);
+        
+        User::storeUser($request);
+
+        return redirect()->route('admin.user.index')->with('success', 'User berhasil ditambahkan');
     }
 
     /**
@@ -70,7 +86,16 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'id' => 'required',
+            'name' => 'required',
+            'role' => 'required'
+        ]);
+        User::updateUser($request);
+        $roleId = Role::firstRoleByName($request->role);
+        RoleUser::updateRoleUser($request, $roleId->id);
+
+        return redirect()->route('admin.user.index')->with('success', 'User berhasil diubah');
     }
 
     /**
@@ -79,8 +104,16 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        User::destroyUser($id);
+        RoleUser::destroyRoleUser($id);
+
+        return redirect()->route('admin.user.index')->with('success', 'User berhasil dihapus');
+    }
+
+    public function resetPassword($id)
+    {
+        User::resetPassword($id);
     }
 }

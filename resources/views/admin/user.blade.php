@@ -3,8 +3,8 @@
 @section('js')
     <script>
         $(document).ready( function () {
-            $('#memberTable').DataTable();
-        });
+            $('#userTable').DataTable();
+        } );
     </script>
 @endsection
 
@@ -13,8 +13,8 @@
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">
-                <div class="card-header">Data Member
-                <button type="button" class="float-right btn btn-sm btn-success" data-toggle="modal" data-target="#tambah">Tambah Member</button>
+                <div class="card-header">Data User
+                <button type="button" class="float-right btn btn-sm btn-success" data-toggle="modal" data-target="#tambah">Tambah User</button>
                 </div>
 
                 <div class="card-body">
@@ -36,28 +36,29 @@
                     @endif
 
                     <div class="table-responsive-xl">
-                      <table class="table table-striped" id="memberTable">
+                      <table class="table table-striped" id="userTable">
                           <thead class="thead-light">
                               <tr>
-                                  <th>Kode</th>
                                   <th>Nama</th>
+                                  <th>Role</th>
                                   <th>Aksi</th>
                               </tr>
                           </thead>
                           <tbody>
-                            @foreach ($member as $item) 
+                            @foreach ($user as $item) 
                                 <tr>
                                     <td>
-                                        {{ $item->code }}
+                                        {{ $item->name }}
                                     </td>
                                     <td>
-                                        {{ $item->name }}
+                                        {{ $item->role_name }}
                                     </td>
                                     <td>
                                         <form method="POST" action="#">
                                             @method('DELETE')
                                             @csrf
                                             <button type="button" class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                            <a href="{{ route('admin.resetPassword', $item->id) }}"><button type="button" class="btn btn-sm btn-success mr-1"><span class="text-decoration-none"></span>Reset Password</span></button></a>
                                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                         </form>
                                     </td>
@@ -74,39 +75,42 @@
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('admin.member.store') }}" method="post">
+                <form action="{{ route('admin.user.store') }}" method="post">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Nama</label>
-                            <input type="name" class="form-control" name="name" placeholder="Nama Member" required>
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
                         </div>
 
                         <div class="form-group">
-                            <label>Bank</label>
-                            <input type="name" class="form-control" name="bank" placeholder="Nama Bank">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Konfirmasi Password</label>
+                            <input type="password" class="form-control" name="password_confirmation" id="password-confirm" placeholder="Konfirmasi Password" required>
                         </div>
 
                         <div class="form-group">
                             <label>Status: </label>
                             <div class="controls">
-                              <select class="form-control" name="status" id="status" required>
-                                <option value hidden>--Pilih status</option>  
-                                <option value="1">Dropship</option>  
-                                <option value="2">Reseller</option>
-                                <option value="3">Mitra Usaha</option>
+                              <select class="form-control" name="role" id="role" required>
+                                <option value hidden>--Pilih status</option>
+                                <option value="admin">Administrator</option>
+                                <option value="executive">Eksekutif</option>
+                                <option value="supervisor">Supervisor Marketing</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="production">Produksi</option>
+                                <option value="shipping">Pengiriman</option>
                               </select>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Alamat</label>
-                            <textarea name="address" class="form-control" id="" cols="30" rows="5" placeholder="Alamat Member" required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -131,19 +135,10 @@
                     @csrf
                     <div class="modal-body">
                         <input value='id' hidden>
-                        <div class="form-group">
-                          <label>Kode</label>
-                          <input type="text" class="form-control" name="code" id="code" value="Agen A" placeholder="Kode Member" required>
-                      </div>
 
                       <div class="form-group">
                           <label>Nama</label>
                           <input type="text" class="form-control" name="name" id="name" value="Agen A" placeholder="Nama Member" required>
-                      </div>
-
-                      <div class="form-group">
-                          <label>Bank</label>
-                          <input type="name" class="form-control" name="bank" id="name" value="BRI" placeholder="Nama Bank">
                       </div>
 
                       <div class="form-group">
@@ -157,10 +152,6 @@
                         </div>
                     </div>
 
-                      <div class="form-group">
-                          <label>Alamat</label>
-                          <textarea name="address" id="address" class="form-control" id="" cols="30" rows="5" placeholder="Alamat Member" required>Padang Tegal, Jl. Hanoman, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571</textarea>
-                      </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary">Ubah</button>

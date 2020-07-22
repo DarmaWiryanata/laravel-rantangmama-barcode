@@ -25,9 +25,9 @@ class Member extends Model
         ]);
     }
 
-    static function updateMember($request, $id)
+    static function updateMember($request)
     {
-        Member::findOrFail($id)->update([
+        Member::findOrFail($request->id)->update([
             'code' => $request->code,
             'name' => $request->name,
             'address' => $request->address,

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\RoleUser;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -49,5 +50,21 @@ class HomeController extends Controller
     public function codeError()
     {
         return view('checkcodeerror');
+    }
+
+    public function editPassword($id)
+    {
+        return view('auth.passwords.edit', compact('id'));
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        $request->validate([
+            'password'  => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+
+        User::updatePassword($id, $request->password);
+
+        return back()->with('success', 'Password berhasil diubah');
     }
 }

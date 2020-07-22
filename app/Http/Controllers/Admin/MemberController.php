@@ -78,16 +78,17 @@ class MemberController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'id' => 'required',
             'code' => 'required',
             'name' => 'required',
             'address' => 'required',
+            'bank' => 'required',
             'status' => 'required'
         ]);
-        Member::updateMember($request, $id);
+        Member::updateMember($request);
 
         return redirect()->route('admin.member.index')->with('success', 'Member berhasil diubah');
     }
