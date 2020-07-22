@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('js')
+    <script>
+        $(document).ready( function () {
+            $('#productionDetailTable').DataTable();
+        } );
+    </script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -10,12 +18,19 @@
                 <div class="card-body">
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times text-white"></i></button>
+                            <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
                             {{ $message }}
                         </div>
                     @endif
 
-                    <form method="POST" action="#">
+                    @if ($message = Session::get('danger'))
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
+                            {{ $message }}
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('production.update') }}">
                         @csrf
                         <div class="form-group">
                             <label for="barcode">Kode</label>
@@ -30,54 +45,30 @@
                 <div class="card-header">Riwayat Validasi Produksi</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="productionDetailTable">
                         <thead class="thead-light">
                             <tr>
                                 <th>Kode</th>
-                                <th>Nama</th>
+                                <th>Jenis</th>
                                 <th>Tanggal</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    SDA123213
-                                </td>
-                                <td>
-                                    BBQ CHICKEN WING MT
-                                </td>
-                                <td>
-                                    18 Juli 2020
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    SJK1232123
-                                </td>
-                                <td>
-                                    BAKSO AYAM SUPER MT
-                                </td>
-                                <td>
-                                    30 Juni 2020
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    HEB12312321
-                                </td>
-                                <td>
-                                    BAKSO AYAM SUPER RM
-                                </td>
-                                <td>
-                                    1 Juni 2020
-                                </td>
-                            </tr>
+                            @foreach ($productionDetail as $item)
+                                @if (isset($item->scan_date))
+                                    <tr>
+                                        <td>
+                                            {{ $item->code }}
+                                        </td>
+                                        <td>
+                                            {{ $item->name }}
+                                        </td>
+                                        <td>
+                                            {{ Carbon\Carbon::parse($item->scan_date)->formatLocalized('%d %B %Y') }}
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

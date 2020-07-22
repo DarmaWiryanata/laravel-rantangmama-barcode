@@ -25,7 +25,7 @@
                       </div><br />
                     @endif
                     
-                    <form method="POST" action="{{ route('password.update', $id) }}">
+                    <form method="POST" action="{{ route('password.update') }}">
                         @csrf
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password Baru</label>

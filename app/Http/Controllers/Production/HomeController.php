@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Production;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
+use App\Product;
+use App\Production;
+use App\ProductionDetail;
 
 class HomeController extends Controller
 {
@@ -15,16 +20,26 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('production.produksi');
+        $product = Product::orderBy('name')->get();
+        $production = Production::getProduction();
+        
+        return view('admin.produksi', compact('product', 'production'));
     }
     
-    public function store(Request $request)
+    public function production(Request $request)
     {
-        return back()->with('success', 'Produk '.$request->barcode.' berhasil diperbaharui');
+        if (ProductionDetail::firstProductionDetailByCode($request->barcode) !== NULL) {
+            ProductionDetail::productionUpdate($request->barcode);
+            return back()->with('success', 'Produk '.$request->barcode.' berhasil diperbaharui');
+        } else {
+            return back()->with('danger', 'Produk tidak ditemukan');
+        }
     }
 
     public function validasi()
     {
-        return view('production.validasi');
+        $productionDetail = ProductionDetail::getProductionDetailByProductionScan();
+
+        return view('production.validasi', compact('productionDetail'));
     }
 }

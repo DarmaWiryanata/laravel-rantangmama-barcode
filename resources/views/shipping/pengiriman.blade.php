@@ -1,40 +1,50 @@
 @extends('layouts.app')
 
-@section('navbar')
-    <x-navbar-expand name='Data Master' status="active">
-        <a class="dropdown-item active" href="#">Produk</a>
-        <a class="dropdown-item" href="#">Produksi</a>
-        <a class="dropdown-item" href="#">User</a>
-    </x-navbar-expand>
-    <x-navbar name='User' :route="route('admin.home')" status='' />
+@section('js')
+    <script>
+        $(document).ready( function () {
+            $('#shippingDetailTable').DataTable();
+        } );
+    </script>
 @endsection
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card mb-5">
                 <div class="card-header">{{ __('custom.product') }}
                 </div>
 
-                <form action="{{ route('pengiriman.store') }}" method="POST">
+                <form action="{{ route('shipping.update') }}" method="POST">
                   @csrf
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                Barcode {{ session('barcode') }} berhasil
-                            </div>
-                        @endif
+                      @if ($message = Session::get('success'))
+                          <div class="alert alert-success alert-block">
+                              <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
+                              Produk {{ session('barcode') }} berhasil diperbaharui
+                          </div>
+                      @endif
+
+                      @if ($message = Session::get('danger'))
+                          <div class="alert alert-danger alert-block">
+                              <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
+                              {{ $message }}
+                          </div>
+                      @endif
 
                         <div class="form-group">
                           <label>Tujuan Pengiriman: </label>
                           <div class="controls">
                             <select class="form-control" name="tujuan" id="tujuan">
-                              <option value="1"
-                              @if (session('tujuan') == 1)
-                              selected
-                              @endif
-                              >Agen A</option>  
+                              <option value hidden>--Pilih Tujuan</option>
+                              @foreach ($member as $item)
+                                <option value="{{ $item->id }}"
+                                @if (session('tujuan') == $item->id)
+                                selected
+                                @endif
+                                >{{ $item->name }}</option>  
+                              @endforeach
                               <option value="2"
                               @if (session('tujuan') == 2)
                               selected
@@ -85,8 +95,45 @@
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
-                </form>            
+                </form>
             </div>
+
+            <div class="card">
+              <div class="card-header">Riwayat Validasi Pengiriman</div>
+
+              <div class="card-body">
+                  <table class="table table-striped" id="shippingDetailTable">
+                      <thead class="thead-light">
+                          <tr>
+                              <th>Kode</th>
+                              <th>Jenis</th>
+                              <th>Tujuan</th>
+                              <th>Tanggal</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @foreach ($productionDetail as $item)
+                              @if (isset($item->scan_date))
+                                  <tr>
+                                      <td>
+                                          {{ $item->code }}
+                                      </td>
+                                      <td>
+                                          {{ $item->name }}
+                                      </td>
+                                      <td>
+                                          {{ $item->member }}
+                                      </td>
+                                      <td>
+                                          {{ Carbon\Carbon::parse($item->scan_date)->formatLocalized('%d %B %Y') }}
+                                      </td>
+                                  </tr>
+                              @endif
+                          @endforeach
+                      </tbody>
+                  </table>
+              </div>
+          </div>
         </div>
     </div>
 </div>

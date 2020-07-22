@@ -14,6 +14,11 @@ class Member extends Model
         Member::findOrFail($id)->destroy();
     }
 
+    static function getMember()
+    {
+        return Member::orderBy('name')->get();
+    }
+
     static function storeMember($request)
     {
         Member::create([

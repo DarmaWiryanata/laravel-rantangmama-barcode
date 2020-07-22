@@ -33,8 +33,8 @@ Route::get('/', function () {
     // echo DNS2D::getBarcodeHTML('1BKAFzkIaePhh2tQ', 'QRCODE');
 });
 
-Route::get('password/{id}', 'HomeController@editPassword')->name('password.edit');
-Route::post('password/{id}', 'HomeController@updatePassword')->name('password.update');
+Route::get('password', 'HomeController@editPassword')->name('password.edit');
+Route::post('password', 'HomeController@updatePassword')->name('password.update');
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('cek/{id}', 'HomeController@checkCode')->name('checkCode');
@@ -104,9 +104,11 @@ Route::group(['prefix' => 'marketing'], function () {
 Route::group(['prefix' => 'production'], function () {
 	Route::get('/', 'Production\HomeController@index')->name('production.produksi');
 	Route::get('validasi', 'Production\HomeController@validasi')->name('production.validasi');
+	Route::post('production', 'Production\HomeController@production')->name('production.update');
 });
 
 Route::group(['prefix' => 'shipping'], function () {
-	Route::resource('/pengiriman', 'Shipping\ShippingController');
-	Route::get('home', 'Shipping\HomeController@index')->name('shipping.home');
+	// Route::resource('/pengiriman', 'Shipping\ShippingController');
+	Route::get('/', 'Shipping\HomeController@index')->name('shipping.index');
+	Route::post('shipping', 'Shipping\HomeController@shipping')->name('shipping.update');
 });

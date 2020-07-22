@@ -38,7 +38,7 @@ class HomeController extends Controller
         } elseif (RoleUser::firstRole(Auth::user()->id)->name == 'production') {
             return redirect()->route('production.produksi');
         } elseif (RoleUser::firstRole(Auth::user()->id)->name == 'shipping') {
-            return redirect()->route('pengiriman.index');
+            return redirect()->route('shipping.index');
         }
     }
 
@@ -52,18 +52,18 @@ class HomeController extends Controller
         return view('checkcodeerror');
     }
 
-    public function editPassword($id)
+    public function editPassword()
     {
-        return view('auth.passwords.edit', compact('id'));
+        return view('auth.passwords.edit');
     }
 
-    public function updatePassword(Request $request, $id)
+    public function updatePassword(Request $request)
     {
         $request->validate([
             'password'  => ['required', 'string', 'min:8', 'confirmed']
         ]);
 
-        User::updatePassword($id, $request->password);
+        User::updatePassword(Auth::user()->id, $request->password);
 
         return back()->with('success', 'Password berhasil diubah');
     }
