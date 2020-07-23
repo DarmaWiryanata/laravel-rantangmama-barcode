@@ -11,6 +11,16 @@ class ProductionDetail extends Model
     protected $table = 'production_details';
     protected $fillable = ['production_id', 'member_id', 'code', 'production_scan', 'shipping_scan', 'status'];
 
+    static function expiredProducts()
+    {
+        return ProductionDetail::select('production_details.id', 'production_details.code', 'products.name', 'productions.expire_date')
+                                        ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                        ->leftJoin('products', 'productions.product_id', 'products.id')
+                                        ->whereNull('production_details.shipping_scan')
+                                        ->whereRaw('(productions.expire_date - CURDATE()) <= 7')
+                                        ->get();
+    }
+
     static function firstProductionDetailByCode($code)
     {
         return ProductionDetail::where('code', $code)->first();
@@ -71,6 +81,6 @@ class ProductionDetail extends Model
 
     static function generateCode()
     {
-        return Str::random(10);
+        return Str::random(5);
     }
 }

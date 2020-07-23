@@ -34,7 +34,7 @@ class HomeController extends Controller
         } elseif (RoleUser::firstRole(Auth::user()->id)->name == 'supervisor') {
             return redirect()->route('supervisor.home');
         } elseif (RoleUser::firstRole(Auth::user()->id)->name == 'marketing') {
-            return redirect()->route('marketing.produk');
+            return redirect()->route('marketing.home');
         } elseif (RoleUser::firstRole(Auth::user()->id)->name == 'production') {
             return redirect()->route('production.produksi');
         } elseif (RoleUser::firstRole(Auth::user()->id)->name == 'shipping') {
