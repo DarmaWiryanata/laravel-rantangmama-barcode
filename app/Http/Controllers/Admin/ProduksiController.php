@@ -3,13 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use PDF;
+
 use App\Product;
 use App\Production;
 use App\ProductionDetail;
-use Illuminate\Http\Request;
 
 class ProduksiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:admin|production');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -108,5 +116,14 @@ class ProduksiController extends Controller
         Member::destroyMember($id);
 
         return redirect()->route('admin.member.index')->with('success', 'Member berhasil dihapus');
+    }
+
+    public function printBarcode($id)
+    {
+        $productionDetail = ProductionDetail::getProductionDetailByProductionId($id);
+
+        $pdf = PDF::loadView('production.print', compact('productionDetail'));
+        return view('production.print', compact('productionDetail'));
+        // return $pdf->download('invoice.pdf');
     }
 }

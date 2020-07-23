@@ -43,7 +43,7 @@ Route::get('cek/{id}/error', 'HomeController@codeError')->name('codeError');
 Route::group(['prefix' => 'admin'], function () {
 	Route::get('home', 'Admin\HomeController@index')->name('admin.home');
 	Route::post('reset-password/{id}', 'Admin\UserController@resetPassword')->name('admin.resetPassword');
-
+	Route::get('print-barcode/{id}', 'Admin\ProduksiController@printBarcode')->name('admin.print-barcode');
 	Route::resource('produk', 'Admin\ProdukController', [
 		'only' => ['index', 'show', 'store', 'update', 'destroy']
 	])->names([

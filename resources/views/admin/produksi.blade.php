@@ -61,7 +61,7 @@
                                         {{ $item->qty }}
                                     </td>
                                     <td>
-                                        <button class="btn btn-sm btn-success">Cetak Barcode</button>
+                                        <a href="{{ route('admin.print-barcode', $item->id) }}" target="_blank"><button class="btn btn-sm btn-success">Cetak Barcode</button></a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -16,6 +16,15 @@ class ProductionDetail extends Model
         return ProductionDetail::where('code', $code)->first();
     }
 
+    static function getProductionDetailByProductionId($id)
+    {
+        return ProductionDetail::select('production_details.id as id', 'production_details.production_id as production_id', 'productions.expire_date as expire_date', 'production_details.code as code')
+                                ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                ->where('production_details.production_id', $id)
+                                ->orderByDesc('production_details.production_scan')
+                                ->get();
+    }
+
     static function getProductionDetailByProductionScan()
     {
         return ProductionDetail::select('production_details.id as id', 'production_details.code as code', 'products.name as name', 'production_details.production_scan as scan_date')

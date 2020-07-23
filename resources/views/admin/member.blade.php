@@ -39,8 +39,8 @@
                       <table class="table table-striped" id="memberTable">
                           <thead class="thead-light">
                               <tr>
-                                  <th>Kode</th>
                                   <th>Nama</th>
+                                  <th>Kode</th>
                                   <th>Aksi</th>
                               </tr>
                           </thead>
@@ -48,10 +48,10 @@
                             @foreach ($member as $item) 
                                 <tr>
                                     <td>
-                                        {{ $item->code }}
+                                        {{ $item->name }}
                                     </td>
                                     <td>
-                                        {{ $item->name }}
+                                        {{ $item->code }}
                                     </td>
                                     <td>
                                         <form method="POST" action="#">
@@ -127,7 +127,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('admin.member.update') }}" method="post">
+                <form action="{{ route('admin.member.update', Auth::user()->id) }}" method="post">
                     @csrf
                     <div class="modal-body">
                         <input value='id' hidden>
