@@ -28,22 +28,27 @@ class HomeController extends Controller
     public function shipping(Request $request)
     {
         if (ProductionDetail::firstProductionDetailByCode($request->barcode) !== NULL) {
-            ProductionDetail::shippingUpdate($request);
-            if ($request->status == 2) {
-                $productId = ProductionDetail::firstProductIdByCode($request->barcode);
-                                    
-                Consignment::updateConsignment($request->tujuan, $productId);
-
-                Consignment::increment('qty', 1, [
-                    'member_id' => $request->tujuan,
-                    'product_id' => $productId
+            if (ProductionDetail::firstProductionDetailByCode($request->production_scan) !== NULL) {
+                ProductionDetail::shippingUpdate($request);
+                if ($request->status == 2) {
+                    $productId = ProductionDetail::firstProductIdByCode($request->barcode);
+                                        
+                    Consignment::updateConsignment($request->tujuan, $productId);
+    
+                    Consignment::increment('qty', 1, [
+                        'member_id' => $request->tujuan,
+                        'product_id' => $productId
+                    ]);
+                }
+                return back()->with([
+                    'success' => 'success',
+                    'barcode' => $request->barcode,
+                    'tujuan' => $request->tujuan
                 ]);
+            } else {
+                return back()->with('danger', 'Produk belum melalui scan produksi');
             }
-            return back()->with([
-                'success' => 'success',
-                'barcode' => $request->barcode,
-                'tujuan' => $request->tujuan
-            ]);
+            
         } else {
             return back()->with('danger', 'Produk tidak ditemukan');
         }
