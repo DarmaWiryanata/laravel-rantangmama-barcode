@@ -93,7 +93,15 @@ Route::group(['prefix' => 'executive'], function () {
 });
 
 Route::group(['prefix' => 'supervisor'], function () {
-	Route::get('produk', 'Supervisor\HomeController@index')->name('supervisor.home');
+	Route::resource('produk', 'Supervisor\HomeController', [
+		'only' => ['index', 'show', 'update']
+	])->names([
+		'index'		=> 'supervisor.home',
+		'show'		=> 'supervisor.show',
+		'update'	=> 'supervisor.update',
+	]);
+	// Route::get('produk', 'Supervisor\HomeController@index')->name('supervisor.home');
+	// Route::get('produk/{id}', 'Supervisor\HomeController@show')->name('supervisor.show');
 });
 
 Route::group(['prefix' => 'marketing'], function () {

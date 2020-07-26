@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('js')
+    <script>
+        $(document).ready( function () {
+            $('#konsinyasiTable').DataTable();
+        });
+    </script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -8,106 +16,38 @@
                 <div class="card-header">Data Produk Konsinyasi</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
+                            {{ $message }}
                         </div>
                     @endif
 
-                    <table class="table table-striped">
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
+                            {{ $message }}
+                        </div>
+                    @endif
+
+                    <table class="table table-striped" id="konsinyasiTable">
                         <thead class="thead-light">
                             <tr>
                                 <th>Member</th>
-                                <th>Tujuan</th>
-                                <th>Tanggal Pengiriman</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    Agen A
-                                </td>
-                                <td>
-                                    Ubud
-                                </td>
-                                <td>
-                                    {{ now() }}
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail">Lihat Detail</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Agen B
-                                </td>
-                                <td>
-                                    Denpasar
-                                </td>
-                                <td>
-                                    {{ now() }}
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail">Lihat Detail</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Agen C
-                                </td>
-                                <td>
-                                    Denpasar
-                                </td>
-                                <td>
-                                    {{ now() }}
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail">Lihat Detail</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Agen D
-                                </td>
-                                <td>
-                                    Tabanan
-                                </td>
-                                <td>
-                                    {{ now() }}
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail">Lihat Detail</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Agen E
-                                </td>
-                                <td>
-                                    Denpasar
-                                </td>
-                                <td>
-                                    {{ now() }}
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail">Lihat Detail</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Agen F
-                                </td>
-                                <td>
-                                    Tabanan
-                                </td>
-                                <td>
-                                    {{ now() }}
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail">Lihat Detail</button>
-                                </td>
-                            </tr>
+                            @foreach ($consignment as $item)
+                                <tr>
+                                    <td>
+                                        {{ $item->name }}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail" data-value="17">Lihat Detail</button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -127,21 +67,13 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="#" method="post">
+            <form action="{{ route('supervisor.update', 0) }}" method="post">
+                @csrf
+                @method('PATCH')
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama</label>
-                        <input disabled type="name" class="form-control" name="nama" value="Agen A" placeholder="<Kosong>">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tujuan</label>
-                        <input disabled type="name" class="form-control" name="tujuan" value="Ubud" placeholder="<Kosong>">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tanggal</label>
-                        <input disabled type="name" class="form-control" name="tanggal" value="2020-07-19 12:39:07" placeholder="<Kosong>">
+                        <input disabled type="name" class="form-control" name="nama" id="name" value="Agen A" placeholder="<Kosong>">
                     </div>
 
                     <hr>
@@ -155,35 +87,7 @@
                                 <th style="width: 67px;">Retur</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    BBQ CHICKEN WING MT
-                                </td>
-                                <td>
-                                    12
-                                </td>
-                                <td>
-                                    <input type="name" class="form-control" name="terjual[]" placeholder="0">
-                                </td>
-                                <td>
-                                    <input type="name" class="form-control" name="retur[]" placeholder="0">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    BBQ CHICKEN WING RM
-                                </td>
-                                <td>
-                                    12
-                                </td>
-                                <td>
-                                    <input type="name" class="form-control" name="terjual[]" placeholder="0">
-                                </td>
-                                <td>
-                                    <input type="name" class="form-control" name="retur[]" placeholder="0">
-                                </td>
-                            </tr>
+                        <tbody id="data">
                         </tbody>
                     </table>
                 </div>
@@ -195,4 +99,36 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready( function () {
+            $("#tabel tbody tr td button" ).on( "click", function() {
+                var id = $(this).attr('data-value');
+                $.get( "/supervisor/produk/" + id, function( data ) {
+                    console.log(JSON.parse(data));
+                    var d = JSON.parse(data);
+                    $('#name').val(d[0].name);
+                    for (var i = 0; i < d[0]['items'].length; i++) {
+                        $('#data').html(`<tr>
+                                            <td>
+                                                `+ d[0]['items'][i].name +`
+                                            </td>
+                                            <td>
+                                                `+ d[0]['items'][i].qty +`
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].id +`][terjual]" placeholder="0">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].id +`][retur]" placeholder="0">
+                                            </td>
+                                        </tr>`);
+                    }
+                });
+                console.log($(this).attr('data-value'));
+            });
+        });
+    </script>
 @endsection

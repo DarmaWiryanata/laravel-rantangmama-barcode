@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Member;
 use App\ProductionDetail;
+use App\Consignment;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,16 @@ class HomeController extends Controller
     {
         if (ProductionDetail::firstProductionDetailByCode($request->barcode) !== NULL) {
             ProductionDetail::shippingUpdate($request);
+            if ($request->status == 2) {
+                $productId = ProductionDetail::firstProductIdByCode($request->barcode);
+                                    
+                Consignment::updateConsignment($request->tujuan, $productId);
+
+                Consignment::increment('qty', 1, [
+                    'member_id' => $request->tujuan,
+                    'product_id' => $productId
+                ]);
+            }
             return back()->with([
                 'success' => 'success',
                 'barcode' => $request->barcode,
