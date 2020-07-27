@@ -58,4 +58,31 @@ class HomeController extends Controller
     {
         return Member::showMember($id);
     }
+
+    public function retur()
+    {
+        $member = Member::getMember();
+        $productionDetail = ProductionDetail::getProductionDetailByReturnStatus();
+
+        return view('shipping.retur', compact('member', 'productionDetail'));
+    }
+
+    public function returUpdate(Request $request)
+    {
+        $product = ProductionDetail::firstProductionDetailByCode($request->barcode);
+
+        if ($product !== NULL) {
+            if ($product->production_scan !== NULL ) {
+                if ($product->shipping_scan !== NULL) {
+                    ProductionDetail::returnUpdate($request);
+                } else {
+                    return back()->with('danger', 'Produk belum melalui scan produksi');
+                }
+            } else {
+                return back()->with('danger', 'Produk belum melalui scan produksi');
+            }
+        } else {
+            return back()->with('danger', 'Produk tidak ditemukan');
+        }
+    }
 }

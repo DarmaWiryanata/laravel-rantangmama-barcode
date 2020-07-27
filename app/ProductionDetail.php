@@ -64,9 +64,25 @@ class ProductionDetail extends Model
                                 ->get();
     }
 
+    static function getProductionDetailByReturnStatus()
+    {
+        return ProductionDetail::select('production_details.id as id', 'production_details.code as code', 'products.name as name', 'members.name as member', 'production_details.shipping_scan as scan_date')
+                                ->leftJoin('members', 'production_details.member_id', 'members.id')
+                                ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                ->leftJoin('products', 'productions.product_id', 'products.id')
+                                ->orderByDesc('production_details.shipping_scan')
+                                ->where('production_details.status', 3)
+                                ->get();
+    }
+
     static function productionUpdate($code)
     {
         ProductionDetail::where('code', $code)->update(['production_scan' => Carbon::now()]);
+    }
+
+    static function returnUpdate($request)
+    {
+        ProductionDetail::where('code', $request->barcode)->update(['status' => 3]);
     }
 
     static function shippingUpdate($request)
