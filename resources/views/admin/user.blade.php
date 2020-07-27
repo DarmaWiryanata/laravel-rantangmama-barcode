@@ -12,6 +12,7 @@
                     console.log(JSON.parse(data));
                     var d = JSON.parse(data);
                     $('#username').val(d.name);
+                    $('#id').val(d.id);
                 });
             });
         } );
@@ -58,15 +59,15 @@
                             @foreach ($user as $item) 
                                 <tr>
                                     <td>
-                                        {{ $item->name }}
+                                        {{ $item->username }}
                                     </td>
                                     <td>
                                         {{ $item->role_name }}
                                     </td>
                                     <td>
-                                        <form method="POST" action="#">
-                                            @method('DELETE')
+                                        <form method="POST" action="{{ route('admin.user.destroy', $item->id) }}">
                                             @csrf
+                                            @method('DELETE')
                                             <button type="button" class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#ubah" data-value="{{ $item->id }}">Ubah</span>
                                             <a href="{{ route('admin.resetPassword', $item->id) }}"><button type="button" class="btn btn-sm btn-success mr-1"><span class="text-decoration-none"></span>Reset Password</span></button></a>
                                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
@@ -136,14 +137,16 @@
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Member</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah User</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('admin.user.update', 1) }}" method="post">
+                <form action="{{ route('admin.user.update', Auth::user()->id) }}" method="post">
                     @csrf
+                    @method('PATCH')
                     <div class="modal-body">
+                        <input type="hidden" name="id" id="id">
                         <div class="form-group">
                             <label>Username</label>
                             <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
@@ -165,7 +168,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Tambah</button>
+                        <button type="submit" class="btn btn-primary">Ubah</button>
                     </div>
                 </form>
             </div>

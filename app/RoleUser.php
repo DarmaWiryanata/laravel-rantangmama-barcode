@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Auth;
 class RoleUser extends Model
 {
     protected $table = 'role_user';
-
     protected $fillable = ['role_id', 'user_id'];
+    public $timestamps = false;
 
     static function destroyRoleUser($id)
     {
-        RoleUser::where('user_id', $id)->destroy();
+        RoleUser::where('user_id', $id)->delete();
     }
 
     static function firstRole($userId)
@@ -25,8 +25,8 @@ class RoleUser extends Model
         return $data;
     }
 
-    static function updateRoleUser($request, $roleId)
+    static function updateRoleUser($userId, $roleId)
     {
-        RoleUser::where('user_id', $request->id)->update(['role_id' => $roleId]);
+        return RoleUser::where('user_id', $userId)->update(['role_id' => $roleId]);
     }
 }

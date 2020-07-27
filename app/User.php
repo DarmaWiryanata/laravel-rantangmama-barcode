@@ -68,7 +68,7 @@ class User extends Authenticatable
 
     static function destroyUser($id)
     {
-        User::findOrFail($id)->destroy();
+        User::findOrFail($id)->delete();
     }
 
     public static function getActiveRole($id){
@@ -79,7 +79,7 @@ class User extends Authenticatable
 
     static function getUser()
     {
-        return User::select('users.id as id', 'users.username as name', 'role_user.id as role_id', 'roles.description as role_name')
+        return User::select('users.id as id', 'users.username as username', 'role_user.id as role_id', 'roles.description as role_name')
                     ->join('role_user', 'users.id', 'role_user.user_id')
                     ->join('roles', 'role_user.role_id', 'roles.id')
                     ->get();
@@ -114,6 +114,6 @@ class User extends Authenticatable
 
     static function updateUser($request)
     {
-        User::findOrFail($request->id)->update(['name' => $request->name]);
+        User::findOrFail($request->id)->update(['username' => $request->username]);
     }
 }

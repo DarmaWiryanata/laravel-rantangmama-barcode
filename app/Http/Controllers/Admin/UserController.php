@@ -20,7 +20,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        // return $role = DB::table('roles')->where('id', 2)->get();
         $user = User::getUser();
 
         return view('admin.user', compact('user'));
@@ -86,16 +85,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        // return $request->id;
         $request->validate([
             'id' => 'required',
-            'name' => 'required',
+            'username' => 'required',
             'role' => 'required'
         ]);
         User::updateUser($request);
         $roleId = Role::firstRoleByName($request->role);
-        RoleUser::updateRoleUser($request, $roleId->id);
+        RoleUser::updateRoleUser($request->id, $roleId->id);
 
-        return redirect()->route('admin.user.index')->with('success', 'User berhasil diubah');
+        return back()->with('success', 'User berhasil diubah');
     }
 
     /**
@@ -109,11 +109,13 @@ class UserController extends Controller
         User::destroyUser($id);
         RoleUser::destroyRoleUser($id);
 
-        return redirect()->route('admin.user.index')->with('success', 'User berhasil dihapus');
+        return back()->with('success', 'User berhasil dihapus');
     }
 
     public function resetPassword($id)
     {
         User::resetPassword($id);
+
+        return back()->with('success', 'Password user diubah ke "12345678"');
     }
 }
