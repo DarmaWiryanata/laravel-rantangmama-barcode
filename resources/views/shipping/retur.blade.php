@@ -32,7 +32,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('production.update') }}">
+                    <form method="POST" action="{{ route('shipping.returUpdate') }}">
                         @csrf
                         <div class="form-group">
                             <label for="barcode">Kode</label>
