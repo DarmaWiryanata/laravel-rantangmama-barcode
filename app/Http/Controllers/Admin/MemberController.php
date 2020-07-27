@@ -85,12 +85,11 @@ class MemberController extends Controller
             'code' => 'required',
             'name' => 'required',
             'address' => 'required',
-            'bank' => 'required',
             'status' => 'required'
         ]);
         Member::updateMember($request);
 
-        return redirect()->route('admin.member.index')->with('success', 'Member berhasil diubah');
+        return back()->with('success', 'Member berhasil diubah');
     }
 
     /**

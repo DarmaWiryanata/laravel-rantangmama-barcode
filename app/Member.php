@@ -11,7 +11,7 @@ class Member extends Model
 
     static function destroyMember($id)
     {
-        Member::findOrFail($id)->destroy();
+        Member::findOrFail($id)->delete();
     }
 
     static function getMember()

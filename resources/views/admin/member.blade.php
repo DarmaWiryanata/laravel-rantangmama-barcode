@@ -10,6 +10,7 @@
                 $.get( "/admin/member/" + id, function( data ) {
                     console.log(JSON.parse(data));
                     var d = JSON.parse(data);
+                    $('#id').val(d.id);
                     $('#code').val(d.code);
                     $('#name').val(d.name);
                     $('#bank').val(d.bank);
@@ -68,9 +69,9 @@
                                         {{ $item->code }}
                                     </td>
                                     <td>
-                                        <form method="POST" action="#">
-                                            @method('DELETE')
+                                        <form method="POST" action="{{ route('admin.member.destroy', $item->id) }}">
                                             @csrf
+                                            @method('DELETE')
                                             <button type="button" class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#ubah" data-value="{{ $item->id }}">Ubah</span>
                                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                         </form>
@@ -143,8 +144,9 @@
                 </div>
                 <form action="{{ route('admin.member.update', Auth::user()->id) }}" method="post">
                     @csrf
+                    @method('PATCH')
                     <div class="modal-body">
-                        <input value='id' hidden>
+                        <input id="id" name="id" hidden>
                         <div class="form-group">
                           <label>Kode</label>
                           <input type="text" class="form-control" name="code" id="code" placeholder="Kode Member" required>
@@ -177,7 +179,7 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Ubah</button>
+                        <button type="submit" class="btn btn-primary">Ubah</button>
                     </div>
                 </form>
             </div>
