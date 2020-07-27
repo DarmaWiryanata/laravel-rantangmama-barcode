@@ -85,6 +85,15 @@ class User extends Authenticatable
                     ->get();
     }
 
+    static function firstUser($id)
+    {
+        return User::select('users.id as id', 'users.username as name', 'role_user.id as role_id', 'roles.description as role_name')
+                    ->join('role_user', 'users.id', 'role_user.user_id')
+                    ->join('roles', 'role_user.role_id', 'roles.id')
+                    ->where('users.id', $id)
+                    ->first();
+    }
+
     static function resetPassword($id)
     {
         User::whereId($id)->update(['password' => Hash::make('12345678')]);

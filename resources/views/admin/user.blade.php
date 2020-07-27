@@ -4,6 +4,16 @@
     <script>
         $(document).ready( function () {
             $('#userTable').DataTable();
+
+            $('#userTable tbody tr td button').on('click', function() {
+                var id = $(this).attr('data-value');
+                console.log(id);
+                $.get( "/admin/user/" + id, function( data ) {
+                    console.log(JSON.parse(data));
+                    var d = JSON.parse(data);
+                    $('#username').val(d.name);
+                });
+            });
         } );
     </script>
 @endsection
@@ -57,7 +67,7 @@
                                         <form method="POST" action="#">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="button" class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                            <button type="button" class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#ubah" data-value="{{ $item->id }}">Ubah</span>
                                             <a href="{{ route('admin.resetPassword', $item->id) }}"><button type="button" class="btn btn-sm btn-success mr-1"><span class="text-decoration-none"></span>Reset Password</span></button></a>
                                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                         </form>
@@ -85,12 +95,12 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Username</label>
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
                         </div>
 
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
                         </div>
 
                         <div class="form-group">
@@ -101,7 +111,7 @@
                         <div class="form-group">
                             <label>Status: </label>
                             <div class="controls">
-                              <select class="form-control" name="role" id="role" required>
+                              <select class="form-control" name="role" required>
                                 <option value hidden>--Pilih status</option>
                                 <option value="admin">Administrator</option>
                                 <option value="executive">Eksekutif</option>
@@ -131,30 +141,31 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('admin.member.update') }}" method="post">
+                <form action="{{ route('admin.user.update', 1) }}" method="post">
                     @csrf
                     <div class="modal-body">
-                        <input value='id' hidden>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                        </div>
 
-                      <div class="form-group">
-                          <label>Nama</label>
-                          <input type="text" class="form-control" name="name" id="name" value="Agen A" placeholder="Nama Member" required>
-                      </div>
-
-                      <div class="form-group">
-                        <label>Status: </label>
-                        <div class="controls">
-                          <select class="form-control" name="status" id="status" required>
-                            <option value="1">Dropship</option>  
-                            <option value="2">Reseller</option>
-                            <option value="3">Mitra Usaha</option>
-                          </select>
+                        <div class="form-group">
+                            <label>Status: </label>
+                            <div class="controls">
+                              <select class="form-control" name="role" id="role" required>
+                                <option value hidden>--Pilih status</option>
+                                <option value="admin">Administrator</option>
+                                <option value="executive">Eksekutif</option>
+                                <option value="supervisor">Supervisor Marketing</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="production">Produksi</option>
+                                <option value="shipping">Pengiriman</option>
+                              </select>
+                            </div>
                         </div>
                     </div>
-
-                    </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Ubah</button>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
                     </div>
                 </form>
             </div>

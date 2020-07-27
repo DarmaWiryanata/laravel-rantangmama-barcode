@@ -61,9 +61,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        return $data = json_encode(User::firstUser($id));
     }
 
     /**
