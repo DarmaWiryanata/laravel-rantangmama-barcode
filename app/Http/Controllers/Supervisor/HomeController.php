@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Consignment;
+use App\Product;
 
 class HomeController extends Controller
 {
@@ -31,16 +32,14 @@ class HomeController extends Controller
 
     public function update(Request $request, $id)
     {
-        // foreach ($request['items'] as $key => $value) {
-        //     return $consignment = Consignment::firstConsignment(1);
-
-        //     if ($value['terjual'] + $value['retur'] > $consignment->qty) {
-        //         return back()->with('error', 'Jumlah produk terjual dan retur (' . $value['terjual'] + $value['retur'] . ') pada produk ' . $consignment->name . 'tidak boleh lebih dari qty (' . $consignment->qty . ')');
-        //     }
-        // }
-
         foreach ($request['items'] as $key => $value) {
             Consignment::decrement('qty', $value['terjual'] + $value['retur'], ['id' => $key]);
+            $data = Consignment::whereId($key)->first();
+            $product = Product::whereId($data->product_id)->first();
+            Product::where('id', $data->product_id)
+                    ->update([
+                        'stock' => $product->stock - ($value['terjual'] + $value['retur'])
+                    ]);
 
             return back()->with('success', 'Data berhasil diperbaharui');
         }

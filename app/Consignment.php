@@ -11,14 +11,14 @@ class Consignment extends Model
 
     static function firstConsignment($id)
     {
-        return Consignment::select('consignments.id', 'products.name', 'consignments.qty')
+        return Consignment::select('consignments.id', 'products.name', 'consignments.qty', 'consignments.product_id')
                             ->join('products', 'consignments.product_id', 'products.id')
                             ->whereFirst('consignments.product_id', $id);
     }
 
     static function getConsignment()
     {
-        return Consignment::select('consignments.id', 'members.name')
+        return Consignment::select('consignments.id', 'members.name', 'consignments.member_id')
                             ->orderByDesc('consignments.qty')
                             ->distinct()
                             ->groupBy('consignments.member_id')

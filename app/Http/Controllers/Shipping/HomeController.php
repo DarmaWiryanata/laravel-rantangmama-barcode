@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Member;
 use App\ProductionDetail;
 use App\Consignment;
+use App\Product;
 
 class HomeController extends Controller
 {
@@ -40,6 +41,13 @@ class HomeController extends Controller
                         'member_id' => $request->tujuan,
                         'product_id' => $productId
                     ]);
+                } else if ($request->status == 1) {
+                    $productId = ProductionDetail::firstProductIdByCode($request->barcode);
+                    $data = Product::whereId($productId)->first();
+
+                    Product::where('id', $productId)->update([
+                                'stock' => $data->stock - 1
+                            ]);
                 }
                 return back()->with([
                     'success' => 'success',

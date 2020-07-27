@@ -4,6 +4,32 @@
     <script>
         $(document).ready( function () {
             $('#konsinyasiTable').DataTable();
+
+            $("#konsinyasiTable tbody tr td button" ).on( "click", function() {
+                var id = $(this).attr('data-value');
+                $.get( "/supervisor/produk/" + id, function( data ) {
+                    console.log(JSON.parse(data));
+                    var d = JSON.parse(data);
+                    $('#name').val(d[0].name);
+                    for (var i = 0; i < d[0]['items'].length; i++) {
+                        $('#data').html(`<tr>
+                                            <td>
+                                                `+ d[0]['items'][i].name +`
+                                            </td>
+                                            <td>
+                                                `+ d[0]['items'][i].qty +`
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].id +`][terjual]" placeholder="0">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].id +`][retur]" placeholder="0">
+                                            </td>
+                                        </tr>`);
+                    }
+                });
+                console.log($(this).attr('data-value'));
+            });
         });
     </script>
 @endsection
@@ -44,7 +70,7 @@
                                         {{ $item->name }}
                                     </td>
                                     <td>
-                                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail" data-value="17">Lihat Detail</button>
+                                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail" data-value="{{ $item->member_id }}">Lihat Detail</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -101,7 +127,7 @@
 </div>
 @endsection
 
-@section('js')
+{{-- @section('js')
     <script>
         $(document).ready( function () {
             $("#tabel tbody tr td button" ).on( "click", function() {
@@ -131,4 +157,4 @@
             });
         });
     </script>
-@endsection
+@endsection --}}
