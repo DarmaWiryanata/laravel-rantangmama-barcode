@@ -15,7 +15,13 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        return view('executive.home');
+    }
+
+    public function show(Request $request)
+    {
+        $data = $request;
+        return view('executive.laporan', compact('data'));
     }
 
     public function produk()
