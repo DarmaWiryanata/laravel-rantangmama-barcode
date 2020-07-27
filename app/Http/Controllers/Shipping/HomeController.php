@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function shipping(Request $request)
     {
         if (ProductionDetail::firstProductionDetailByCode($request->barcode) !== NULL) {
-            if (ProductionDetail::firstProductionDetailByCode($request->production_scan) !== NULL) {
+            if (ProductionDetail::firstProductionDetailByCode($request->production_scan)) {
                 ProductionDetail::shippingUpdate($request);
                 if ($request->status == 2) {
                     $productId = ProductionDetail::firstProductIdByCode($request->barcode);
