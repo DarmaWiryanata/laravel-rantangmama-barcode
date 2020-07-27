@@ -76,15 +76,16 @@ class ProdukController extends Controller
      * @param  \App\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        // return $request;
         $request->validate([
             'id' => 'required',
             'name' => 'required'
         ]);
-        Product::updateProduct($request, $id);
+        Product::updateProduct($request);
 
-        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diubah');
+        return back()->with('success', 'Produk berhasil diubah');
     }
 
     /**
@@ -97,6 +98,6 @@ class ProdukController extends Controller
     {
         Product::destroyProduct($id);
 
-        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil dihapus');
+        return back()->with('success', 'Produk berhasil dihapus');
     }
 }
