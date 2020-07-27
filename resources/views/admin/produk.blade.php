@@ -11,6 +11,7 @@
                 $.get( "/admin/produk/" + id, function( data ) {
                     console.log(JSON.parse(data));
                     var d = JSON.parse(data);
+                    $('#id').val(d.id);
                     $('#name').val(d.name);
                 });
             });
@@ -64,9 +65,9 @@
                                         {{ $item->stock }}
                                     </td>
                                     <td>
-                                        <form method="POST" action="#">
-                                            @method('DELETE')
+                                        <form method="POST" action="{{ route('admin.produk.update', $item->id) }}">
                                             @csrf
+                                            @method('DELETE')
                                             <button type="button" class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#ubah" data-value="{{ $item->id }}">Ubah</span>
                                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                         </form>
@@ -114,17 +115,18 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('admin.produk.update', 1) }}" method="post">
+                <form action="{{ route('admin.produk.update', Auth::user()->id) }}" method="post">
                     @csrf
+                    @method('PATCH')
                     <div class="modal-body">
-                        <input value='id' hidden>
+                        <input name='id' id='id' hidden>
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="name" class="form-control" name="nama" id="name" placeholder="Nama Produk" required>
+                            <input type="name" class="form-control" name="name" id="name" placeholder="Nama Produk" required>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Ubah</button>
+                        <button type="submit" class="btn btn-primary">Ubah</button>
                     </div>
                 </form>
             </div>

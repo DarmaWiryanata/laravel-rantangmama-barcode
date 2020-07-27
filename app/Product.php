@@ -11,7 +11,7 @@ class Product extends Model
 
     static function destroyProduct($id)
     {
-        Product::findOrFail($id)->destroy();
+        Product::findOrFail($id)->delete();
     }
 
     static function firstProductCode($code)
@@ -37,8 +37,8 @@ class Product extends Model
         Product::create(['name' => $request->name]);
     }
 
-    static function updateProduct($request, $id)
+    static function updateProduct($request)
     {
-        Product::findOrFail($id)->update(['name' => $request->name]);
+        Product::findOrFail($request->id)->update(['name' => $request->name]);
     }
 }
