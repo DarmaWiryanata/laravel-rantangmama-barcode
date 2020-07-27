@@ -84,6 +84,8 @@ class HomeController extends Controller
             if ($product->production_scan !== NULL) {
                 if ($product->shipping_scan !== NULL) {
                     ProductionDetail::returnUpdate($request);
+
+                    return back()->with('success', 'Produk ' . $request->barcode . ' berhasil dikembalikan');
                 } else {
                     return back()->with('danger', 'Produk belum melalui scan produksi');
                 }
