@@ -53,9 +53,9 @@ class ProdukController extends Controller
      * @param  \App\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function show(Produk $produk)
+    public function show($id)
     {
-        //
+        return $data = json_encode(Product::firstProduct($id));
     }
 
     /**

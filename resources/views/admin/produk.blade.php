@@ -4,6 +4,16 @@
     <script>
         $(document).ready( function () {
             $('#productTable').DataTable();
+
+            $('#productTable tbody tr td button').on('click', function() {
+                var id = $(this).attr('data-value');
+                console.log(id);
+                $.get( "/admin/produk/" + id, function( data ) {
+                    console.log(JSON.parse(data));
+                    var d = JSON.parse(data);
+                    $('#name').val(d.name);
+                });
+            });
         } );
     </script>
 @endsection
@@ -57,7 +67,7 @@
                                         <form method="POST" action="#">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="button" class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                            <button type="button" class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#ubah" data-value="{{ $item->id }}">Ubah</span>
                                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                         </form>
                                     </td>
@@ -104,13 +114,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('admin.produk.update') }}" method="post">
+                <form action="{{ route('admin.produk.update', 1) }}" method="post">
                     @csrf
                     <div class="modal-body">
                         <input value='id' hidden>
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="name" class="form-control" name="nama" value="BBQ CHICKEN WING MT" placeholder="Nama Produk" required>
+                            <input type="name" class="form-control" name="nama" id="name" placeholder="Nama Produk" required>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -6,18 +6,17 @@
             $('#memberTable').DataTable();
 
             $('#memberTable tbody tr td button').on('click', function() {
-              var id = $(this).attr('data-value');;
-              $.get( "/admin/member/" + id, function( data ) {
-                console.log(JSON.parse(data));
-                var d = JSON.parse(data);
-                $('#code').val(d.code);
-                $('#name').val(d.name);
-                $('#bank').val(d.bank);
-                $("#status").val(d.status);
-                $('#address').val(d.address);
-                console.log(status)
-            });
-            // console.log(d.status);
+                var id = $(this).attr('data-value');
+                $.get( "/admin/member/" + id, function( data ) {
+                    console.log(JSON.parse(data));
+                    var d = JSON.parse(data);
+                    $('#code').val(d.code);
+                    $('#name').val(d.name);
+                    $('#bank').val(d.bank);
+                    $("#status").val(d.status);
+                    $('#address').val(d.address);
+                    console.log(status)
+                });
             });
         });
     </script>

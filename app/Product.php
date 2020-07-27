@@ -21,6 +21,11 @@ class Product extends Model
         return $data;
     }
 
+    static function firstProduct($id)
+    {
+        return Product::whereId($id)->first();
+    }
+
     static function incrementStock($request)
     {
         $old_stock = Product::findOrFail($request->product_id);
