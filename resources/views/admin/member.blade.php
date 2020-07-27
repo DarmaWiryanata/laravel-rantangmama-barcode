@@ -4,6 +4,21 @@
     <script>
         $(document).ready( function () {
             $('#memberTable').DataTable();
+
+            $('#memberTable tbody tr td button').on('click', function() {
+              var id = $(this).attr('data-value');;
+              $.get( "/admin/member/" + id, function( data ) {
+                console.log(JSON.parse(data));
+                var d = JSON.parse(data);
+                $('#code').val(d.code);
+                $('#name').val(d.name);
+                $('#bank').val(d.bank);
+                $("#status").val(d.status);
+                $('#address').val(d.address);
+                console.log(status)
+            });
+            // console.log(d.status);
+            });
         });
     </script>
 @endsection
@@ -57,7 +72,7 @@
                                         <form method="POST" action="#">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="button" class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#ubah" >Ubah</span>
+                                            <button type="button" class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#ubah" data-value="{{ $item->id }}">Ubah</span>
                                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                         </form>
                                     </td>
@@ -95,11 +110,11 @@
                         <div class="form-group">
                             <label>Status: </label>
                             <div class="controls">
-                              <select class="form-control" name="status" id="status" required>
+                              <select class="form-control" name="status" required>
                                 <option value hidden>--Pilih status</option>  
-                                <option value="1">Dropship</option>  
-                                <option value="2">Reseller</option>
-                                <option value="3">Mitra Usaha</option>
+                                <option value="Dropship">Dropship</option>  
+                                <option value="Reseller">Reseller</option>
+                                <option value="Mitra Usaha">Mitra Usaha</option>
                               </select>
                             </div>
                         </div>
@@ -133,33 +148,33 @@
                         <input value='id' hidden>
                         <div class="form-group">
                           <label>Kode</label>
-                          <input type="text" class="form-control" name="code" id="code" value="Agen A" placeholder="Kode Member" required>
+                          <input type="text" class="form-control" name="code" id="code" placeholder="Kode Member" required>
                       </div>
 
                       <div class="form-group">
                           <label>Nama</label>
-                          <input type="text" class="form-control" name="name" id="name" value="Agen A" placeholder="Nama Member" required>
+                          <input type="text" class="form-control" name="name" id="name" placeholder="Nama Member" required>
                       </div>
 
                       <div class="form-group">
                           <label>Bank</label>
-                          <input type="name" class="form-control" name="bank" id="name" value="BRI" placeholder="Nama Bank">
+                          <input type="name" class="form-control" name="bank" id="bank" placeholder="Kosong">
                       </div>
 
                       <div class="form-group">
                         <label>Status: </label>
                         <div class="controls">
                           <select class="form-control" name="status" id="status" required>
-                            <option value="1">Dropship</option>  
-                            <option value="2">Reseller</option>
-                            <option value="3">Mitra Usaha</option>
-                          </select>
+                            <option value="Dropship">Dropship</option>  
+                            <option value="Reseller">Reseller</option>
+                            <option value="Mitra Usaha">Mitra Usaha</option>
+                      </select>
                         </div>
                     </div>
 
                       <div class="form-group">
                           <label>Alamat</label>
-                          <textarea name="address" id="address" class="form-control" id="" cols="30" rows="5" placeholder="Alamat Member" required>Padang Tegal, Jl. Hanoman, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571</textarea>
+                          <textarea name="address" id="address" class="form-control" cols="30" rows="5" placeholder="Alamat Member" required></textarea>
                       </div>
                     </div>
                     <div class="modal-footer">

@@ -19,6 +19,11 @@ class Member extends Model
         return Member::orderBy('name')->get();
     }
 
+    static function showMember($id)
+    {
+        return json_encode(Member::whereId($id)->first());
+    }
+
     static function storeMember($request)
     {
         Member::create([

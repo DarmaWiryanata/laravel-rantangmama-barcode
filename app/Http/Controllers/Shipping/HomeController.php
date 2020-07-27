@@ -53,4 +53,9 @@ class HomeController extends Controller
             return back()->with('danger', 'Produk tidak ditemukan');
         }
     }
+
+    public function show($id)
+    {
+        return Member::showMember($id);
+    }
 }

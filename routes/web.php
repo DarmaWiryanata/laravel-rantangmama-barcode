@@ -119,4 +119,5 @@ Route::group(['prefix' => 'shipping'], function () {
 	// Route::resource('/pengiriman', 'Shipping\ShippingController');
 	Route::get('/', 'Shipping\HomeController@index')->name('shipping.index');
 	Route::post('shipping', 'Shipping\HomeController@shipping')->name('shipping.update');
+	Route::get('/data/{id}', 'Shipping\HomeController@show')->name('shipping.show');
 });

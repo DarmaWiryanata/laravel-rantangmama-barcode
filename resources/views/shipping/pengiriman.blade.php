@@ -3,7 +3,18 @@
 @section('js')
     <script>
         $(document).ready( function () {
-            $('#shippingDetailTable').DataTable();
+            $('#shippingDetailTable').DataTable({
+              "order": [[ 3, "desc" ]]
+            });
+            $('#tujuan').on('change', function() {
+              var id = this.value;
+              $.get( "/shipping/data/" + id, function( data ) {
+                console.log(JSON.parse(data));
+                var d = JSON.parse(data);
+                $('#alamat').val(d.address);
+              });
+              console.log(id);
+            });
         } );
     </script>
 @endsection
@@ -45,16 +56,6 @@
                                 @endif
                                 >{{ $item->name }}</option>  
                               @endforeach
-                              <option value="2"
-                              @if (session('tujuan') == 2)
-                              selected
-                              @endif
-                              >Agen B</option>
-                              <option value="3"
-                              @if (session('tujuan') == 3)
-                              selected
-                              @endif
-                              >Agen C</option>
                             </select>
                           </div>
                         </div>
@@ -62,7 +63,7 @@
                         <div class="form-group">
                           <label>Alamat: </label>
                           <div class="controls">
-                            <textarea name="alamat" cols="30" rows="3" class="form-control" disabled>Padang Tegal, Jl. Hanoman, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571</textarea>
+                            <textarea name="alamat" id="alamat" cols="30" rows="3" class="form-control" placeholder="Alamat Member" disabled></textarea>
                           </div>
                         </div>
 
