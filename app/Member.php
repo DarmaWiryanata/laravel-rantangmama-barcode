@@ -45,4 +45,18 @@ class Member extends Model
             'status' => $request->status
         ]);
     }
+
+    static function generateMemberCode($code)
+    {
+        $data = Member::selectRaw('RIGHT(`code`, 4) as code')
+                        ->where('code', 'like', $code.'%')
+                        ->latest()
+                        ->first();
+
+        if ($data) {
+            return $data;
+        } else {
+            return ['code' => null];
+        }
+    }
 }

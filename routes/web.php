@@ -64,15 +64,18 @@ Route::group(['prefix' => 'admin'], function () {
 		'destroy'	=> 'admin.produksi.destroy'
 	]);
 
-	Route::resource('member', 'Admin\MemberController', [
-		'only' => ['index', 'show', 'store', 'update', 'destroy']
-	])->names([
-		'index'		=> 'admin.member.index',
-		'show'		=> 'admin.member.show',
-		'store'		=> 'admin.member.store',
-		'update'	=> 'admin.member.update',
-		'destroy'	=> 'admin.member.destroy'
-	]);
+	Route::group(['prefix' => 'member'], function () {
+		Route::resource('/', 'Admin\MemberController', [
+			'only' => ['index', 'show', 'store', 'update', 'destroy']
+		])->names([
+			'index'		=> 'admin.member.index',
+			'show'		=> 'admin.member.show',
+			'store'		=> 'admin.member.store',
+			'update'	=> 'admin.member.update',
+			'destroy'	=> 'admin.member.destroy'
+		]);
+		Route::get('code/{code}', 'Admin\MemberController@statusCode')->name('admin.member.generateCode');
+	});
 
 	Route::resource('user', 'Admin\UserController', [
 		'only' => ['index', 'show', 'store', 'update', 'destroy']

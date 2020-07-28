@@ -104,4 +104,9 @@ class MemberController extends Controller
 
         return redirect()->route('admin.member.index')->with('success', 'Member berhasil dihapus');
     }
+
+    public function statusCode($code)
+    {
+        return $statusCode = Member::generateMemberCode($code);
+    }
 }
