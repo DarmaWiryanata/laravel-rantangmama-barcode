@@ -51,6 +51,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>Nama</th>
+                                <th>Kategori</th>
                                 <th>Stok</th>
                                 <th>Aksi</th>
                             </tr>
@@ -60,6 +61,9 @@
                                 <tr>
                                     <td>
                                         {{ $item->name }}
+                                    </td>
+                                    <td>
+                                        {{ $item->category }}
                                     </td>
                                     <td>
                                         {{ $item->stock }}

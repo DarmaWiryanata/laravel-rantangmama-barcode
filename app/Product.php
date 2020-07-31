@@ -14,6 +14,11 @@ class Product extends Model
         Product::findOrFail($id)->delete();
     }
 
+    static function getProduct()
+    {
+        return Product::selectRaw('*, IF(RIGHT(name, 2) = "RM", "Rantang Mama", "Mitra Usaha") as category')->get();
+    }
+    
     static function firstProductCode($code)
     {
         $data = Product::where('code', $code)->first(['code']);
