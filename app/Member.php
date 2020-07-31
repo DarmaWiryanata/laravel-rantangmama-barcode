@@ -45,8 +45,22 @@ class Member extends Model
 
     static function updateMember($request)
     {
+        $member = Member::findOrFail($request->id);
+
+        if ($member->status == $request->status) {
+            if ($request->status == 'Reseller') {
+                $code = Member::generateMemberCode('RS');
+            } else if ($request->status == 'Mitra Usaha') {
+                $code = Member::generateMemberCode('MT');
+            } else if ($request->status == 'Dropship') {
+                $code = Member::generateMemberCode('DR');
+            }        
+        } else {
+            $code = $member->code;
+        }
+
         Member::findOrFail($request->id)->update([
-            'code' => $request->code,
+            'code' => $code,
             'name' => $request->name,
             'address' => $request->address,
             'bank' => $request->bank,
