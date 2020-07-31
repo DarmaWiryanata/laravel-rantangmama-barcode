@@ -117,6 +117,11 @@ class ProduksiController extends Controller
         return redirect()->route('admin.member.index')->with('success', 'Member berhasil dihapus');
     }
 
+    public function singleBarcode()
+    {
+        return view('production.single-barcode.index');
+    }
+
     public function printBarcode($id)
     {
         $productionDetail = ProductionDetail::getProductionDetailByProductionId($id);

@@ -28,7 +28,10 @@ class ProductionDetail extends Model
 
     static function firstProductionDetailByCode($code)
     {
-        return ProductionDetail::where('code', $code)->first();
+        return ProductionDetail::select('production_details.code', 'productions.expire_date')
+                                ->join('productions', 'production_details.production_id', 'productions.id')
+                                ->where('code', $code)
+                                ->first();
     }
 
     static function firstProductIdByCode($code)
