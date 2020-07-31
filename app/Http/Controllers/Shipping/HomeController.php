@@ -31,33 +31,36 @@ class HomeController extends Controller
         $product = ProductionDetail::firstProductionDetailByCode($request->barcode);
         if ($product !== NULL) {
             if ($product->production_scan !== NULL) {
-                ProductionDetail::shippingUpdate($request);
-                if ($request->status == 2) {
-                    $productId = ProductionDetail::firstProductIdByCode($request->barcode);
-                                        
-                    Consignment::updateConsignment($request->tujuan, $productId);
+                if ($product->admin_scan !== NULL) {
+                    ProductionDetail::shippingUpdate($request);
+                    if ($request->status == 2) {
+                        $productId = ProductionDetail::firstProductIdByCode($request->barcode);
+                                            
+                        Consignment::updateConsignment($request->tujuan, $productId);
+        
+                        Consignment::increment('qty', 1, [
+                            'member_id' => $request->tujuan,
+                            'product_id' => $productId
+                        ]);
+                    } else if ($request->status == 1) {
+                        $productId = ProductionDetail::firstProductIdByCode($request->barcode);
+                        $data = Product::whereId($productId)->first();
     
-                    Consignment::increment('qty', 1, [
-                        'member_id' => $request->tujuan,
-                        'product_id' => $productId
+                        Product::where('id', $productId)->update([
+                                    'stock' => $data->stock - 1
+                                ]);
+                    }
+                    return back()->with([
+                        'success' => 'success',
+                        'barcode' => $request->barcode,
+                        'tujuan' => $request->tujuan
                     ]);
-                } else if ($request->status == 1) {
-                    $productId = ProductionDetail::firstProductIdByCode($request->barcode);
-                    $data = Product::whereId($productId)->first();
-
-                    Product::where('id', $productId)->update([
-                                'stock' => $data->stock - 1
-                            ]);
+                } else {
+                    return back()->with('danger', 'Produk belum melalui scan penyimpanan');
                 }
-                return back()->with([
-                    'success' => 'success',
-                    'barcode' => $request->barcode,
-                    'tujuan' => $request->tujuan
-                ]);
             } else {
                 return back()->with('danger', 'Produk belum melalui scan produksi');
             }
-            
         } else {
             return back()->with('danger', 'Produk tidak ditemukan');
         }

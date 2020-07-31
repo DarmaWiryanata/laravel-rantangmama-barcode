@@ -19,6 +19,7 @@ class CreateProductionDetailsTable extends Migration
             $table->bigInteger('member_id')->unsigned()->nullable();
             $table->string('code')->unique();
             $table->timestamp('production_scan')->nullable();
+            $table->timestamp('admin_scan')->nullable();
             $table->timestamp('shipping_scan')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();

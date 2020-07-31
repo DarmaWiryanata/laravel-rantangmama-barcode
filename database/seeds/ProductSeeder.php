@@ -14,8 +14,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         Product::create([
-            'name' => 'BBQ CHICKEN WING MT',
-            'stock' => '8'
+            'name' => 'BBQ CHICKEN WING MT'
         ]);
         
         Product::create([

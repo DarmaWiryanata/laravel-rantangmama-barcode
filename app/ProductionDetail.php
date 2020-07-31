@@ -9,7 +9,12 @@ use Illuminate\Support\Carbon;
 class ProductionDetail extends Model
 {
     protected $table = 'production_details';
-    protected $fillable = ['production_id', 'member_id', 'code', 'production_scan', 'shipping_scan', 'status'];
+    protected $fillable = ['production_id', 'member_id', 'code', 'production_scan', 'admin_scan', 'shipping_scan', 'status'];
+
+    static function adminPenyimpananUpdate($code)
+    {
+        ProductionDetail::where('code', $code)->update(['admin_scan' => Carbon::now()]);
+    }
 
     static function expiredProducts()
     {
@@ -51,6 +56,15 @@ class ProductionDetail extends Model
                                 ->leftJoin('productions', 'production_details.production_id', 'productions.id')
                                 ->leftJoin('products', 'productions.product_id', 'products.id')
                                 ->orderByDesc('production_details.production_scan')
+                                ->get();
+    }
+
+    static function getProductionDetailByAdminScan()
+    {
+        return ProductionDetail::select('production_details.id as id', 'production_details.code as code', 'products.name as name', 'production_details.admin_scan as scan_date')
+                                ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                ->leftJoin('products', 'productions.product_id', 'products.id')
+                                ->orderByDesc('production_details.admin_scan')
                                 ->get();
     }
 

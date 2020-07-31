@@ -86,6 +86,16 @@ Route::group(['prefix' => 'admin'], function () {
 		'update'	=> 'admin.user.update',
 		'destroy'	=> 'admin.user.destroy'
 	]);
+
+	Route::resource('penyimpanan', 'Admin\PenyimpananController', [
+		'only' => ['index', 'show', 'store', 'update', 'destroy']
+	])->names([
+		'index'		=> 'admin.penyimpanan.index',
+		'show'		=> 'admin.penyimpanan.show',
+		'store'		=> 'admin.penyimpanan.store',
+		'update'	=> 'admin.penyimpanan.update',
+		'destroy'	=> 'admin.penyimpanan.destroy'
+	]);
 });
 
 Route::group(['prefix' => 'executive'], function () {
