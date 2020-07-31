@@ -26,8 +26,16 @@ class Member extends Model
 
     static function storeMember($request)
     {
+        if ($request->status == 'Reseller') {
+            $code = Member::generateMemberCode('RS');
+        } else if ($request->status == 'Mitra Usaha') {
+            $code = Member::generateMemberCode('MT');
+        } else if ($request->status == 'Dropship') {
+            $code = Member::generateMemberCode('DR');
+        }
+
         Member::create([
-            'code' => 'RMF01-'.rand(100000,999999).'-'.rand(1000,9999),
+            'code' => $code,
             'name' => $request->name,
             'address' => $request->address,
             'bank' => $request->bank,
@@ -46,7 +54,7 @@ class Member extends Model
         ]);
     }
 
-    static function generateMemberCode($code)
+    static function latestCode($code)
     {
         $data = Member::selectRaw('RIGHT(`code`, 4) as code')
                         ->where('code', 'like', $code.'%')
@@ -54,9 +62,27 @@ class Member extends Model
                         ->first();
 
         if ($data) {
-            return $data;
+            $memberCode = intval($data->code);
+            return ++$memberCode;
         } else {
-            return ['code' => null];
+            return 1;
         }
+    }
+
+    static function generateMemberCode($status)
+    {
+        $code = Member::latestCode($status);
+
+        if ($code['code'] < 10) {
+            $data = $status.'000'.$code;
+        } else if ($code['code'] < 100) {
+            $data = $status.'00'.$code;
+        } else if ($code['code'] < 1000) {
+            $data = $status.'0'.$code;
+        } else if ($code['code'] < 10000) {
+            $data = $status.$code;
+        }
+
+        return $data;
     }
 }

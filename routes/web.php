@@ -74,7 +74,6 @@ Route::group(['prefix' => 'admin'], function () {
 			'update'	=> 'admin.member.update',
 			'destroy'	=> 'admin.member.destroy'
 		]);
-		Route::get('code/{code}', 'Admin\MemberController@statusCode')->name('admin.member.generateCode');
 	});
 
 	Route::resource('user', 'Admin\UserController', [
