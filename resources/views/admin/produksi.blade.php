@@ -96,10 +96,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="expire_date">Tanggal Kadaluwarsa</label>
-                            <input type="date" class="form-control" name="expire_date" id="expire_date">
-                        </div>
                         <div class="row">
                             <div class="col-3">
                                 <div class="form-group">

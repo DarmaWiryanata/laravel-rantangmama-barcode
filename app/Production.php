@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Production extends Model
 {
@@ -20,7 +21,7 @@ class Production extends Model
     {
         Production::create([
             'product_id'    => $request->product_id,
-            'expire_date'   => $request->expire_date,
+            'expire_date'   => Carbon::now()->addDays(90),
             'qty'           => $request->stock
         ]);
 

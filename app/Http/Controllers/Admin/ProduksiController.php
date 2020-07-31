@@ -52,7 +52,6 @@ class ProduksiController extends Controller
     {
         $request->validate([
             'product_id' => 'required',
-            'expire_date' => 'required',
             'stock' => 'required'
         ]);
         $production_id = Production::storeProduction($request);
