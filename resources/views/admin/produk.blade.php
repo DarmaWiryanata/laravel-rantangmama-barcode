@@ -48,13 +48,13 @@
                         </div>
                     @endif
 
-                    <table class="table table-striped table-responsive" id="productTable">
+                    <table class="table table-striped table-responsive-md" id="productTable">
                         <thead class="thead-light">
                             <tr>
                                 <th>Nama</th>
                                 <th>Kategori</th>
                                 <th>Harga</th>
-                                <th>Stok</th>
+                                <th style="width:10%">Stok</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
