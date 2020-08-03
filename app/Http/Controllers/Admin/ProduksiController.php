@@ -130,4 +130,8 @@ class ProduksiController extends Controller
         return view('production.print', compact('productionDetail'));
         // return $pdf->download('invoice.pdf');
     }
+
+    public function scanProdukRusak() {
+        return view('admin.produk-rusak');
+    }
 }

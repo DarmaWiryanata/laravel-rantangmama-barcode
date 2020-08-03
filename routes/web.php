@@ -44,6 +44,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('home', 'Admin\HomeController@index')->name('admin.home');
 	Route::get('reset-password/{id}', 'Admin\UserController@resetPassword')->name('admin.resetPassword');
 	Route::get('print-barcode/{id}', 'Admin\ProduksiController@printBarcode')->name('admin.print-barcode');
+	Route::get('produk-rusak', 'Admin\ProduksiController@scanProdukRusak')->name('admin.produk-rusak');
 	Route::resource('produk', 'Admin\ProdukController', [
 		'only' => ['index', 'show', 'store', 'update', 'destroy']
 	])->names([
@@ -100,6 +101,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'executive'], function () {
 	Route::get('home', 'Executive\HomeController@index')->name('executive.home');
 	Route::post('laporan', 'Executive\HomeController@show')->name('executive.show');
+	Route::get('laporandata', 'Executive\HomeController@show')->name('executive.show');
 	Route::get('produk', 'Executive\HomeController@produk')->name('executive.produk');
 	Route::get('produksi', 'Executive\HomeController@produksi')->name('executive.produksi');
 	Route::get('user', 'Executive\HomeController@user')->name('executive.user');
