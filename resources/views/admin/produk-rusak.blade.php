@@ -36,7 +36,14 @@
                         @csrf
                         <div class="form-group">
                             <label for="barcode">Kode</label>
-                            <input type="text" class="form-control" name="barcode" id="barcode" autofocus>
+                            <input type="text" class="form-control" name="barcode" id="barcode" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select name="status" class="form-control" required>
+                                <option value="3">Retur</option>
+                                <option value="4">Rusak</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -52,6 +59,7 @@
                             <tr>
                                 <th>Kode</th>
                                 <th>Jenis</th>
+                                <th>Status</th>
                                 <th>Tanggal</th>
                             </tr>
                         </thead>
@@ -64,6 +72,9 @@
                                         </td>
                                         <td>
                                             {{ $item->name }}
+                                        </td>
+                                        <td>
+                                            {{ $item->status }}
                                         </td>
                                         <td>
                                             {{ Carbon\Carbon::parse($item->scan_date)->formatLocalized('%d %B %Y') }}

@@ -62,6 +62,16 @@ class ProductionDetail extends Model
                                 ->get();
     }
 
+    static function getProductionDetailByReturnRusak()
+    {
+        return ProductionDetail::selectRaw('`production_details`.`id` as `id`, `production_details`.`code` as `code`, `products`.`name` as `name`, IF(`production_details`.`status` = 3, "Retur", "Rusak") as `status`')
+                                ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                ->leftJoin('products', 'productions.product_id', 'products.id')
+                                ->where('status', 3)
+                                ->orWhere('status', 4)
+                                ->get();
+    }
+
     static function getProductionDetailByAdminScan()
     {
         return ProductionDetail::select('production_details.id as id', 'production_details.code as code', 'products.name as name', 'production_details.admin_scan as scan_date')
@@ -96,10 +106,15 @@ class ProductionDetail extends Model
     {
         ProductionDetail::where('code', $code)->update(['production_scan' => Carbon::now()]);
     }
-
+    
     static function returnUpdate($request)
     {
         ProductionDetail::where('code', $request->barcode)->update(['status' => 3]);
+    }
+
+    static function rusakUpdate($request)
+    {
+        ProductionDetail::where('code', $request->barcode)->update(['status' => $request->status]);
     }
 
     static function shippingUpdate($request)
