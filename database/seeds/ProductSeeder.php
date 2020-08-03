@@ -14,35 +14,48 @@ class ProductSeeder extends Seeder
     public function run()
     {
         Product::create([
-            'name' => 'BBQ CHICKEN WING MT'
+            'name'  => 'Bakso Ayam Saos Madu RM',
+            'price' => 28900
         ]);
         
         Product::create([
-            'name' => 'BBQ CHICKEN WING MT'
+            'name'  => 'Bakso Ayam Super RM',
+            'price' => 31000
         ]);
-
+        
         Product::create([
-            'name' => 'BBQ CHICKEN WING RM'
+            'name'  => 'Bakso Ayam Super "A MT',
+            'price' => 13650
         ]);
-
+        
         Product::create([
-            'name' => 'CHICKEN PANDAN MT'
+            'name'  => 'Bakso Ayam Super "B MT',
+            'price' => 28518
         ]);
-
+        
         Product::create([
-            'name' => 'CHICKEN PANDAN RM'
+            'name'  => 'Chicken Pandan RM',
+            'price' => 32450
         ]);
-
+        
         Product::create([
-            'name' => 'BAKSO AYAM MADU RM'
+            'name'  => 'Chicken Pandan MT',
+            'price' => 31990
         ]);
-
+        
         Product::create([
-            'name' => 'BAKSO AYAM SUPER MT'
+            'name'  => 'BBQ Chicken Wings RM',
+            'price' => 32300
         ]);
-
+        
         Product::create([
-            'name' => 'BAKSO AYAM SUPER RM'
+            'name'  => 'BBQ Chicken Wings "A MT',
+            'price' => 30950
+        ]);
+        
+        Product::create([
+            'name'  => 'BBQ Chicken Wings "B MT',
+            'price' => 20790
         ]);
     }
 }
