@@ -101,7 +101,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'executive'], function () {
 	Route::get('home', 'Executive\HomeController@index')->name('executive.home');
 	Route::post('laporan', 'Executive\HomeController@show')->name('executive.show');
-	Route::get('laporandata', 'Executive\HomeController@show')->name('executive.show');
+	Route::get('laporandata', 'Executive\HomeController@showdata')->name('executive.showdata');
 	Route::get('produk', 'Executive\HomeController@produk')->name('executive.produk');
 	Route::get('produksi', 'Executive\HomeController@produksi')->name('executive.produksi');
 	Route::get('user', 'Executive\HomeController@user')->name('executive.user');

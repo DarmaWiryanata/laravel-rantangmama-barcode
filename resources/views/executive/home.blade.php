@@ -70,8 +70,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('executive.show') }}" method="POST" novalidate>
-                    @csrf
+                <form action="{{ route('executive.showdata') }}" method="GET" novalidate>
                     <div class="modal-body">
                         <div class="form-group">
                             <div class="controls">

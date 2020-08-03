@@ -18,6 +18,11 @@ class HomeController extends Controller
         return view('executive.home');
     }
 
+    public function showdata()
+    {
+        return view('executive.laporandata');
+    }
+
     public function show(Request $request)
     {
         $data = $request;
