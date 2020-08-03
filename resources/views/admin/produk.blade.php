@@ -13,6 +13,7 @@
                     var d = JSON.parse(data);
                     $('#id').val(d.id);
                     $('#name').val(d.name);
+                    $('#price').val(d.price);
                 });
             });
         } );
@@ -47,11 +48,12 @@
                         </div>
                     @endif
 
-                    <table class="table table-striped" id="productTable">
+                    <table class="table table-striped table-responsive" id="productTable">
                         <thead class="thead-light">
                             <tr>
                                 <th>Nama</th>
                                 <th>Kategori</th>
+                                <th>Harga</th>
                                 <th>Stok</th>
                                 <th>Aksi</th>
                             </tr>
@@ -64,6 +66,9 @@
                                     </td>
                                     <td>
                                         {{ $item->category }}
+                                    </td>
+                                    <td>
+                                        Rp. {{ number_format($item->price, 0, ',', '.') }}
                                     </td>
                                     <td>
                                         {{ $item->stock }}
@@ -100,6 +105,10 @@
                             <label>Nama</label>
                             <input type="text" class="form-control" name="name" placeholder="Nama Produk" required>
                         </div>
+                        <div class="form-group">
+                            <label>Harga</label>
+                            <input type="number" class="form-control" name="price" placeholder="Harga Produk" required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Tambah</button>
@@ -127,6 +136,10 @@
                         <div class="form-group">
                             <label>Nama</label>
                             <input type="name" class="form-control" name="name" id="name" placeholder="Nama Produk" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Harga</label>
+                            <input type="number" class="form-control" name="price" id="price" placeholder="Harga Produk" required>
                         </div>
                     </div>
                     <div class="modal-footer">

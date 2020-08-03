@@ -40,7 +40,8 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'price' => 'required'
         ]);
         Product::storeProduct($request);
 
@@ -81,7 +82,8 @@ class ProdukController extends Controller
         // return $request;
         $request->validate([
             'id' => 'required',
-            'name' => 'required'
+            'name' => 'required',
+            'price' => 'required'
         ]);
         Product::updateProduct($request);
 

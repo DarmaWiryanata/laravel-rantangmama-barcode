@@ -39,11 +39,11 @@ class Product extends Model
 
     static function storeProduct($request)
     {
-        Product::create(['name' => $request->name]);
+        Product::create(['name' => $request->name, 'price' => $request->price]);
     }
 
     static function updateProduct($request)
     {
-        Product::findOrFail($request->id)->update(['name' => $request->name]);
+        Product::findOrFail($request->id)->update(['name' => $request->name, 'price' => $request->price]);
     }
 }
