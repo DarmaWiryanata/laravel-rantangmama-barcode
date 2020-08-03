@@ -97,7 +97,13 @@
                             </select>
                         </div>
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <label for="price">Harga Satuan</label>
+                                    <input type="number" class="form-control" name="price" id="price" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="stock">Jumlah</label>
                                     <input type="number" class="form-control" name="stock" id="stock" min="1">

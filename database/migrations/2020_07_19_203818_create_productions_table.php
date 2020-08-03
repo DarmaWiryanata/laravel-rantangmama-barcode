@@ -16,6 +16,7 @@ class CreateProductionsTable extends Migration
         Schema::create('productions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('product_id')->unsigned();
+            $table->mediumInteger('price')->unsigned();
             $table->date('expire_date');
             $table->integer('qty')->unsigned();
             $table->timestamps();

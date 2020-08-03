@@ -52,6 +52,7 @@ class ProduksiController extends Controller
     {
         $request->validate([
             'product_id' => 'required',
+            'price' => 'required',
             'stock' => 'required'
         ]);
         $production_id = Production::storeProduction($request);

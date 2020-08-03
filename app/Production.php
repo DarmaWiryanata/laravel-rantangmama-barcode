@@ -8,11 +8,11 @@ use Illuminate\Support\Carbon;
 class Production extends Model
 {
     protected $table = 'productions';
-    protected $fillable = ['product_id', 'expire_date', 'qty'];
+    protected $fillable = ['product_id', 'price', 'expire_date', 'qty'];
 
     static function getProduction()
     {
-        return Production::select('productions.id', 'products.name', 'productions.qty', 'productions.created_at', 'productions.expire_date')
+        return Production::select('productions.id', 'products.name', 'productions.price', 'productions.qty', 'productions.created_at', 'productions.expire_date')
                             ->join('products', 'productions.product_id', 'products.id')
                             ->get();
     }
@@ -21,6 +21,7 @@ class Production extends Model
     {
         Production::create([
             'product_id'    => $request->product_id,
+            'price'         => $request->price,
             'expire_date'   => Carbon::now()->addDays(90),
             'qty'           => $request->stock
         ]);
