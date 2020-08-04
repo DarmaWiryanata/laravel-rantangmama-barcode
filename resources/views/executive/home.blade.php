@@ -27,7 +27,7 @@
                                     <div class="card data">
                                         <div class="card-content">
                                             <div class="card-body">
-                                                <h4 class="card-title text-center">Laporan Penjualan Member</h4>
+                                                <h4 class="card-title text-center">Laporan Barang Retur & Rusak</h4>
                                                 {{-- <p class="card-text">This card has supporting text below as a natural lead-in to
                                                     additional content.</p> --}}
                                                 <div class="row justify-content-center">
@@ -41,11 +41,25 @@
                                     <div class="card data">
                                         <div class="card-content">
                                             <div class="card-body">
-                                                <h4 class="card-title text-center">Laporan Penjualan Produk</h4>
+                                                <h4 class="card-title text-center">Laporan Penjualan Member</h4>
                                                 {{-- <p class="card-text">This card has supporting text below as a natural lead-in to
                                                     additional content.</p> --}}
                                                 <div class="row justify-content-center">
                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tanggal" data-value="2"> Cetak Laporan</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <div class="card data">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <h4 class="card-title text-center">Laporan Penjualan Produk</h4>
+                                                {{-- <p class="card-text">This card has supporting text below as a natural lead-in to
+                                                    additional content.</p> --}}
+                                                <div class="row justify-content-center">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tanggal" data-value="3"> Cetak Laporan</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -70,7 +84,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('executive.showdata') }}" method="GET" novalidate>
+                <form action="{{ route('executive.showdata') }}" method="GET">
                     <div class="modal-body">
                         <div class="form-group">
                             <div class="controls">

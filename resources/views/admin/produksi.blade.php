@@ -69,7 +69,7 @@
                                         {{ $item->name }}
                                     </td>
                                     <td>
-                                        Rp. {{ number_format($item->price, 0) }}
+                                        Rp. {{ number_format($item->price, 0, ',', '.') }}
                                     </td>
                                     <td>
                                         {{ $item->qty }}

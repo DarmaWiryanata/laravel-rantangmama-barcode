@@ -28,7 +28,7 @@ class ProductionDetail extends Model
 
     static function firstProductionDetailByCode($code)
     {
-        return ProductionDetail::select('production_details.code', 'productions.expire_date')
+        return ProductionDetail::select('production_details.code', 'productions.expire_date', 'production_details.production_scan', 'production_details.admin_scan')
                                 ->join('productions', 'production_details.production_id', 'productions.id')
                                 ->where('code', $code)
                                 ->first();
@@ -72,20 +72,32 @@ class ProductionDetail extends Model
                                 ->get();
     }
 
-    static function getProductionDetailByReturnRusakWithDate($awal, $akhir)
+    static function getProductionDetailByProductSold($awal, $akhir)
     {
-        return ProductionDetail::selectRaw('`production_details`.`id` as `id`, `production_details`.`code` as `code`, `products`.`name` as `name`, IF(`production_details`.`status` = 3, "Retur", "Rusak") as `status`, `productions`.`created_at` as `created_at`')
+        return ProductionDetail::select('products.name as name', 'productions.price as price', 'productions.created_at as created_at')
+                                ->selectRaw('COUNT(*) as qty, productions.price * COUNT(*) as total')
+                                ->groupBy('productions.product_id')
+                                ->groupBy('productions.price')
                                 ->leftJoin('productions', 'production_details.production_id', 'productions.id')
                                 ->leftJoin('products', 'productions.product_id', 'products.id')
-                                ->where('status', 3)
-                                ->where('productions.created_at', '>=', $awal)
-                                ->where('productions.created_at', '<=', $akhir)
-                                ->orWhere('status', 4)
-                                ->where('productions.created_at', '>=', $awal)
-                                ->where('productions.created_at', '<=', $akhir)
-                                ->toSql();
+                                ->where('production_details.status', 1)
+                                ->whereBetween('productions.created_at', [$awal." 00:00:00", $akhir." 23:59:59"])
+                                ->get();
+    }
 
-                                // select `production_details`.`id` as `id`, `production_details`.`code` as `code`, `products`.`name` as `name`, IF(`production_details`.`status` = 3, "Retur", "Rusak") as `status`, `productions`.`created_at` as `created_at` from `production_details` left join `productions` on `production_details`.`production_id` = `productions`.`id` left join `products` on `productions`.`product_id` = `products`.`id` where `production_details`.`status` = '3' and `productions`.`created_at` >= '2020-08-04' and `productions`.`created_at` <= '2020-08-20' or `status` = '4' and `productions`.`created_at` >= '2020-08-04' and `productions`.`created_at` <= '2020-08-20'
+    static function getProductionDetailByProductSoldWithMember($awal, $akhir)
+    {
+        return ProductionDetail::select('members.name as member', 'products.name as name', 'productions.price as price', 'productions.created_at as created_at')
+                                ->selectRaw('COUNT(*) as qty, productions.price * COUNT(*) as total')
+                                ->groupBy('production_details.member_id')
+                                ->groupBy('productions.product_id')
+                                ->groupBy('productions.price')
+                                ->leftJoin('members', 'production_details.member_id', 'members.id')
+                                ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                ->leftJoin('products', 'productions.product_id', 'products.id')
+                                ->where('production_details.status', 1)
+                                ->whereBetween('productions.created_at', [$awal." 00:00:00", $akhir." 23:59:59"])
+                                ->get();
     }
 
     static function getProductionDetailByAdminScan()

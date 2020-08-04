@@ -22,9 +22,21 @@ class HomeController extends Controller
 
     public function showdata(Request $request)
     {
-        return $productionDetail = ProductionDetail::getProductionDetailByReturnRusakWithDate($request->awal, $request->akhir);
+        $id = $request->id;
+        $start = $request->awal;
+        $end = $request->akhir;
+        
+        if ($id == 1) {
+            return $productionDetail = ProductionDetail::getProductionDetailByReturnRusakWithDate($request->awal, $request->akhir);
+        
+        } else if ($id == 2) {
+            $productionDetail = ProductionDetail::getProductionDetailByProductSoldWithMember($request->awal, $request->akhir);
+        
+        } else if ($id == 3) {
+            $productionDetail = ProductionDetail::getProductionDetailByProductSold($request->awal, $request->akhir);
+        }
 
-        return view('executive.laporandata', compact('productionDetail'));
+        return view('executive.laporandata', compact('id', 'end', 'start', 'productionDetail'));
     }
 
     public function show(Request $request)
