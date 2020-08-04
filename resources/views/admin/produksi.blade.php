@@ -4,6 +4,16 @@
     <script>
         $(document).ready( function () {
             $('#productionTable').DataTable();
+
+            $('#product_id').on('change', function() {
+                var id = $(this).val();
+                console.log(id);
+                $.get( "/production/data/" + id, function( data ) {
+                    console.log(JSON.parse(data));
+                    var d = JSON.parse(data);
+                    $('#price').val(d.price);
+                });
+            });
         } );
     </script>
 @endsection
@@ -35,12 +45,13 @@
                         </div>
                     @endif
 
-                    <table class="table table-striped" id="productionTable">
+                    <table class="table table-striped table-responsive" id="productionTable">
                         <thead class="thead-light">
                             <tr>
                                 <th>Tanggal Produksi</th>
                                 <th>Tanggal Kadaluwarsa</th>
                                 <th>Nama Produk</th>
+                                <th>Harga Satuan</th>
                                 <th>Jumlah</th>
                                 <th>Aksi</th>
                             </tr>
@@ -56,6 +67,9 @@
                                     </td>
                                     <td>
                                         {{ $item->name }}
+                                    </td>
+                                    <td>
+                                        Rp. {{ number_format($item->price, 0) }}
                                     </td>
                                     <td>
                                         {{ $item->qty }}

@@ -59,4 +59,9 @@ class HomeController extends Controller
             return back()->with('danger', 'Data produksi tidak ditemukan');
         }
     }
+
+    public function show($id)
+    {
+        return json_encode(Product::firstProduct($id));
+    }
 }
