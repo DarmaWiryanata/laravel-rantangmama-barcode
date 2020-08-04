@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Executive;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\ProductionDetail;
+
 class HomeController extends Controller
 {
     public function __construct()
@@ -18,9 +20,11 @@ class HomeController extends Controller
         return view('executive.home');
     }
 
-    public function showdata()
+    public function showdata(Request $request)
     {
-        return view('executive.laporandata');
+        return $productionDetail = ProductionDetail::getProductionDetailByReturnRusakWithDate($request->awal, $request->akhir);
+
+        return view('executive.laporandata', compact('productionDetail'));
     }
 
     public function show(Request $request)

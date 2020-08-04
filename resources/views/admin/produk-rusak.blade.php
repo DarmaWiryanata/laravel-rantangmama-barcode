@@ -4,7 +4,7 @@
     <script>
         $(document).ready( function () {
             $('#productionDetailTable').DataTable({
-              "order": [[ 2, "desc" ]]
+              "order": [[ 3, "desc" ]]
             });
         } );
     </script>
@@ -32,7 +32,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('admin.produk-rusak.update') }}">
                         @csrf
                         <div class="form-group">
                             <label for="barcode">Kode</label>
@@ -64,24 +64,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($productionDetail as $item)
-                                @if (isset($item->scan_date))
-                                    <tr>
-                                        <td>
-                                            {{ $item->code }}
-                                        </td>
-                                        <td>
-                                            {{ $item->name }}
-                                        </td>
-                                        <td>
-                                            {{ $item->status }}
-                                        </td>
-                                        <td>
-                                            {{ Carbon\Carbon::parse($item->scan_date)->formatLocalized('%d %B %Y') }}
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach --}}
+                            @foreach ($productionDetail as $item)
+                                <tr>
+                                    <td>
+                                        {{ $item->code }}
+                                    </td>
+                                    <td>
+                                        {{ $item->name }}
+                                    </td>
+                                    <td>
+                                        {{ $item->status }}
+                                    </td>
+                                    <td>
+                                        {{ Carbon\Carbon::parse($item->scan_date)->formatLocalized('%d %B %Y') }}
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

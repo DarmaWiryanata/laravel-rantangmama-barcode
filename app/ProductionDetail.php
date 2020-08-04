@@ -72,6 +72,22 @@ class ProductionDetail extends Model
                                 ->get();
     }
 
+    static function getProductionDetailByReturnRusakWithDate($awal, $akhir)
+    {
+        return ProductionDetail::selectRaw('`production_details`.`id` as `id`, `production_details`.`code` as `code`, `products`.`name` as `name`, IF(`production_details`.`status` = 3, "Retur", "Rusak") as `status`, `productions`.`created_at` as `created_at`')
+                                ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                ->leftJoin('products', 'productions.product_id', 'products.id')
+                                ->where('status', 3)
+                                ->where('productions.created_at', '>=', $awal)
+                                ->where('productions.created_at', '<=', $akhir)
+                                ->orWhere('status', 4)
+                                ->where('productions.created_at', '>=', $awal)
+                                ->where('productions.created_at', '<=', $akhir)
+                                ->toSql();
+
+                                // select `production_details`.`id` as `id`, `production_details`.`code` as `code`, `products`.`name` as `name`, IF(`production_details`.`status` = 3, "Retur", "Rusak") as `status`, `productions`.`created_at` as `created_at` from `production_details` left join `productions` on `production_details`.`production_id` = `productions`.`id` left join `products` on `productions`.`product_id` = `products`.`id` where `production_details`.`status` = '3' and `productions`.`created_at` >= '2020-08-04' and `productions`.`created_at` <= '2020-08-20' or `status` = '4' and `productions`.`created_at` >= '2020-08-04' and `productions`.`created_at` <= '2020-08-20'
+    }
+
     static function getProductionDetailByAdminScan()
     {
         return ProductionDetail::select('production_details.id as id', 'production_details.code as code', 'products.name as name', 'production_details.admin_scan as scan_date')

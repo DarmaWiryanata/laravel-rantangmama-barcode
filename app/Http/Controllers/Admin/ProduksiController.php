@@ -142,7 +142,7 @@ class ProduksiController extends Controller
     public function rusakUpdate(Request $request)
     {
         if (ProductionDetail::firstProductionDetailByCode($request->barcode) !== NULL) {
-            ProductionDetail::returUpdate($request);
+            ProductionDetail::rusakUpdate($request);
             if ($request->status == 3) {
                 return back()->with('success', 'Produk '.$request->barcode.' berhasil dikembalikan dengan status "Retur"');
             } else if ($request->status == 4) {

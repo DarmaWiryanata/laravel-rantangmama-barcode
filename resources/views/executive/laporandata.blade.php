@@ -18,26 +18,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-            </tr>
-            <tr>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
-            </tr>
-            <tr>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>66</td>
-            </tr>
-            <tr>
-                <td>Cedric Kelly</td>
-                <td>Senior Javascript Developer</td>
-                <td>Edinburgh</td>
-            </tr>
+            @foreach ($productionDetail as $item)
+                <tr>
+                    <td>{{ $item->code }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->status }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 
