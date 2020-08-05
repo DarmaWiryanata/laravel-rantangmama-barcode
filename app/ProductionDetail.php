@@ -72,6 +72,18 @@ class ProductionDetail extends Model
                                 ->get();
     }
 
+    static function getProductionDetailByReturnRusakWithDate($awal, $akhir)
+    {
+        return ProductionDetail::selectRaw('`production_details`.`id` as `id`, `production_details`.`code` as `code`, `products`.`name` as `name`, IF(`production_details`.`status` = 3, "Retur", "Rusak") as `status`')
+                                ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                ->leftJoin('products', 'productions.product_id', 'products.id')
+                                ->where('status', 3)
+                                ->whereBetween('productions.created_at', [$awal." 00:00:00", $akhir." 23:59:59"])
+                                ->orWhere('status', 4)
+                                ->whereBetween('productions.created_at', [$awal." 00:00:00", $akhir." 23:59:59"])
+                                ->get();
+    }
+
     static function getProductionDetailByProductSold($awal, $akhir)
     {
         return ProductionDetail::select('products.name as name', 'productions.price as price', 'productions.created_at as created_at')
