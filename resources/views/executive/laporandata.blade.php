@@ -15,8 +15,8 @@
     <link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" rel="stylesheet">
 </head>
 <body>
+    <table id="example" class="display" style="width:100%">
     @if ($id == 1)
-        <table id="example" class="display" style="width:100%">
             <thead>
                 <tr>
                     <th>Kode</th>
@@ -33,10 +33,10 @@
                     </tr>
                 @endforeach
             </tbody>
-        </table>
+        {{-- </table> --}}
         
     @elseif ($id == 2)
-        <table id="example" class="display" style="width:100%">
+        {{-- <table id="example" class="display" style="width:100%"> --}}
             <thead>
                 <tr>
                     <th>Member</th>
@@ -57,10 +57,10 @@
                     </tr>
                 @endforeach
             </tbody>
-        </table>
+        {{-- </table> --}}
         
     @elseif ($id == 3)
-        <table id="example" class="display" style="width:100%">
+        {{-- <table id="example" class="display" style="width:100%"> --}}
             <thead>
                 <tr>
                     <th>Jenis Produk</th>
@@ -79,9 +79,9 @@
                     </tr>
                 @endforeach
             </tbody>
+            
+            @endif
         </table>
-        
-    @endif
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
