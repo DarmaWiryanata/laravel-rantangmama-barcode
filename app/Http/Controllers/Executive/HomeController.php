@@ -27,7 +27,7 @@ class HomeController extends Controller
         $end = $request->akhir;
         
         if ($id == 1) {
-            return $productionDetail = ProductionDetail::getProductionDetailByReturnRusakWithDate($request->awal, $request->akhir);
+            $productionDetail = ProductionDetail::getProductionDetailByReturnRusakWithDate($request->awal, $request->akhir);
         
         } else if ($id == 2) {
             $productionDetail = ProductionDetail::getProductionDetailByProductSoldWithMember($request->awal, $request->akhir);
