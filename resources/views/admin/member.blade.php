@@ -16,7 +16,7 @@
                     $('#bank').val(d.bank);
                     $("#status").val(d.status);
                     $('#address').val(d.address);
-                    console.log(status)
+                    // console.log(status);
                 });
             });
         });
@@ -89,7 +89,7 @@
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Member</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

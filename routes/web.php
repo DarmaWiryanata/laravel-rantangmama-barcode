@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('reset-password/{id}', 'Admin\UserController@resetPassword')->name('admin.resetPassword');
 	Route::get('print-barcode/{id}', 'Admin\ProduksiController@printBarcode')->name('admin.print-barcode');
 	Route::get('produk-rusak', 'Admin\ProduksiController@scanProdukRusak')->name('admin.produk-rusak');
+	Route::get('member/{id}', 'Admin\MemberController@show');
 	Route::post('produk-rusak', 'Admin\ProduksiController@rusakUpdate')->name('admin.produk-rusak.update');
 	Route::resource('produk', 'Admin\ProdukController', [
 		'only' => ['index', 'show', 'store', 'update', 'destroy']

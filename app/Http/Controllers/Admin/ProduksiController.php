@@ -68,9 +68,9 @@ class ProduksiController extends Controller
      * @param  \App\Produksi  $produksi
      * @return \Illuminate\Http\Response
      */
-    public function show(Produksi $produksi)
+    public function show($id)
     {
-        //
+        return json_encode(Product::firstProduct($id));
     }
 
     /**

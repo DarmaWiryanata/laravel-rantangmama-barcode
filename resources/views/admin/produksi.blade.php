@@ -8,7 +8,7 @@
             $('#product_id').on('change', function() {
                 var id = $(this).val();
                 console.log(id);
-                $.get( "/production/data/" + id, function( data ) {
+                $.get( "/admin/produksi/" + id, function( data ) {
                     console.log(JSON.parse(data));
                     var d = JSON.parse(data);
                     $('#price').val(d.price);
