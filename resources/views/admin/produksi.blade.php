@@ -21,7 +21,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header">Data Produksi
                     <button type="button" class="float-right btn btn-sm btn-success" data-toggle="modal" data-target="#tambah">Tambah Produksi</button>
@@ -75,7 +75,18 @@
                                         {{ $item->qty }}
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.print-barcode', $item->id) }}" target="_blank"><button class="btn btn-sm btn-success">Cetak Barcode</button></a>
+                                        <form action="#" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <a href="{{ route('admin.print-barcode', $item->id) }}" target="_blank"><button class="btn btn-sm btn-success">Cetak Barcode</button></a>
+                                                </div>
+                                                <div class="col-6">
+                                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                </div>
+                                            </div>                                            
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
