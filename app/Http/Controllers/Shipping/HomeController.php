@@ -47,9 +47,10 @@ class HomeController extends Controller
                         $data = Product::whereId($productId)->first();
     
                         Product::where('id', $productId)->update([
-                                    'stock' => $data->stock - 1
-                                ]);
+                            'stock' => $data->stock - 1
+                        ]);
                     }
+                    ProductionDetail::storeShippingNumber($request->tujuan, $request->barcode);
                     return back()->with([
                         'success' => 'success',
                         'barcode' => $request->barcode,

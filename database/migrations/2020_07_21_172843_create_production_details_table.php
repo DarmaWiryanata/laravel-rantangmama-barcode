@@ -21,6 +21,7 @@ class CreateProductionDetailsTable extends Migration
             $table->timestamp('production_scan')->nullable();
             $table->timestamp('admin_scan')->nullable();
             $table->timestamp('shipping_scan')->nullable();
+            $table->integer('shipping_number')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();
         });

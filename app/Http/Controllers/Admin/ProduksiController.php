@@ -55,6 +55,7 @@ class ProduksiController extends Controller
             'price' => 'required',
             'stock' => 'required'
         ]);
+        // return Production::randomNumber(10);
         $production_id = Production::storeProduction($request);
         ProductionDetail::storeProductionDetail($request, $production_id->id);
         Product::incrementStock($request);

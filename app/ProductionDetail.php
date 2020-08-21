@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 class ProductionDetail extends Model
 {
     protected $table = 'production_details';
-    protected $fillable = ['production_id', 'member_id', 'code', 'production_scan', 'admin_scan', 'shipping_scan', 'status'];
+    protected $fillable = ['production_id', 'member_id', 'code', 'production_scan', 'admin_scan', 'shipping_scan', 'shipping_number', 'status'];
 
     static function adminPenyimpananUpdate($code)
     {
@@ -28,7 +28,7 @@ class ProductionDetail extends Model
 
     static function firstProductionDetailByCode($code)
     {
-        return ProductionDetail::select('production_details.code', 'productions.expire_date', 'production_details.production_scan', 'production_details.admin_scan')
+        return ProductionDetail::select('production_details.code', 'productions.expire_date', 'production_details.production_scan', 'productions.batch', 'production_details.admin_scan')
                                 ->join('productions', 'production_details.production_id', 'productions.id')
                                 ->where('code', $code)
                                 ->first();
@@ -46,7 +46,7 @@ class ProductionDetail extends Model
 
     static function getProductionDetailByProductionId($id)
     {
-        return ProductionDetail::select('production_details.id as id', 'production_details.production_id as production_id', 'productions.expire_date as expire_date', 'production_details.code as code')
+        return ProductionDetail::select('production_details.id as id', 'production_details.production_id as production_id', 'productions.expire_date as expire_date', 'production_details.code as code', 'productions.batch as batch')
                                 ->leftJoin('productions', 'production_details.production_id', 'productions.id')
                                 ->where('production_details.production_id', $id)
                                 ->orderByDesc('production_details.production_scan')
@@ -180,5 +180,20 @@ class ProductionDetail extends Model
     static function generateCode()
     {
         return Str::random(5);
+    }
+
+    static function storeShippingNumber($memberId, $barcode)
+    {
+        $data = ProductionDetail::where('member_id', $memberId)
+                                ->where('updated_at', Carbon::now()->format('Y-m-d'))
+                                ->first();
+
+        if ($data) {
+            ProductionDetail::where('code', $barcode)->update(['shipping_number' => $data->shipping_number]);
+        } else {
+            $latest = ProductionDetail::max('shipping_number');
+            
+            ProductionDetail::where('code', $barcode)->update(['shipping_number' => $latest++]);
+        }
     }
 }

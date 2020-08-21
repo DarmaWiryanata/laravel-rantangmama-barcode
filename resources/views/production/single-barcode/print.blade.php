@@ -20,11 +20,13 @@
 <body>
     <div class="grid-container">
         <div>
-            Expired : {{ $productionDetail->expire_date }}
-            <br>
-            {{-- {{ '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($item->code, 'C128',1,50,array(1,1,1), true) . '" alt="barcode"   />' }} --}}
-            {{-- {{ DNS1D::getBarcodePNG($item->code, 'C128',1,50,array(1,1,1), true) }} --}}
-            <img class="img-fluid" src="data:image/png;base64,{{ DNS1D::getBarcodePNG($productionDetail->code, 'C128',2,50,array(1,1,1), true) }}" alt="barcode" />
+          Expired : {{ \Carbon\Carbon::parse($productionDetail->expire_date)->format('j-m-Y') }}
+          <br>
+          {{-- {{ '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($item->code, 'C128',1,50,array(1,1,1), true) . '" alt="barcode"   />' }} --}}
+          {{-- {{ DNS1D::getBarcodePNG($item->code, 'C128',1,50,array(1,1,1), true) }} --}}
+          <img class="img-fluid" src="data:image/png;base64,{{ DNS1D::getBarcodePNG($productionDetail->code, 'C128',2,50,array(1,1,1), true) }}" alt="barcode" />
+          <br>
+          Batch No. {{ $productionDetail->batch }}
         </div>
     </div>
 </body>

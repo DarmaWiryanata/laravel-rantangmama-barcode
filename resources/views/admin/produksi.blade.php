@@ -75,13 +75,13 @@
                                         {{ $item->qty }}
                                     </td>
                                     <td>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <a href="{{ route('admin.print-barcode', $item->id) }}" target="_blank"><button class="btn btn-sm btn-success">Cetak Barcode</button></a>
+                                            </div>
                                         <form action="#" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <a href="{{ route('admin.print-barcode', $item->id) }}" target="_blank"><button class="btn btn-sm btn-success">Cetak Barcode</button></a>
-                                                </div>
                                                 <div class="col-6">
                                                     <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                                 </div>
