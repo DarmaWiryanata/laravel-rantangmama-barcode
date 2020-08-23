@@ -32,6 +32,9 @@ class HomeController extends Controller
         if ($product !== NULL) {
             if ($product->production_scan !== NULL) {
                 if ($product->admin_scan !== NULL) {
+                    // return $request;
+                    // return ProductionDetail::storeShippingNumber($request->tujuan, $request->barcode);
+
                     ProductionDetail::shippingUpdate($request);
                     if ($request->status == 2) {
                         $productId = ProductionDetail::firstProductIdByCode($request->barcode);

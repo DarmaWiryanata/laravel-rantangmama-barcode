@@ -185,15 +185,29 @@ class ProductionDetail extends Model
     static function storeShippingNumber($memberId, $barcode)
     {
         $data = ProductionDetail::where('member_id', $memberId)
-                                ->where('updated_at', Carbon::now()->format('Y-m-d'))
+                                ->whereNotNull('shipping_number')
+                                ->whereRaw('updated_at LIKE "' . Carbon::now()->format('Y-m-d') . '%"')
+                                ->latest('updated_at')
                                 ->first();
+        // return $data;
 
-        if ($data) {
-            ProductionDetail::where('code', $barcode)->update(['shipping_number' => $data->shipping_number]);
+        if (isset($data)) {
+            $abc = $data->shipping_number;                                
+            // return '1';
+            ProductionDetail::where('code', $barcode)->update(['shipping_number' => $abc]);
+            // return ([$memberId, $barcode, 1]);
         } else {
             $latest = ProductionDetail::max('shipping_number');
             
-            ProductionDetail::where('code', $barcode)->update(['shipping_number' => $latest++]);
+            if (isset($latest)) {
+                // return '2';
+                ProductionDetail::where('code', $barcode)->update(['shipping_number' => ++$latest]);
+                // return ([$memberId, $barcode, 2]);
+            } else {
+                // return '3';
+                ProductionDetail::where('code', $barcode)->update(['shipping_number' => 1]);
+                // return ([$memberId, $barcode, 3]);
+            }
         }
     }
 }
