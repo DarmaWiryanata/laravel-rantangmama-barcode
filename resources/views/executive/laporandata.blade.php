@@ -33,7 +33,26 @@
                     </tr>
                 @endforeach
             </tbody>
-        {{-- </table> --}}
+        </table>
+        <h2 style="margin-top: 2%">Total Produk</h2>
+        <table id="total" class="display">
+            <thead>
+                <tr>
+                    <th>Nama Produk</th>
+                    <th>Status</th>
+                    <th>Qty</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($productionDetail1 as $item)
+                    <tr>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->status }}</td>
+                        <td>{{ $item->qty }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
         
     @elseif ($id == 2)
         {{-- <table id="example" class="display" style="width:100%"> --}}
@@ -57,7 +76,7 @@
                     </tr>
                 @endforeach
             </tbody>
-        {{-- </table> --}}
+        </table>
         
     @elseif ($id == 3)
         {{-- <table id="example" class="display" style="width:100%"> --}}
@@ -80,8 +99,8 @@
                 @endforeach
             </tbody>
             
-            @endif
         </table>
+    @endif
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -95,6 +114,18 @@
                     'copyHtml5'
                 ]
             } );
+            $('#total').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5'
+                ],
+                searching: false, 
+                paging: false, 
+                info: false,
+                "width": "20%"
+            } );
+            $("#total_wrapper").css("width","30%");
+            $("#total").css("margin","0");
         } );
     </script>
 </body>

@@ -28,15 +28,17 @@ class HomeController extends Controller
         
         if ($id == 1) {
             $productionDetail = ProductionDetail::getProductionDetailByReturnRusakWithDate($request->awal, $request->akhir);
-        
+            $productionDetail1 = ProductionDetail::getProductionDetailByReturnTotalRusakWithDate($request->awal, $request->akhir);
         } else if ($id == 2) {
             $productionDetail = ProductionDetail::getProductionDetailByProductSoldWithMember($request->awal, $request->akhir);
-        
+            $productionDetail1 = "";
+            
         } else if ($id == 3) {
             $productionDetail = ProductionDetail::getProductionDetailByProductSold($request->awal, $request->akhir);
+            $productionDetail1 = "";
         }
 
-        return view('executive.laporandata', compact('id', 'end', 'start', 'productionDetail'));
+        return view('executive.laporandata', compact('id', 'end', 'start', 'productionDetail', 'productionDetail1'));
     }
 
     public function show(Request $request)
