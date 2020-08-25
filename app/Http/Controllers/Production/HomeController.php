@@ -25,7 +25,7 @@ class HomeController extends Controller
         $production = Production::getProduction();
         $delete = 'produksi.produksi.destroy';
         
-        return view('admin.produksi', compact('product', 'production'));
+        return view('admin.produksi', compact('delete', 'product', 'production'));
     }
     
     public function production(Request $request)
