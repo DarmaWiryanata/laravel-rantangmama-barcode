@@ -60,6 +60,7 @@
                 <tr>
                     <th>Member</th>
                     <th>Jenis Produk</th>
+                    <th>No. Pengiriman</th>
                     <th>Jumlah</th>
                     <th>Harga Satuan</th>
                     <th>Total</th>
@@ -70,6 +71,7 @@
                     <tr>
                         <td>{{ $item->member }}</td>
                         <td>{{ $item->name }}</td>
+                        <td>{{ $item->shipping_number }}</td>
                         <td style="text-center">{{ $item->qty }}</td>
                         <td style="text-right">{{  number_format($item->price, 0, ',', '.') }}</td>
                         <td style="text-right">{{  number_format($item->total, 0, ',', '.') }}</td>

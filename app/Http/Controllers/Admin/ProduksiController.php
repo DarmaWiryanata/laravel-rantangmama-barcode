@@ -27,9 +27,9 @@ class ProduksiController extends Controller
     {
         $product = Product::orderBy('name')->get();
         $production = Production::getProduction();
-        // Production::all();
+        $delete = 'admin.produksi.destroy';
 
-        return view('admin.produksi', compact('product', 'production'));
+        return view('admin.produksi', compact('delete', 'product', 'production'));
     }
 
     /**
@@ -112,11 +112,12 @@ class ProduksiController extends Controller
      * @param  \App\Produksi  $produksi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produksi $produksi)
+    public function destroy($id)
     {
-        Member::destroyMember($id);
+        Production::destroyProduksi($id);
+        ProductionDetail::destroyProductionDetail($id);
 
-        return redirect()->route('admin.member.index')->with('success', 'Member berhasil dihapus');
+        return redirect()->route('admin.produksi.index')->with('success', 'Produksi berhasil dihapus');
     }
 
     public function singleBarcode()
