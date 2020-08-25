@@ -26,6 +26,11 @@ class ProductionDetail extends Model
                                         ->get();
     }
 
+    static function destroyProductionDetail($id)
+    {
+        ProductionDetail::where('production_id', $id)->delete();
+    }
+
     static function firstProductionDetailByCode($code)
     {
         return ProductionDetail::select('production_details.code', 'productions.expire_date', 'production_details.production_scan', 'productions.batch', 'production_details.admin_scan')
@@ -113,11 +118,9 @@ class ProductionDetail extends Model
 
     static function getProductionDetailByProductSoldWithMember($awal, $akhir)
     {
-        return ProductionDetail::select('members.name as member', 'products.name as name', 'productions.price as price', 'productions.created_at as created_at')
+        return ProductionDetail::select('members.name as member', 'products.name as name', 'productions.price as price', 'production_details.shipping_number as shipping_number', 'productions.created_at as created_at')
                                 ->selectRaw('COUNT(*) as qty, productions.price * COUNT(*) as total')
-                                ->groupBy('production_details.member_id')
-                                ->groupBy('productions.product_id')
-                                ->groupBy('productions.price')
+                                ->groupBy('production_details.shipping_number')
                                 ->leftJoin('members', 'production_details.member_id', 'members.id')
                                 ->leftJoin('productions', 'production_details.production_id', 'productions.id')
                                 ->leftJoin('products', 'productions.product_id', 'products.id')

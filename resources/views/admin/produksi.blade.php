@@ -79,7 +79,7 @@
                                             <div class="col-6">
                                                 <a href="{{ route('admin.print-barcode', $item->id) }}" target="_blank"><button class="btn btn-sm btn-success">Cetak Barcode</button></a>
                                             </div>
-                                        <form action="#" method="post">
+                                        <form action="{{ route($delete, $item->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                                 <div class="col-6">

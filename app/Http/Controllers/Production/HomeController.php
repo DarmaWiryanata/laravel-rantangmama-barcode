@@ -23,6 +23,7 @@ class HomeController extends Controller
     {
         $product = Product::orderBy('name')->get();
         $production = Production::getProduction();
+        $delete = 'produksi.produksi.destroy';
         
         return view('admin.produksi', compact('product', 'production'));
     }
@@ -35,6 +36,14 @@ class HomeController extends Controller
         } else {
             return back()->with('danger', 'Produk tidak ditemukan');
         }
+    }
+
+    public function destroyProduction($id)
+    {
+        Production::destroyProduksi($id);
+        ProductionDetail::destroyProductionDetail($id);
+
+        return redirect()->route('admin.produksi.index')->with('success', 'Produksi berhasil dihapus');
     }
 
     public function validasi()

@@ -130,6 +130,7 @@ Route::group(['prefix' => 'marketing'], function () {
 Route::group(['prefix' => 'production'], function () {
 	Route::get('/', 'Production\HomeController@index')->name('production.produksi');
 	Route::get('/data/{id}', 'Production\HomeController@show');
+	Route::delete('/produksi/{id}', 'Production\HomeController@destroyProduction')->name('produksi.produksi.destroy');
 	Route::get('validasi', 'Production\HomeController@validasi')->name('production.validasi');
 	Route::post('production', 'Production\HomeController@production')->name('production.update');
 	Route::get('barcode', 'Production\HomeController@singleBarcode')->name('production.barcode');

@@ -10,6 +10,11 @@ class Production extends Model
     protected $table = 'productions';
     protected $fillable = ['product_id', 'price', 'expire_date', 'batch', 'qty'];
 
+    static function destroyProduksi($id)
+    {
+        Production::findOrFail($id)->delete();
+    }
+
     static function getProduction()
     {
         return Production::select('productions.id', 'products.name', 'productions.price', 'productions.qty', 'productions.created_at', 'productions.expire_date')
