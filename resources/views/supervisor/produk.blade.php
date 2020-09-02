@@ -12,9 +12,14 @@
                     var d = JSON.parse(data);
                     $('#name').val(d[0].name);
                     for (var i = 0; i < d[0]['items'].length; i++) {
-                        $('#data').html(`<tr>
+                        $('#data').html(
+                                        `<tr>
                                             <td>
                                                 `+ d[0]['items'][i].name +`
+                                            </td>
+                                            <td>
+                                                `+ d[0]['items'][i].shipping_number +`
+                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].id +`][shipping_number]" value="`+ d[0]['items'][i].shipping_number +`">
                                             </td>
                                             <td>
                                                 `+ d[0]['items'][i].qty +`
@@ -108,6 +113,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>Nama</th>
+                                <th>No. Pengiriman</th>
                                 <th>Sisa Stok</th>
                                 <th style="width: 43px;">Terjual</th>
                                 <th style="width: 67px;">Retur</th>

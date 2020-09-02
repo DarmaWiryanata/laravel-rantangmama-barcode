@@ -213,6 +213,7 @@ class ProductionDetail extends Model
             // return '1';
             ProductionDetail::where('code', $barcode)->update(['shipping_number' => $abc]);
             // return ([$memberId, $barcode, 1]);
+            // return '1';
         } else {
             $latest = ProductionDetail::max('shipping_number');
             
@@ -220,11 +221,15 @@ class ProductionDetail extends Model
                 // return '2';
                 ProductionDetail::where('code', $barcode)->update(['shipping_number' => ++$latest]);
                 // return ([$memberId, $barcode, 2]);
+                // return '2';
             } else {
                 // return '3';
                 ProductionDetail::where('code', $barcode)->update(['shipping_number' => 1]);
                 // return ([$memberId, $barcode, 3]);
+                // return '3';
             }
         }
+
+        return ProductionDetail::orderBy('shipping_scan', 'desc')->first();        
     }
 }

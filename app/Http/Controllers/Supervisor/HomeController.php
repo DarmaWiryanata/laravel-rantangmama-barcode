@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Consignment;
 use App\Product;
+use App\SoldLog;
 
 class HomeController extends Controller
 {
@@ -33,9 +34,13 @@ class HomeController extends Controller
     public function update(Request $request, $id)
     {
         foreach ($request['items'] as $key => $value) {
+            $value['shipping_number'];
             Consignment::decrement('qty', $value['terjual'] + $value['retur'], ['id' => $key]);
             $data = Consignment::whereId($key)->first();
             $product = Product::whereId($data->product_id)->first();
+
+            SoldLog::consignmentToSoldLog($request);
+
             Product::where('id', $data->product_id)
                     ->update([
                         'stock' => $product->stock - ($value['terjual'] + $value['retur'])

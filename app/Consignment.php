@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Consignment extends Model
 {
     protected $table = 'consignments';
-    protected $fillable = ['member_id', 'product_id', 'qty'];
+    protected $fillable = ['member_id', 'shipping_number', 'product_id', 'qty'];
 
     static function firstConsignment($id)
     {
@@ -32,10 +32,11 @@ class Consignment extends Model
         $data = Consignment::select('consignments.id', 'members.name', 'consignments.member_id')
                             ->leftJoin('members', 'consignments.member_id', 'members.id')
                             ->where('consignments.member_id', $memberId)
+                            ->groupBy('member_id')
                             ->get();
 
         foreach ($data as $key => $value) {
-            $data[$key]['items'] = Consignment::select('consignments.id', 'products.name', 'consignments.qty')
+            $data[$key]['items'] = Consignment::select('consignments.id', 'products.name', 'consignments.qty', 'consignments.shipping_number')
                                                 ->join('products', 'consignments.product_id', 'products.id')
                                                 ->where('consignments.qty', '>', 0)
                                                 ->get();
@@ -44,14 +45,34 @@ class Consignment extends Model
         return $data;
     }
 
-    static function updateConsignment($member, $product)
+    static function updateConsignment($member, $product, $shipping_number)
     {
+        // return $shipping_number;
         Consignment::updateOrCreate([
             'member_id' => $member,
-            'product_id' => $product
+            'product_id' => $product,
+            'shipping_number' => $shipping_number
         ], [
             'member_id' => $member,
-            'product_id' => $product
+            'product_id' => $product,
+            'shipping_number' => $shipping_number
         ]);
+
+        $data = Consignment::where('member_id', $member)
+                    ->where('product_id', $product)
+                    ->where('shipping_number', $shipping_number)
+                    ->first();
+        
+        Consignment::where('member_id', $member)
+                    ->where('product_id', $product)
+                    ->where('shipping_number', $shipping_number)
+                    ->update([
+                        'qty' => $data->qty + 1
+                    ]);
     }
+
+    // static function updateQty($member, $product, $shipping_number)
+    // {
+    //     Consignment::where('member_id', $member)
+    // }
 }

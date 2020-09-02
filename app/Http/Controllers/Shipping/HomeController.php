@@ -9,6 +9,7 @@ use App\Member;
 use App\ProductionDetail;
 use App\Consignment;
 use App\Product;
+use App\SoldLog;
 
 class HomeController extends Controller
 {
@@ -28,23 +29,25 @@ class HomeController extends Controller
     
     public function shipping(Request $request)
     {
+        // return $request;
         $product = ProductionDetail::firstProductionDetailByCode($request->barcode);
         if ($product !== NULL) {
             if ($product->production_scan !== NULL) {
                 if ($product->admin_scan !== NULL) {
                     // return $request;
                     // return ProductionDetail::storeShippingNumber($request->tujuan, $request->barcode);
-
+                    
                     ProductionDetail::shippingUpdate($request);
+                    $shippingNumber = ProductionDetail::storeShippingNumber($request->tujuan, $request->barcode);
                     if ($request->status == 2) {
+                        // return "2";
                         $productId = ProductionDetail::firstProductIdByCode($request->barcode);
-                                            
-                        Consignment::updateConsignment($request->tujuan, $productId);
-        
-                        Consignment::increment('qty', 1, [
-                            'member_id' => $request->tujuan,
-                            'product_id' => $productId
-                        ]);
+
+                        $xyz = $shippingNumber->shipping_number;
+                        // return $request->tujuan;
+                        // return $productId;
+                        // return $xyz;
+                        Consignment::updateConsignment($request->tujuan, $productId, $xyz);
                     } else if ($request->status == 1) {
                         $productId = ProductionDetail::firstProductIdByCode($request->barcode);
                         $data = Product::whereId($productId)->first();
@@ -53,11 +56,15 @@ class HomeController extends Controller
                             'stock' => $data->stock - 1
                         ]);
                     }
-                    ProductionDetail::storeShippingNumber($request->tujuan, $request->barcode);
+
+                    // if ($request->status == 1) {
+                    //     SoldLog::shippingToSoldLog($request->tujuan, $shippingNumber);
+                    // }
                     return back()->with([
                         'success' => 'success',
                         'barcode' => $request->barcode,
-                        'tujuan' => $request->tujuan
+                        'tujuan' => $request->tujuan,
+                        'status' => $request->status
                     ]);
                 } else {
                     return back()->with('danger', 'Produk belum melalui scan penyimpanan');
