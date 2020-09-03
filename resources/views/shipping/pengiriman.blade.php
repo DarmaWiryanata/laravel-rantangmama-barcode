@@ -47,7 +47,7 @@
                         <div class="form-group">
                           <label>Tujuan Pengiriman: </label>
                           <div class="controls">
-                            <select class="form-control" name="tujuan" id="tujuan">
+                            <select class="form-control" name="tujuan" id="tujuan" required>
                               <option value hidden>--Pilih Tujuan</option>
                               @foreach ($member as $item)
                                 <option value="{{ $item->id }}"
@@ -70,7 +70,7 @@
                         <div class="form-group">
                           <label>Status: </label>
                           <div class="controls">
-                            <select class="form-control" name="status" id="status">
+                            <select class="form-control" name="status" id="status" required>
                               <option value="1"
                               @if (session('status') == 1)
                               selected

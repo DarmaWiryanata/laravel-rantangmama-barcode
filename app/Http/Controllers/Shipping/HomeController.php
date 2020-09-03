@@ -34,38 +34,40 @@ class HomeController extends Controller
         if ($product !== NULL) {
             if ($product->production_scan !== NULL) {
                 if ($product->admin_scan !== NULL) {
-                    // return $request;
-                    // return ProductionDetail::storeShippingNumber($request->tujuan, $request->barcode);
-                    
-                    ProductionDetail::shippingUpdate($request);
-                    $shippingNumber = ProductionDetail::storeShippingNumber($request->tujuan, $request->barcode);
-                    if ($request->status == 2) {
-                        // return "2";
-                        $productId = ProductionDetail::firstProductIdByCode($request->barcode);
+                    if ($product->shipping_scan == NULL) {
+                        // return $request;
+                        // return ProductionDetail::storeShippingNumber($request->tujuan, $request->barcode);
 
-                        $xyz = $shippingNumber->shipping_number;
-                        // return $request->tujuan;
-                        // return $productId;
-                        // return $xyz;
-                        Consignment::updateConsignment($request->tujuan, $productId, $xyz);
-                    } else if ($request->status == 1) {
-                        $productId = ProductionDetail::firstProductIdByCode($request->barcode);
-                        $data = Product::whereId($productId)->first();
-    
-                        Product::where('id', $productId)->update([
-                            'stock' => $data->stock - 1
+                        ProductionDetail::shippingUpdate($request);
+                        $shippingNumber = ProductionDetail::storeShippingNumber($request->tujuan, $request->barcode);
+                        if ($request->status == 2) {
+                            // return "2";
+                            $productId = ProductionDetail::firstProductIdByCode($request->barcode);
+
+                            $xyz = $shippingNumber->shipping_number;
+                            // return $request->tujuan;
+                            // return $productId;
+                            // return $xyz;
+                            Consignment::updateConsignment($request->tujuan, $productId, $xyz);
+                        } else if ($request->status == 1) {
+                            $productId = ProductionDetail::firstProductIdByCode($request->barcode);
+                            $data = Product::whereId($productId)->first();
+        
+                            Product::where('id', $productId)->decrement('stock');
+                        }
+
+                        // if ($request->status == 1) {
+                        //     SoldLog::shippingToSoldLog($request->tujuan, $shippingNumber);
+                        // }
+                        return back()->with([
+                            'success' => 'success',
+                            'barcode' => $request->barcode,
+                            'tujuan' => $request->tujuan,
+                            'status' => $request->status
                         ]);
-                    }
-
-                    // if ($request->status == 1) {
-                    //     SoldLog::shippingToSoldLog($request->tujuan, $shippingNumber);
-                    // }
-                    return back()->with([
-                        'success' => 'success',
-                        'barcode' => $request->barcode,
-                        'tujuan' => $request->tujuan,
-                        'status' => $request->status
-                    ]);
+                    } else {
+                        return back()->with('danger', 'Pengiriman gagal. Status produk sudah terkirim');
+                    }                    
                 } else {
                     return back()->with('danger', 'Produk belum melalui scan penyimpanan');
                 }

@@ -19,7 +19,7 @@ class CreateProductionsTable extends Migration
             $table->mediumInteger('price')->unsigned();
             $table->date('expire_date');
             $table->string('batch', 10);
-            $table->integer('qty')->unsigned();
+            $table->integer('qty');
             $table->timestamps();
         });
     }

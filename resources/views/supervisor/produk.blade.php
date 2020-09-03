@@ -12,23 +12,25 @@
                     var d = JSON.parse(data);
                     $('#name').val(d[0].name);
                     for (var i = 0; i < d[0]['items'].length; i++) {
-                        $('#data').html(
+                        $('#data').append(
                                         `<tr>
                                             <td>
                                                 `+ d[0]['items'][i].name +`
                                             </td>
                                             <td>
                                                 `+ d[0]['items'][i].shipping_number +`
-                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].id +`][shipping_number]" value="`+ d[0]['items'][i].shipping_number +`">
+                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][id]" value="`+ d[0]['items'][i].id +`">
+                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][member_id]" value="`+ d[0].member_id +`">
+                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][shipping_number]" value="`+ d[0]['items'][i].shipping_number +`">
                                             </td>
                                             <td>
                                                 `+ d[0]['items'][i].qty +`
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].id +`][terjual]" placeholder="0">
+                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][terjual]" placeholder="0">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].id +`][retur]" placeholder="0">
+                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][retur]" placeholder="0">
                                             </td>
                                         </tr>`);
                     }

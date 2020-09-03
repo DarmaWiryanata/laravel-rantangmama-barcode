@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->mediumInteger('price')->unsigned();
-            $table->mediumInteger('stock')->unsigned()->default(0);
+            $table->mediumInteger('stock')->default(0);
             $table->timestamps();
         });
     }

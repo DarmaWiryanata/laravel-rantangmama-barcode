@@ -16,8 +16,10 @@ class CreateSoldLogsTable extends Migration
         Schema::create('sold_logs', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('member_id')->unsigned();
+            $table->bigInteger('product_id')->unsigned();
             $table->bigInteger('shipping_number')->unsigned();
-            $table->integer('qty')->unsigned();
+            $table->mediumInteger('price')->unsigned();
+            $table->integer('qty');
             $table->timestamps();
         });
     }

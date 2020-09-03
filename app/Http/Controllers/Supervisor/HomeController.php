@@ -33,18 +33,19 @@ class HomeController extends Controller
 
     public function update(Request $request, $id)
     {
+        // return $request;
         foreach ($request['items'] as $key => $value) {
-            $value['shipping_number'];
-            Consignment::decrement('qty', $value['terjual'] + $value['retur'], ['id' => $key]);
-            $data = Consignment::whereId($key)->first();
-            $product = Product::whereId($data->product_id)->first();
+            // return $value;
+            // Consignment::where('id', $key)->decrement('qty', $value['terjual'] + $value['retur']);
+            // $data = Consignment::whereId($key)->first();
+            // $product = Product::whereId($data->product_id)->first();
+            SoldLog::consignmentToSoldLog($key, $value);
 
-            SoldLog::consignmentToSoldLog($request);
-
-            Product::where('id', $data->product_id)
-                    ->update([
-                        'stock' => $product->stock - ($value['terjual'] + $value['retur'])
-                    ]);
+            Product::where('id', $key)->decrement('stock', ($value['terjual']));
+            Consignment::where('id', $value['id'])->decrement('qty', ($value['terjual'] + $value['retur']));
+                    // ->update([
+                    //     'stock' => $product->stock - ($value['terjual'] + $value['retur'])
+                    // ]);
 
             return back()->with('success', 'Data berhasil diperbaharui');
         }

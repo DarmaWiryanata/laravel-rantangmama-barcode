@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SoldLog extends Model
 {
     protected $table = 'sold_logs';
-    protected $fillable = ['member_id', 'shipping_number', 'qty'];
+    protected $fillable = ['member_id', 'product_id', 'shipping_number', 'price', 'qty'];
 
     static function shippingToSoldLog($memberId, $shippingNumber)
     {
@@ -18,8 +18,16 @@ class SoldLog extends Model
         ]);
     }
 
-    static function consignmentToSoldLog($request)
+    static function consignmentToSoldLog($key, $request)
     {
-
+        if ($request['terjual'] != NULL) {
+            SoldLog::create([
+                'member_id'         => $request['member_id'],
+                'product_id'        => $key,
+                'shipping_number'   => $request['shipping_number'],
+                'price'             => $request['price'],
+                'qty'               => $request['terjual']
+            ]);
+        };
     }
 }

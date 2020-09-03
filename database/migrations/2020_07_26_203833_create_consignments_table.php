@@ -18,7 +18,7 @@ class CreateConsignmentsTable extends Migration
             $table->bigInteger('member_id')->unsigned();
             $table->bigInteger('shipping_number')->unsigned();
             $table->bigInteger('product_id')->unsigned();
-            $table->integer('qty')->unsigned();
+            $table->integer('qty');
             $table->timestamps();
         });
     }

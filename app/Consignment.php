@@ -36,7 +36,7 @@ class Consignment extends Model
                             ->get();
 
         foreach ($data as $key => $value) {
-            $data[$key]['items'] = Consignment::select('consignments.id', 'products.name', 'consignments.qty', 'consignments.shipping_number')
+            $data[$key]['items'] = Consignment::select('consignments.id', 'consignments.product_id', 'products.name', 'consignments.qty', 'consignments.shipping_number')
                                                 ->join('products', 'consignments.product_id', 'products.id')
                                                 ->where('consignments.qty', '>', 0)
                                                 ->get();
