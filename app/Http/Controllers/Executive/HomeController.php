@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\ProductionDetail;
+use App\SoldLog;
 
 class HomeController extends Controller
 {
@@ -32,9 +33,14 @@ class HomeController extends Controller
         } else if ($id == 2) {
             $productionDetail = ProductionDetail::getProductionDetailByProductSoldWithMember($request->awal, $request->akhir);
             $productionDetail1 = "";
-            
         } else if ($id == 3) {
             $productionDetail = ProductionDetail::getProductionDetailByProductSold($request->awal, $request->akhir);
+            $productionDetail1 = "";
+        } else if ($id == 4) {
+            $productionDetail = SoldLog::getSoldLogByConsignmentProductSoldWithMember($request->awal, $request->akhir);
+            $productionDetail1 = "";
+        } else if ($id == 5) {
+            $productionDetail = SoldLog::getSoldLogByProductSold($request->awal, $request->akhir);
             $productionDetail1 = "";
         }
 

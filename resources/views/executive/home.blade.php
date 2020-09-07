@@ -65,6 +65,34 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-6 mb-3">
+                                    <div class="card data">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <h4 class="card-title text-center">Laporan Penjualan Member (Konsinyasi)</h4>
+                                                {{-- <p class="card-text">This card has supporting text below as a natural lead-in to
+                                                    additional content.</p> --}}
+                                                <div class="row justify-content-center">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tanggal" data-value="4"> Cetak Laporan</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <div class="card data">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <h4 class="card-title text-center">Laporan Penjualan Produk (Konsinyasi)</h4>
+                                                {{-- <p class="card-text">This card has supporting text below as a natural lead-in to
+                                                    additional content.</p> --}}
+                                                <div class="row justify-content-center">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tanggal" data-value="5"> Cetak Laporan</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

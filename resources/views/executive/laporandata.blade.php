@@ -102,6 +102,64 @@
             </tbody>
             
         </table>
+        
+    @elseif ($id == 4)
+        {{-- <table id="example" class="display" style="width:100%"> --}}
+            <thead>
+                <tr>
+                    <th>Member</th>
+                    <th>Jenis Produk</th>
+                    <th>ID Transaksi</th>
+                    <th>Jumlah</th>
+                    <th>Harga Satuan</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($productionDetail as $item)
+                    <tr>
+                        <td>{{ $item->member }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->shipping_number }}</td>
+                        <td style="text-center">{{ $item->qty }}</td>
+                        <td style="text-right">{{  number_format($item->price, 0, ',', '.') }}</td>
+                        <td style="text-right">{{  number_format($item->total, 0, ',', '.') }}</td>
+                    </tr>
+                @endforeach
+                {{-- <tr>
+                    <td>Gus Mang</td>
+                    <td>Rantang Mama Chicken Wings RM</td>
+                    <td>1</td>
+                    <td>10</td>
+                    <td>Rp. 20.000</td>
+                    <td>Rp. 200.000</td>
+                </tr> --}}
+            </tbody>
+            
+        </table>
+        
+    @elseif ($id == 5)
+        {{-- <table id="example" class="display" style="width:100%"> --}}
+            <thead>
+                <tr>
+                    <th>Jenis Produk</th>
+                    <th>Jumlah</th>
+                    <th>Harga Satuan</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($productionDetail as $item)
+                    <tr>
+                        <td>{{ $item->name }}</td>
+                        <td style="text-center">{{ $item->qty }}</td>
+                        <td style="text-right">{{  number_format($item->price, 0, ',', '.') }}</td>
+                        <td style="text-right">{{  number_format($item->total, 0, ',', '.') }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+            
+        </table>
     @endif
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

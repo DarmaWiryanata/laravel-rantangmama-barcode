@@ -30,4 +30,28 @@ class SoldLog extends Model
             ]);
         };
     }
+    
+    static function getSoldLogByConsignmentProductSoldWithMember($awal, $akhir)
+    {
+        return SoldLog::select('members.name as member', 'products.name as name', 'sold_logs.price as price', 'sold_logs.shipping_number as shipping_number', 'sold_logs.created_at as created_at')
+                        ->selectRaw('COUNT(*) as qty, sold_logs.price * COUNT(*) as total')
+                        ->groupBy('sold_logs.shipping_number')
+                        ->groupBy('sold_logs.product_id')
+                        ->groupBy('sold_logs.price')
+                        ->leftJoin('members', 'sold_logs.member_id', 'members.id')
+                        ->leftJoin('products', 'sold_logs.product_id', 'products.id')
+                        ->whereBetween('sold_logs.created_at', [$awal." 00:00:00", $akhir." 23:59:59"])
+                        ->get();
+    }
+
+    static function getSoldLogByProductSold($awal, $akhir)
+    {
+        return SoldLog::select('products.name as name', 'sold_logs.price as price', 'sold_logs.created_at as created_at')
+                                ->selectRaw('COUNT(*) as qty, sold_logs.price * COUNT(*) as total')
+                                ->groupBy('sold_logs.product_id')
+                                ->groupBy('sold_logs.price')
+                                ->leftJoin('products', 'sold_logs.product_id', 'products.id')
+                                ->whereBetween('sold_logs.created_at', [$awal." 00:00:00", $akhir." 23:59:59"])
+                                ->get();
+    }
 }
