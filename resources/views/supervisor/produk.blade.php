@@ -11,6 +11,7 @@
                     console.log(JSON.parse(data));
                     var d = JSON.parse(data);
                     $('#name').val(d[0].name);
+                    $('#data tr').remove();
                     for (var i = 0; i < d[0]['items'].length; i++) {
                         $('#data').append(
                                         `<tr>
@@ -22,6 +23,7 @@
                                                 <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][id]" value="`+ d[0]['items'][i].id +`">
                                                 <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][member_id]" value="`+ d[0].member_id +`">
                                                 <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][shipping_number]" value="`+ d[0]['items'][i].shipping_number +`">
+                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][product_id]" value="`+ d[0]['items'][i].product_id +`">
                                             </td>
                                             <td>
                                                 `+ d[0]['items'][i].qty +`

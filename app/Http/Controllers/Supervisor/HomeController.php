@@ -35,17 +35,10 @@ class HomeController extends Controller
     {
         // return $request;
         foreach ($request['items'] as $key => $value) {
-            // return $value;
-            // Consignment::where('id', $key)->decrement('qty', $value['terjual'] + $value['retur']);
-            // $data = Consignment::whereId($key)->first();
-            // $product = Product::whereId($data->product_id)->first();
             SoldLog::consignmentToSoldLog($key, $value);
 
             Product::where('id', $key)->decrement('stock', ($value['terjual']));
-            Consignment::where('id', $value['id'])->decrement('qty', ($value['terjual'] + $value['retur']));
-                    // ->update([
-                    //     'stock' => $product->stock - ($value['terjual'] + $value['retur'])
-                    // ]);
+            Consignment::where('id', $value['id'])->decrement('qty', ((int)$value['terjual'] + (int)$value['retur']));
 
             return back()->with('success', 'Data berhasil diperbaharui');
         }

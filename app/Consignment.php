@@ -39,6 +39,7 @@ class Consignment extends Model
             $data[$key]['items'] = Consignment::select('consignments.id', 'consignments.product_id', 'products.name', 'consignments.qty', 'consignments.shipping_number')
                                                 ->join('products', 'consignments.product_id', 'products.id')
                                                 ->where('consignments.qty', '>', 0)
+                                                ->where('consignments.member_id', $memberId)
                                                 ->get();
         }
 

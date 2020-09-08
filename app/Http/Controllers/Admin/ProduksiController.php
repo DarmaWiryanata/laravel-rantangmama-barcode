@@ -145,7 +145,7 @@ class ProduksiController extends Controller
     {
         if (ProductionDetail::firstProductionDetailByCode($request->barcode) !== NULL) {
             ProductionDetail::rusakUpdate($request);
-            if ($request->status == 3) {
+            if ($request->status == 3) { 
                 return back()->with('success', 'Produk '.$request->barcode.' berhasil dikembalikan dengan status "Retur"');
             } else if ($request->status == 4) {
                 return back()->with('success', 'Produk '.$request->barcode.' berhasil dikembalikan dengan status "Rusak"');

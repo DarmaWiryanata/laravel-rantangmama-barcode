@@ -21,11 +21,13 @@ class SoldLog extends Model
     static function consignmentToSoldLog($key, $request)
     {
         if ($request['terjual'] != NULL) {
+            $product = Product::firstProduct($request['product_id']);
+
             SoldLog::create([
                 'member_id'         => $request['member_id'],
                 'product_id'        => $key,
                 'shipping_number'   => $request['shipping_number'],
-                'price'             => $request['price'],
+                'price'             => $product->price,
                 'qty'               => $request['terjual']
             ]);
         };
