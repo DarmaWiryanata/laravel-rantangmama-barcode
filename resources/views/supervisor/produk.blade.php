@@ -24,6 +24,7 @@
                                                 <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][member_id]" value="`+ d[0].member_id +`">
                                                 <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][shipping_number]" value="`+ d[0]['items'][i].shipping_number +`">
                                                 <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][product_id]" value="`+ d[0]['items'][i].product_id +`">
+                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][qty]" value="`+ d[0]['items'][i].qty +`">
                                             </td>
                                             <td>
                                                 `+ d[0]['items'][i].qty +`

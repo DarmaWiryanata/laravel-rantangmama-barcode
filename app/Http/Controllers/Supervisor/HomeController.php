@@ -35,12 +35,25 @@ class HomeController extends Controller
     {
         // return $request;
         foreach ($request['items'] as $key => $value) {
+            // return $value['qty'];
+            $terjual = ($value['terjual'] == NULL) ? 0 : $value['terjual'] ;
+            $retur = ($value['retur'] == NULL) ? 0 : $value['retur'] ;
+            $total = $terjual + $retur;
+            if ($value['qty'] < $total) {
+                return back()->with('error', 'Data terjual dan retur melebihi stok');
+            }
+        }
+        foreach ($request['items'] as $key => $value) {
+            $terjual = ($value['terjual'] == NULL) ? 0 : $value['terjual'] ;
+            $retur = ($value['retur'] == NULL) ? 0 : $value['retur'] ;
+            $total = $terjual + $retur;
+
             SoldLog::consignmentToSoldLog($key, $value);
 
-            Product::where('id', $key)->decrement('stock', ($value['terjual']));
-            Consignment::where('id', $value['id'])->decrement('qty', ((int)$value['terjual'] + (int)$value['retur']));
-
-            return back()->with('success', 'Data berhasil diperbaharui');
+            Product::where('id', $key)->decrement('stock', $terjual);
+            Consignment::where('id', $value['id'])->decrement('qty', $total);
         }
+
+        return back()->with('success', 'Data berhasil diperbaharui');
     }
 }
