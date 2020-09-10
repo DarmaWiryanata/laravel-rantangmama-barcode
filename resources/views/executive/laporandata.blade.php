@@ -160,6 +160,33 @@
             </tbody>
             
         </table>
+
+    @elseif ($id == 6)
+        {{-- <table id="example" class="display" style="width:100%"> --}}
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Kategori</th>
+                    <th style="width:10%">Stok</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($productionDetail as $item)
+                    <tr>
+                        <td>
+                            {{ $item->name }}
+                        </td>
+                        <td>
+                            {{ $item->category }}
+                        </td>
+                        <td>
+                            {{ $item->stock }}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+            
+        </table>
     @endif
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

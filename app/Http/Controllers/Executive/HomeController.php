@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\ProductionDetail;
 use App\SoldLog;
+use App\Product;
 
 class HomeController extends Controller
 {
@@ -41,6 +42,9 @@ class HomeController extends Controller
             $productionDetail1 = "";
         } else if ($id == 5) {
             $productionDetail = SoldLog::getSoldLogByProductSold($request->awal, $request->akhir);
+            $productionDetail1 = "";
+        } else if ($id == 6) {
+            $productionDetail = Product::getProduct();
             $productionDetail1 = "";
         }
 

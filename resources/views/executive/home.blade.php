@@ -27,6 +27,23 @@
                                     <div class="card data">
                                         <div class="card-content">
                                             <div class="card-body">
+                                                <h4 class="card-title text-center">Laporan Stok</h4>
+                                                {{-- <p class="card-text">This card has supporting text below as a natural lead-in to
+                                                    additional content.</p> --}}
+                                                <div class="row justify-content-center">
+                                                    <form action="{{ route('executive.showdata') }}" method="GET">
+                                                        <input type="hidden" id="id" name="id" value="6">
+                                                        <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <div class="card data">
+                                        <div class="card-content">
+                                            <div class="card-body">
                                                 <h4 class="card-title text-center">Laporan Barang Retur & Rusak</h4>
                                                 {{-- <p class="card-text">This card has supporting text below as a natural lead-in to
                                                     additional content.</p> --}}
