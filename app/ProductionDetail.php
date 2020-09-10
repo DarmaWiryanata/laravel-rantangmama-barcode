@@ -99,7 +99,7 @@ class ProductionDetail extends Model
                                 ->orWhere('production_details.status', 4)
                                 ->whereBetween('production_details.updated_at', [$awal." 00:00:00", $akhir." 23:59:59"])
                                 ->groupBy('products.name')
-                                ->groupBy('code')
+                                ->groupBy('status')
                                 ->get();
     }
 
