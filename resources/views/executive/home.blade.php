@@ -32,7 +32,7 @@
                                                     additional content.</p> --}}
                                                 <div class="row justify-content-center">
                                                     <form action="{{ route('executive.showdata') }}" method="GET">
-                                                        <input type="hidden" id="id" name="id" value="6">
+                                                        <input type="text" name="id" value="6" hidden>
                                                         <button type="submit" class="btn btn-primary">Cetak Laporan</button>
                                                     </form>
                                                 </div>
