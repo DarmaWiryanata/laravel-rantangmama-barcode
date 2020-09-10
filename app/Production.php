@@ -22,6 +22,16 @@ class Production extends Model
                             ->get();
     }
 
+    static function getProductionByDate($date)
+    {
+        return Production::select('productions.id', 'products.name', 'productions.created_at', 'productions.expire_date')
+                            ->selectRaw('SUM(productions.qty) as jumlah')
+                            ->join('products', 'productions.product_id', 'products.id')
+                            ->where('productions.created_at', 'like', $date.'%')
+                            ->groupBy('products.name')
+                            ->get();
+    }
+
     static function storeProduction($request)
     {
         $randNumber = Production::randomNumber(10);

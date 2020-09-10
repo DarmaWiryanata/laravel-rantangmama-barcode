@@ -17,7 +17,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Laporan</div>
+                <div class="card-header">Laporan Live Stock</div>
 
                 <div class="card-body">
                     <div class="card-deck-wrapper">
@@ -35,6 +35,20 @@
                                                         <input type="text" name="id" value="6" hidden>
                                                         <button type="submit" class="btn btn-primary">Cetak Laporan</button>
                                                     </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <div class="card data">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <h4 class="card-title text-center">Laporan Stok Produksi</h4>
+                                                {{-- <p class="card-text">This card has supporting text below as a natural lead-in to
+                                                    additional content.</p> --}}
+                                                <div class="row justify-content-center">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#abc"> Cetak Laporan</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -156,5 +170,40 @@
         </div>
     </div>
     {{-- / Modal Tanggal --}}
+
+    {{-- Modal 1 Tanggal --}}
+    <div class="modal fade text-left" id="abc" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel1">Tanggal Laporan</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('executive.showdata') }}" method="GET">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="controls">
+                                <input type="text" name="id" value="7" hidden>
+                                <div class="row justify-content-center">
+                                    <div class="col-5">
+                                        <label>Tanggal: </label>
+                                        <input type="date" name="awal" class="form-control pickadate" required data-validation-required-message="Tidak boleh kosong">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Tampilkan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- / Modal 1 Tanggal --}}
 </div>
 @endsection
