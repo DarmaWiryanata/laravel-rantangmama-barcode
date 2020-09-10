@@ -121,7 +121,6 @@ class ProductionDetail extends Model
         return ProductionDetail::select('members.name as member', 'products.name as name', 'productions.price as price', 'production_details.shipping_number as shipping_number', 'productions.created_at as created_at')
                                 ->selectRaw('COUNT(*) as qty, productions.price * COUNT(*) as total')
                                 ->groupBy('production_details.shipping_number')
-                                ->groupBy('production_details.product_id')
                                 ->groupBy('production_details.price')
                                 ->leftJoin('members', 'production_details.member_id', 'members.id')
                                 ->leftJoin('productions', 'production_details.production_id', 'productions.id')
