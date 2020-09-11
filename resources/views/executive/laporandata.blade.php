@@ -210,6 +210,29 @@
             </tbody>
             
         </table>
+
+    @elseif ($id == 8)
+        {{-- <table id="example" class="display" style="width:100%"> --}}
+            <thead>
+                {{-- <tr>
+                    <th>Nama</th>
+                    <th style="width:10%">Stok</th>
+                </tr> --}}
+            </thead>
+            <tbody>
+                {{-- @foreach ($productionDetail as $item)
+                    <tr>
+                        <td>
+                            {{ $item->name }}
+                        </td>
+                        <td>
+                            {{ $item->jumlah }}
+                        </td>
+                    </tr>
+                @endforeach --}}
+            </tbody>
+            
+        </table>
     @endif
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

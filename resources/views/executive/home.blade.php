@@ -7,6 +7,7 @@
                 var id = $(this).attr('data-value');
                 console.log(id);
                 $('#id').val(id);
+                $('#id1').val(id);
             });
         } );
     </script>
@@ -44,11 +45,28 @@
                                     <div class="card data">
                                         <div class="card-content">
                                             <div class="card-body">
+                                                <h4 class="card-title text-center">Laporan Stok Konsinyasi</h4>
+                                                {{-- <p class="card-text">This card has supporting text below as a natural lead-in to
+                                                    additional content.</p> --}}
+                                                <div class="row justify-content-center">
+                                                    <form action="{{ route('executive.showdata') }}" method="GET">
+                                                        <input type="text" name="id" value="8" hidden>
+                                                        <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <div class="card data">
+                                        <div class="card-content">
+                                            <div class="card-body">
                                                 <h4 class="card-title text-center">Laporan Stok Produksi</h4>
                                                 {{-- <p class="card-text">This card has supporting text below as a natural lead-in to
                                                     additional content.</p> --}}
                                                 <div class="row justify-content-center">
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#abc"> Cetak Laporan</button>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#abc" data-value="7"> Cetak Laporan</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -186,7 +204,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <div class="controls">
-                                <input type="text" name="id" value="7" hidden>
+                                <input type="text" name="id" id="id1" hidden>
                                 <div class="row justify-content-center">
                                     <div class="col-5">
                                         <label>Tanggal: </label>
