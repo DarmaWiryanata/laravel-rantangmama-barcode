@@ -88,37 +88,62 @@
         <!-- Modal -->
         <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">[Nama Member]</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('admin.member.store') }}" method="post">
-                    @csrf
-                    <div class="modal-body">
-                        <table class="table table-striped" id="memberTable">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>Qty</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Rantang</td>
-                                    <td>14</td>
-                                </tr>
-                                <tr>
-                                    <td>Mama</td>
-                                    <td>18</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">[Nama Member]</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </form>
-            </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="hari-ini-tab" data-toggle="tab" href="#hari-ini" role="tab" aria-controls="home" aria-selected="true">Hari Ini</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="keseluruhan-tab" data-toggle="tab" href="#keseluruhan" role="tab" aria-controls="profile" aria-selected="false">Keseluruhan</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="hari-ini" role="tabpanel" aria-labelledby="home-tab">
+                                <table class="table table-striped" id="memberTable">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Qty</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Rantang</td>
+                                            <td>14</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mama</td>
+                                            <td>18</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="keseluruhan" role="tabpanel" aria-labelledby="keseluruhan-tab">
+                                <table class="table table-striped" id="memberTable">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Qty</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Rantang</td>
+                                            <td>14</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
