@@ -35,15 +35,19 @@
                     <form method="POST" action="{{ route('admin.produk-rusak.update') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="barcode">Kode</label>
-                            <input type="text" class="form-control" name="barcode" id="barcode" required autofocus>
-                        </div>
-                        <div class="form-group">
                             <label for="status">Status</label>
                             <select name="status" class="form-control" required>
                                 <option value="3">Retur</option>
                                 <option value="4">Rusak</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="keterangan">Keterangan</label>
+                            <textarea name="keterangan" cols="30" rows="3" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="barcode">Kode</label>
+                            <input type="text" class="form-control" name="barcode" id="barcode" required autofocus>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -61,6 +65,7 @@
                                 <th>Jenis</th>
                                 <th>Status</th>
                                 <th>Tanggal</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,6 +82,9 @@
                                     </td>
                                     <td>
                                         {{ Carbon\Carbon::parse($item->scan_date)->formatLocalized('%d %B %Y') }}
+                                    </td>
+                                    <td>
+                                        [keterangan produk]
                                     </td>
                                 </tr>
                             @endforeach

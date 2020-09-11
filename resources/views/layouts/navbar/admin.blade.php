@@ -5,4 +5,5 @@
   <a class="dropdown-item" href="{{ route('admin.user.index') }}">User</a>
   <a class="dropdown-item" href="{{ route('admin.penyimpanan.index') }}">Validasi Penyimpanan</a>
   <a class="dropdown-item" href="{{ route('admin.produk-rusak') }}">Validasi Retur/Rusak</a>
+  <a class="dropdown-item" href="{{ route('admin.laporan') }}">Laporan</a>
 </x-navbar-expand>

@@ -63,7 +63,7 @@
                             @foreach ($member as $item) 
                                 <tr>
                                     <td>
-                                        {{ $item->name }}
+                                        <a href="#modal" data-toggle="modal" data-value="{{ $item->id }}">{{ $item->name }}</a>
                                     </td>
                                     <td>
                                         {{ $item->code }}
@@ -84,6 +84,44 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">[Nama Member]</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('admin.member.store') }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <table class="table table-striped" id="memberTable">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Qty</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Rantang</td>
+                                    <td>14</td>
+                                </tr>
+                                <tr>
+                                    <td>Mama</td>
+                                    <td>18</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
         <!-- Modal -->
         <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

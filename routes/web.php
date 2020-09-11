@@ -98,6 +98,7 @@ Route::group(['prefix' => 'admin'], function () {
 		'update'	=> 'admin.penyimpanan.update',
 		'destroy'	=> 'admin.penyimpanan.destroy'
 	]);
+	Route::view('laporan', 'executive.home')->name('admin.laporan');
 });
 
 Route::group(['prefix' => 'executive'], function () {
@@ -142,6 +143,6 @@ Route::group(['prefix' => 'shipping'], function () {
 	Route::get('/', 'Shipping\HomeController@index')->name('shipping.index');
 	Route::post('shipping', 'Shipping\HomeController@shipping')->name('shipping.update');
 	Route::get('/data/{id}', 'Shipping\HomeController@show')->name('shipping.show');
-	Route::get('/retur', 'Shipping\HomeController@retur')->name('shipping.retur');
-	Route::post('retur', 'Shipping\HomeController@returUpdate')->name('shipping.returUpdate');
+	// Route::get('/retur', 'Shipping\HomeController@retur')->name('shipping.retur');
+	// Route::post('retur', 'Shipping\HomeController@returUpdate')->name('shipping.returUpdate');
 });
