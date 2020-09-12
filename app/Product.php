@@ -33,7 +33,7 @@ class Product extends Model
 
     static function decrementStock($id, $qty)
     {
-        return $qty;
+        // return $qty;
         $old_stock = Product::findOrFail($id);
         Product::whereId($id)->update(['stock' => $old_stock->stock - $qty]);
     }

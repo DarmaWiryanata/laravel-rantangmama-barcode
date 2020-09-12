@@ -39,10 +39,15 @@ class PenyimpananController extends Controller
     public function store(Request $request)
     {
         $product = ProductionDetail::firstProductionDetailByCode($request->barcode);
+
         if ($product !== NULL) {
             if ($product->production_scan !== NULL) {
-                ProductionDetail::adminPenyimpananUpdate($request->barcode);
-                return back()->with('success', 'Produk '.$request->barcode.' berhasil diperbaharui');
+                if ($product->admin_scan == NULL) {
+                    ProductionDetail::adminPenyimpananUpdate($request->barcode);
+                    return back()->with('success', 'Produk '.$request->barcode.' berhasil diperbaharui');
+                } else {
+                    return back()->with('danger', 'Produk telah melalui scan admin');
+                }
             } else {
                 return back()->with('danger', 'Produk belum melalui scan produksi');
             }

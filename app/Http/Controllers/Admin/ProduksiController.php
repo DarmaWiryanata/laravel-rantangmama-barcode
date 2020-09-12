@@ -114,8 +114,11 @@ class ProduksiController extends Controller
      */
     public function destroy($id)
     {
+        $data = Production::firstOrFail($id);
+
         Production::destroyProduksi($id);
         ProductionDetail::destroyProductionDetail($id);
+        Product::decrementStock($id, $data->qty);
 
         return redirect()->route('admin.produksi.index')->with('success', 'Produksi berhasil dihapus');
     }
@@ -144,12 +147,22 @@ class ProduksiController extends Controller
     public function rusakUpdate(Request $request)
     {
         if (ProductionDetail::firstProductionDetailByCode($request->barcode) !== NULL) {
-            ProductionDetail::rusakUpdate($request);
-            if ($request->status == 3) { 
-                return back()->with('success', 'Produk '.$request->barcode.' berhasil dikembalikan dengan status "Retur"');
-            } else if ($request->status == 4) {
-                return back()->with('success', 'Produk '.$request->barcode.' berhasil dikembalikan dengan status "Rusak"');
-            }  
+            if ($request->status !== 3 || $request->status !== 4) {
+                ProductionDetail::rusakUpdate($request);
+                if ($request->status == 3) {
+                    return back()->with([
+                        'success' => 'Produk '.$request->barcode.' berhasil dikembalikan dengan status "Retur"',
+                        'status' => $request->status
+                    ]);
+                } else if ($request->status == 4) {
+                    return back()->with([
+                        'success' => 'Produk '.$request->barcode.' berhasil dikembalikan dengan status "Rusak"',
+                        'status' => $request->status
+                    ]);
+                }  
+            } else {
+                return back()->with('danger', 'Produk telah melalui scan retur/rusak');
+            }
         } else {
             return back()->with('danger', 'Produk tidak ditemukan');
         }

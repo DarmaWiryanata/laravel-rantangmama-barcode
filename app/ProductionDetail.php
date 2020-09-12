@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 class ProductionDetail extends Model
 {
     protected $table = 'production_details';
-    protected $fillable = ['production_id', 'member_id', 'code', 'production_scan', 'admin_scan', 'shipping_scan', 'shipping_number', 'status'];
+    protected $fillable = ['production_id', 'member_id', 'code', 'production_scan', 'admin_scan', 'shipping_scan', 'shipping_number', 'status', 'nb'];
 
     static function adminPenyimpananUpdate($code)
     {
@@ -33,7 +33,7 @@ class ProductionDetail extends Model
 
     static function firstProductionDetailByCode($code)
     {
-        return ProductionDetail::select('production_details.code', 'productions.expire_date', 'production_details.production_scan', 'productions.batch', 'production_details.admin_scan')
+        return ProductionDetail::select('production_details.code', 'productions.expire_date', 'production_details.production_scan', 'productions.batch', 'production_details.admin_scan', 'production_details.shipping_scan')
                                 ->join('productions', 'production_details.production_id', 'productions.id')
                                 ->where('code', $code)
                                 ->first();
@@ -173,7 +173,10 @@ class ProductionDetail extends Model
 
     static function rusakUpdate($request)
     {
-        ProductionDetail::where('code', $request->barcode)->update(['status' => $request->status]);
+        ProductionDetail::where('code', $request->barcode)->update([
+            'status'    => $request->status,
+            'nb'        => $request->nb
+        ]);
     }
 
     static function shippingUpdate($request)

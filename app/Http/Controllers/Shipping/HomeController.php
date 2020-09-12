@@ -34,7 +34,10 @@ class HomeController extends Controller
         if ($product !== NULL) {
             if ($product->production_scan !== NULL) {
                 if ($product->admin_scan !== NULL) {
-                    if ($product->shipping_scan == NULL) {
+                    if ($product->shipping_scan !== NULL) {
+                            return back()->with('danger', 'Pengiriman gagal. Status produk sudah terkirim');
+                    } else {
+
                         // return $request;
                         // return ProductionDetail::storeShippingNumber($request->tujuan, $request->barcode);
 
@@ -65,9 +68,7 @@ class HomeController extends Controller
                             'tujuan' => $request->tujuan,
                             'status' => $request->status
                         ]);
-                    } else {
-                        return back()->with('danger', 'Pengiriman gagal. Status produk sudah terkirim');
-                    }                    
+                    }
                 } else {
                     return back()->with('danger', 'Produk belum melalui scan penyimpanan');
                 }

@@ -30,9 +30,15 @@ class HomeController extends Controller
     
     public function production(Request $request)
     {
-        if (ProductionDetail::firstProductionDetailByCode($request->barcode) !== NULL) {
-            ProductionDetail::productionUpdate($request->barcode);
-            return back()->with('success', 'Produk '.$request->barcode.' berhasil diperbaharui');
+        $product = ProductionDetail::firstProductionDetailByCode($request->barcode);
+        
+        if ($product !== NULL) {            
+            if ($product->production_scan == NULL) {
+                ProductionDetail::productionUpdate($request->barcode);
+                return back()->with('success', 'Produk '.$request->barcode.' berhasil diperbaharui');
+            } else {
+                return back()->with('danger', 'Produk telah melalui scan produksi');
+            }
         } else {
             return back()->with('danger', 'Produk tidak ditemukan');
         }

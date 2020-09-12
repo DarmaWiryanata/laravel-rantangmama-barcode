@@ -21,7 +21,7 @@
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-block">
                             <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
-                            {{ $message }}
+                            {{ session('success') }}
                         </div>
                     @endif
 
@@ -37,13 +37,22 @@
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select name="status" class="form-control" required>
-                                <option value="3">Retur</option>
-                                <option value="4">Rusak</option>
+                                <option value="3"
+                                @if (session('status') == '3')
+                                selected
+                                @endif
+                                >Retur</option>
+                                
+                                <option value="4"
+                                @if (session('status') == '4')
+                                selected
+                                @endif
+                                >Rusak</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="keterangan">Keterangan</label>
-                            <textarea name="keterangan" cols="30" rows="3" class="form-control"></textarea>
+                            <label for="nb">Keterangan</label>
+                            <textarea name="nb" cols="30" rows="3" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="barcode">Kode</label>

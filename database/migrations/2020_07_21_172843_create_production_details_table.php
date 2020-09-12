@@ -23,6 +23,7 @@ class CreateProductionDetailsTable extends Migration
             $table->timestamp('shipping_scan')->nullable();
             $table->integer('shipping_number')->nullable();
             $table->boolean('status')->nullable();
+            $table->text('nb')->nullable();
             $table->timestamps();
         });
     }
