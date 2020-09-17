@@ -2,20 +2,24 @@
 
 @section('js')
     <script>
-        $(document).ready( function () {
-            $('#shippingDetailTable').DataTable({
-              "order": [[ 3, "desc" ]]
-            });
-            $('#tujuan').on('change', function() {
-              var id = this.value;
-              $.get( "/shipping/data/" + id, function( data ) {
-                console.log(JSON.parse(data));
-                var d = JSON.parse(data);
-                $('#alamat').val(d.address);
-              });
-              console.log(id);
-            });
-        } );
+      window.onload = function() {
+        document.getElementById("barcode").focus();
+      };
+
+      $(document).ready( function () {
+        $('#shippingDetailTable').DataTable({
+          "order": [[ 3, "desc" ]]
+        });
+        $('#tujuan').on('change', function() {
+          var id = this.value;
+          $.get( "/shipping/data/" + id, function( data ) {
+            console.log(JSON.parse(data));
+            var d = JSON.parse(data);
+            $('#alamat').val(d.address);
+          });
+          console.log(id);
+        });
+      });
     </script>
 @endsection
 
@@ -88,7 +92,7 @@
                         <div class="form-group">
                           <label>Barcode: </label>
                           <div class="controls">
-                            <input type="text" name="barcode" class="form-control" placeholder="Barcode" required autofocus>
+                            <input type="text" name="barcode" id="barcode" class="form-control" placeholder="Barcode" required>
                           </div>
                         </div>
                     </div>
