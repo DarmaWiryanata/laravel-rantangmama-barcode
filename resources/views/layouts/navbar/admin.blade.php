@@ -1,4 +1,4 @@
-<x-navbar-expand name='Data Master' status=''>
+<x-navbar-expand name='Admin' status=''>
   <a class="dropdown-item" href="{{ route('admin.member.index') }}">Member</a>
   <a class="dropdown-item" href="{{ route('admin.produk.index') }}">Produk</a>
   <a class="dropdown-item" href="{{ route('admin.produksi.index') }}">Produksi</a>

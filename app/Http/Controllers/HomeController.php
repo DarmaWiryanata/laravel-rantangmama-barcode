@@ -27,7 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (RoleUser::firstRole(Auth::user()->id)->name == 'admin') {
+        if (RoleUser::firstRole(Auth::user()->id)->name == 'superadmin') {
+            return redirect()->route('admin.home');
+        } elseif (RoleUser::firstRole(Auth::user()->id)->name == 'admin') {
             return redirect()->route('admin.home');
         } elseif (RoleUser::firstRole(Auth::user()->id)->name == 'executive') {
             return redirect()->route('executive.home');

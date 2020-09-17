@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:marketing');
+        $this->middleware('role:marketing|superadmin');
     }
 
     public function index()

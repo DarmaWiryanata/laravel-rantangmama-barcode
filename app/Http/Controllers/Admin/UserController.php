@@ -13,6 +13,12 @@ use DB;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:admin|superadmin');
+    }
+    
     /**
      * Display a listing of the resource.
      *

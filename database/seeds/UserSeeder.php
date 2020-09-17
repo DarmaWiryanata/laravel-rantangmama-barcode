@@ -16,6 +16,11 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
+            'username'  => 'superadmin',
+            'password'  => Hash::make('superadmin123'),
+        ])->roles()->attach(Role::where('name', 'superadmin')->first());
+        
+        User::create([
             'username'  => 'admin',
             'password'  => Hash::make('admin123'),
         ])->roles()->attach(Role::where('name', 'admin')->first());

@@ -185,7 +185,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-290663-1015',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'IR. LINAWATI CANDRA',
             'address' => 'test',
             'bank' => 'BCA',
@@ -193,7 +193,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF03-180687-1001',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'KADEK WIRMANDIYANTHI',
             'address' => 'test',
             'bank' => 'BNI',
@@ -201,7 +201,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-290396-1019',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'ANAK AGUNG INTAN RATNASARI',
             'address' => 'test',
             'bank' => 'BCA',
@@ -209,7 +209,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-060680-1020',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'ANNE KRISTANTI',
             'address' => 'test',
             'bank' => 'BCA',
@@ -217,7 +217,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF02-051087-1006',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'GUSTI KOMANG ADITYA',
             'address' => 'test',
             'bank' => '',
@@ -225,7 +225,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-300791-1021',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'NI KOMANG JULIANA',
             'address' => 'test',
             'bank' => 'BCA',
@@ -233,7 +233,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF02-290191-1004',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'NYOMAN SUTRISNI HANDAYANI',
             'address' => 'test',
             'bank' => '',
@@ -241,7 +241,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-020594-1007',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'KADEK PENDY MULYAWATI',
             'address' => 'test',
             'bank' => '',
@@ -249,7 +249,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF09-040870-1004',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'BOGGIE AHMAD DWI PUTRA',
             'address' => 'test',
             'bank' => 'BCA',
@@ -257,7 +257,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'ANTIE',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'ANTIE',
             'address' => 'test',
             'bank' => '',
@@ -265,7 +265,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF02-120283-1005',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'NI MADE DEWI YANI',
             'address' => 'test',
             'bank' => 'BCA',
@@ -273,7 +273,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF04-130385-1002',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'NI LUH GEDE SRI MARTINI',
             'address' => 'test',
             'bank' => 'BCA',
@@ -281,7 +281,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF04-090175-1003',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'NGURAH GEDE ALAPURNA SE',
             'address' => 'test',
             'bank' => 'BRI',
@@ -289,7 +289,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-281077-1018',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'NI LUH PUTU KAMAYANI',
             'address' => 'test',
             'bank' => 'BCA',
@@ -297,7 +297,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-000001-1026',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'NI PUTU SUWENDEWI',
             'address' => 'test',
             'bank' => '',
@@ -305,7 +305,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-101084-1010',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'ANDRIANA',
             'address' => 'test',
             'bank' => 'BCA',
@@ -313,7 +313,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'PAK ERIK',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'PAK ERIK',
             'address' => 'test',
             'bank' => 'BCA',
@@ -321,7 +321,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-200900-1001',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'I GEDE DEVA AGUS KRISNA',
             'address' => 'test',
             'bank' => '',
@@ -329,7 +329,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF02-310700-1001',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'I KADEK AGUS LEONARDI',
             'address' => 'test',
             'bank' => '',
@@ -337,7 +337,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF02-290601-1002',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'I KADEK KRISNA ADI DARMAWAN',
             'address' => 'test',
             'bank' => '',
@@ -345,7 +345,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF04-040388-1001',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'IDA AYU OKA SRI',
             'address' => 'test',
             'bank' => '',
@@ -353,7 +353,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-240500-1003',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'NI WAYAN NADILA PUTRI',
             'address' => 'test',
             'bank' => '',
@@ -361,7 +361,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF09-151296-1001',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'SALVINUS DARMIN',
             'address' => 'test',
             'bank' => '',
@@ -369,7 +369,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-011081-1011',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'ANAK AGUNG AYU WARTINI',
             'address' => 'test',
             'bank' => '',
@@ -377,7 +377,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-030384-1012',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'PUTU SUDIASA',
             'address' => 'test',
             'bank' => '',
@@ -385,7 +385,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF09-230780-1002',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'KLEMENSIUS BAHAL',
             'address' => 'test',
             'bank' => '',
@@ -393,7 +393,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF02-201186-1003',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'I GST.LN.VIRA PARAMITHA',
             'address' => 'test',
             'bank' => 'BCA',
@@ -401,7 +401,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF09-170982-1004',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'RITA HERLIANI',
             'address' => 'test',
             'bank' => '',
@@ -409,7 +409,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-260882-1009',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'NI MADE AGUSTINI / kadek tohpati',
             'address' => 'test',
             'bank' => 'BRI',
@@ -417,7 +417,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-050784-1008',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'I GUSTI AYU KASTILANI',
             'address' => 'test',
             'bank' => '',
@@ -425,7 +425,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-270883-1013',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'DEBIE AGUSANTHI HARTONO',
             'address' => 'test',
             'bank' => '',
@@ -433,7 +433,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-281289-1017',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'I NYOMAN ADIANA',
             'address' => 'test',
             'bank' => 'BNI',
@@ -441,7 +441,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF09-170397-1003',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'CYNTHIA MIRANDA',
             'address' => 'test',
             'bank' => 'BCA',
@@ -449,7 +449,7 @@ class MemberSeeder extends Seeder
         ]);
 
         Member::create([
-            'code' => 'RMF01-051096-1028',
+            'code' => Member::generateMemberCode('RS'),
             'name' => 'PUTU SINTYA ARTIKAYANTI',
             'address' => 'test',
             'bank' => 'BCA',

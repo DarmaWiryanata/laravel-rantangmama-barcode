@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class PenyimpananController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:admin|superadmin');
+    }
+    
     /**
      * Display a listing of the resource.
      *
