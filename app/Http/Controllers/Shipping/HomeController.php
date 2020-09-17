@@ -35,7 +35,7 @@ class HomeController extends Controller
             if ($product->production_scan !== NULL) {
                 if ($product->admin_scan !== NULL) {
                     if ($product->shipping_scan !== NULL) {
-                            return back()->with('danger', 'Pengiriman gagal. Status produk sudah terkirim');
+                        return back()->with('danger', 'Pengiriman gagal. Status produk sudah terkirim');
                     } else {
 
                         // return $request;

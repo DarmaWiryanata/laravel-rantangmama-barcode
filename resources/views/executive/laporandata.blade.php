@@ -214,22 +214,30 @@
     @elseif ($id == 8)
         {{-- <table id="example" class="display" style="width:100%"> --}}
             <thead>
-                {{-- <tr>
+                <tr>
                     <th>Nama</th>
+                    <th>Jenis Produk</th>
+                    <th>Kode Pengiriman</th>
                     <th style="width:10%">Stok</th>
-                </tr> --}}
+                </tr>
             </thead>
             <tbody>
-                {{-- @foreach ($productionDetail as $item)
+                @foreach ($productionDetail as $item)
                     <tr>
                         <td>
                             {{ $item->name }}
                         </td>
                         <td>
-                            {{ $item->jumlah }}
+                            {{ $item->product }}
+                        </td>
+                        <td>
+                            {{ $item->shipping_number }}
+                        </td>
+                        <td>
+                            {{ $item->qty }}
                         </td>
                     </tr>
-                @endforeach --}}
+                @endforeach
             </tbody>
             
         </table>

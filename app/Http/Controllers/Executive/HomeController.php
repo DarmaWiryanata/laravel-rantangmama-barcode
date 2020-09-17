@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Executive;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\ProductionDetail;
-use App\SoldLog;
+use App\Consignment;
 use App\Product;
 use App\Production;
+use App\ProductionDetail;
+use App\SoldLog;
 
 class HomeController extends Controller
 {
@@ -49,6 +50,9 @@ class HomeController extends Controller
             $productionDetail1 = "";
         } else if ($id == 7) {
             $productionDetail = Production::getProductionByDate($request->awal);
+            $productionDetail1 = "";
+        } else if ($id == 8) {
+            $productionDetail = Consignment::getConsignment();
             $productionDetail1 = "";
         }
 

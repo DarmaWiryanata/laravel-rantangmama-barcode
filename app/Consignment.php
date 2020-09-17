@@ -18,11 +18,14 @@ class Consignment extends Model
 
     static function getConsignment()
     {
-        return Consignment::select('consignments.id', 'members.name', 'consignments.member_id')
+        return Consignment::select('consignments.id', 'consignments.member_id', 'members.name', 'products.name as product', 'consignments.shipping_number', 'consignments.qty')
                             ->orderByDesc('consignments.qty')
                             ->distinct()
                             ->groupBy('consignments.member_id')
+                            ->groupBy('consignments.shipping_number')
+                            ->groupBy('consignments.product_id')
                             ->leftJoin('members', 'consignments.member_id', 'members.id')
+                            ->leftJoin('products', 'consignments.product_id', 'products.id')
                             ->where('consignments.qty', '>', 0)
                             ->get();
     }
@@ -76,4 +79,5 @@ class Consignment extends Model
     // {
     //     Consignment::where('member_id', $member)
     // }
+
 }
