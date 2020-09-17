@@ -63,7 +63,7 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        return (Member::showMember($id));
+        return Member::showMember($id);
     }
 
     /**

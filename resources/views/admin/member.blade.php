@@ -14,8 +14,22 @@
                     $('#code').val(d.code);
                     $('#name').val(d.name);
                     $('#bank').val(d.bank);
-                    $("#status").val(d.status);
+                    $('#status').val(d.status);
                     $('#address').val(d.address);
+                    // console.log(status);
+                });
+            });
+
+            $('#memberDetail dl dd').on('click', function() {
+                var id = $(this).attr('data-value');
+                $.get( "/admin/member/" + id, function( data ) {
+                    console.log(JSON.parse(data));
+                    var d = JSON.parse(data);
+                    $('#code-text').text(d.code);
+                    $('#name-text').text(d.name);
+                    $('#bank-text').text(d.bank);
+                    $('#status-text').text(d.status);
+                    $('#address-text').text(d.address);
                     // console.log(status);
                 });
             });
@@ -95,7 +109,23 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="memberDetail">
+                        <dl class="row">
+                            <dt class="col-sm-3">Nama</dt>
+                            <dd class="col-sm-9" id="name-text">Fusce dapibus</dd>                          
+                            
+                            <dt class="col-sm-3">Kode</dt>
+                            <dd class="col-sm-9" id="code-text">Fusce dapibus</dd>                          
+                            
+                            <dt class="col-sm-3">Alamat</dt>
+                            <dd class="col-sm-9" id="address-text">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>                          
+                            
+                            <dt class="col-sm-3">Bank</dt>
+                            <dd class="col-sm-9" id="bank-text">Fusce dapibus</dd>                          
+                            
+                            <dt class="col-sm-3">Status</dt>
+                            <dd class="col-sm-9" id="status-text">Fusce dapibus</dd>                          
+                        </dl>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="hari-ini-tab" data-toggle="tab" href="#hari-ini" role="tab" aria-controls="home" aria-selected="true">Hari Ini</a>
