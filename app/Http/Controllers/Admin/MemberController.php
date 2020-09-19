@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Member;
+use App\ProductionDetail;
 
 class MemberController extends Controller
 {
@@ -64,6 +65,36 @@ class MemberController extends Controller
     public function show($id)
     {
         return Member::showMember($id);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function memberSale($id)
+    {
+        if (ProductionDetail::getProductionDetailByMemberCount($id) > 0) {
+            return ProductionDetail::getProductionDetailByMember($id);
+        } else {
+            return ProductionDetail::getProductionDetailKosong();
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function memberSaleToday($id)
+    {
+        if (ProductionDetail::getProductionDetailByMemberTodayCount($id) > 0) {
+            return ProductionDetail::getProductionDetailByMemberToday($id);
+        } else {
+            return ProductionDetail::getProductionDetailKosong();
+        }
     }
 
     /**

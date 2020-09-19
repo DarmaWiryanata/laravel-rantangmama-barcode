@@ -103,6 +103,50 @@ class ProductionDetail extends Model
                                 ->get();
     }
 
+    static function getProductionDetailByMember($memberId)
+    {
+
+        return json_encode(ProductionDetail::select('products.name as name', 'production_details.code as code', 'productions.price as price', 'productions.created_at as created_at', 'productions.updated_at as updated_at')
+                                ->selectRaw('count(products.name) as qty')
+                                ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                ->leftJoin('products', 'productions.product_id', 'products.id')
+                                ->where('production_details.member_id', $memberId)
+                                ->groupBy('products.name')
+                                ->get());
+    }
+
+    static function getProductionDetailByMemberToday($memberId)
+    {
+        return json_encode(ProductionDetail::select('products.name as name', 'production_details.code as code', 'productions.price as price', 'productions.created_at as created_at', 'productions.updated_at as updated_at')
+                                ->selectRaw('count(products.name) as qty')
+                                ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                ->leftJoin('products', 'productions.product_id', 'products.id')
+                                ->where('production_details.member_id', $memberId)
+                                ->whereRaw('production_details.updated_at LIKE "' . Carbon::now()->format('Y-m-d') . '%"')
+                                ->groupBy('products.name')
+                                ->get());
+    }
+
+    static function getProductionDetailByMemberCount($memberId)
+    {
+
+        return (ProductionDetail::select('products.name as name', 'production_details.code as code', 'productions.price as price', 'productions.created_at as created_at', 'productions.updated_at as updated_at')
+                                ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                ->leftJoin('products', 'productions.product_id', 'products.id')
+                                ->where('production_details.member_id', $memberId)
+                                ->count());
+    }
+
+    static function getProductionDetailByMemberTodayCount($memberId)
+    {
+        return (ProductionDetail::select('products.name as name', 'production_details.code as code', 'productions.price as price', 'productions.created_at as created_at', 'productions.updated_at as updated_at')
+                                ->leftJoin('productions', 'production_details.production_id', 'productions.id')
+                                ->leftJoin('products', 'productions.product_id', 'products.id')
+                                ->where('production_details.member_id', $memberId)
+                                ->whereRaw('production_details.updated_at LIKE "' . Carbon::now()->format('Y-m-d') . '%"')
+                                ->count());
+    }
+
     static function getProductionDetailByProductSold($awal, $akhir)
     {
         return ProductionDetail::select('products.name as name', 'productions.price as price', 'productions.created_at as created_at')
@@ -236,5 +280,9 @@ class ProductionDetail extends Model
         }
 
         return ProductionDetail::orderBy('shipping_scan', 'desc')->first();        
+    }
+    static function getProductionDetailKosong()
+    {
+        return json_encode([['name' => 'Kosong']]);
     }
 }

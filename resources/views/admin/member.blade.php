@@ -16,21 +16,50 @@
                     $('#bank').val(d.bank);
                     $('#status').val(d.status);
                     $('#address').val(d.address);
-                    // console.log(status);
                 });
             });
 
-            $('#memberDetail dl dd').on('click', function() {
+            $('#memberTable tbody tr td a').on('click', function() {
                 var id = $(this).attr('data-value');
+                console.log(id);
                 $.get( "/admin/member/" + id, function( data ) {
                     console.log(JSON.parse(data));
                     var d = JSON.parse(data);
                     $('#code-text').text(d.code);
+                    $('#judul-text').text(d.name);
                     $('#name-text').text(d.name);
                     $('#bank-text').text(d.bank);
                     $('#status-text').text(d.status);
                     $('#address-text').text(d.address);
-                    // console.log(status);
+                });
+                $.get( "/admin/member/member-sale-today/" + id, function( data ) {
+                    console.log(JSON.parse(data));
+                    var d = JSON.parse(data);
+                    $('#sale-today tr').remove();
+                    for (var i = 0; i < d.length; i++) {
+                        if (d[i].name !== "Kosong") {
+                            $('#sale-today').append(
+                                                `<tr>
+                                                    <td>`+ d[i].name +`</td>
+                                                    <td>`+ d[i].qty +`</td>
+                                                </tr>`);
+                        }
+                    }
+                });
+                $.get( "/admin/member/member-sale/" + id, function( data ) {
+                    console.log(JSON.parse(data));
+                    var d = JSON.parse(data);
+                    $('#sale tr').remove();
+                    for (var i = 0; i < d.length; i++) { 
+                        console.log(d[i].name);  
+                        if (d[i].name !== "Kosong") {
+                            $('#sale').append(
+                                                `<tr>
+                                                    <td>`+ d[i].name +`</td>
+                                                    <td>`+ d[i].qty +`</td>
+                                                </tr>`);
+                        }
+                    }
                 });
             });
         });
@@ -104,7 +133,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">[Nama Member]</h5>
+                        <h5 class="modal-title" id="judul-text">[Nama Member]</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -136,38 +165,26 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="hari-ini" role="tabpanel" aria-labelledby="home-tab">
-                                <table class="table table-striped" id="memberTable">
+                                <table class="table table-striped" id="hari-ini-table">
                                     <thead class="thead-light">
                                         <tr>
                                             <th>Nama</th>
                                             <th>Qty</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Rantang</td>
-                                            <td>14</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mama</td>
-                                            <td>18</td>
-                                        </tr>
+                                    <tbody id="sale-today">
                                     </tbody>
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="keseluruhan" role="tabpanel" aria-labelledby="keseluruhan-tab">
-                                <table class="table table-striped" id="memberTable">
+                                <table class="table table-striped" id="keseluruhan-table">
                                     <thead class="thead-light">
                                         <tr>
                                             <th>Nama</th>
                                             <th>Qty</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Rantang</td>
-                                            <td>14</td>
-                                        </tr>
+                                    <tbody id="sale">
                                     </tbody>
                                 </table>
                             </div>

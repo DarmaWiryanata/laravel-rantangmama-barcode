@@ -77,6 +77,8 @@ Route::group(['prefix' => 'admin'], function () {
 			'update'	=> 'admin.member.update',
 			'destroy'	=> 'admin.member.destroy'
 		]);
+		Route::get('member-sale/{id}', 'Admin\MemberController@memberSale');
+		Route::get('member-sale-today/{id}', 'Admin\MemberController@memberSaleToday');
 	});
 
 	Route::resource('user', 'Admin\UserController', [
