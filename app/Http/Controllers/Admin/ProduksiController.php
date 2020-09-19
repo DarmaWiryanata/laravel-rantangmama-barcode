@@ -114,7 +114,7 @@ class ProduksiController extends Controller
      */
     public function destroy($id)
     {
-        $data = Production::firstOrFail($id);
+        $data = Production::findOrFail($id);
 
         Production::destroyProduksi($id);
         ProductionDetail::destroyProductionDetail($id);
