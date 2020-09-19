@@ -5,7 +5,7 @@
         $(document).ready( function () {
             $('#konsinyasiTable').DataTable();
 
-            $("#konsinyasiTable tbody tr td button" ).on( "click", function() {
+            $(document).on( "click", "#konsinyasiTable tbody tr td button", function() {
                 var id = $(this).attr('data-value');
                 $.get( "/supervisor/produk/" + id, function( data ) {
                     console.log(JSON.parse(data));

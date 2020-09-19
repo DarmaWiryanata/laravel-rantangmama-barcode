@@ -5,7 +5,7 @@
         $(document).ready( function () {
             $('#memberTable').DataTable();
 
-            $('#memberTable tbody tr td button').on('click', function() {
+            $(document).on('click', '#memberTable tbody tr td button', function(e) {
                 var id = $(this).attr('data-value');
                 $.get( "/admin/member/" + id, function( data ) {
                     console.log(JSON.parse(data));
