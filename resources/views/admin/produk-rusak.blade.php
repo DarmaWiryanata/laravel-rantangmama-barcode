@@ -15,7 +15,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card mb-5">
-                <div class="card-header">Validasi Produk Rusak</div>
+                <div class="card-header">Validasi Produk Retur/Rusak</div>
 
                 <div class="card-body">
                     @if ($message = Session::get('success'))
