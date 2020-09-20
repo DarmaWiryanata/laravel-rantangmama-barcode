@@ -68,15 +68,17 @@ Route::group(['prefix' => 'admin'], function () {
 	]);
 
 	Route::group(['prefix' => 'member'], function () {
-		Route::resource('/', 'Admin\MemberController', [
-			'only' => ['index', 'show', 'store', 'update', 'destroy']
+		Route::resource('', 'Admin\MemberController', [
+			'only' => ['index', 'show', 'store']
 		])->names([
 			'index'		=> 'admin.member.index',
 			'show'		=> 'admin.member.show',
 			'store'		=> 'admin.member.store',
-			'update'	=> 'admin.member.update',
-			'destroy'	=> 'admin.member.destroy'
+			// 'update'	=> 'admin.member.update',
+			// 'destroy'	=> 'admin.member.destroy'
 		]);
+		Route::patch('{member}', 'Admin\MemberController@update')->name('admin.member.update');
+		Route::delete('{member}', 'Admin\MemberController@destroy')->name('admin.member.destroy');
 		Route::get('member-sale/{id}', 'Admin\MemberController@memberSale');
 		Route::get('member-sale-today/{id}', 'Admin\MemberController@memberSaleToday');
 	});

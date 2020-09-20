@@ -115,7 +115,7 @@ class MemberController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'id' => 'required',

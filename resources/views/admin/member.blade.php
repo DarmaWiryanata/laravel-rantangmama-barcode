@@ -253,9 +253,9 @@
                     </button>
                 </div>
                 <form action="{{ route('admin.member.update', Auth::user()->id) }}" method="post">
-                    @csrf
-                    @method('PATCH')
                     <div class="modal-body">
+                        @csrf
+                        @method('PATCH')
                         <input id="id" name="id" hidden>
                         <div class="form-group">
                           <label>Kode</label>
