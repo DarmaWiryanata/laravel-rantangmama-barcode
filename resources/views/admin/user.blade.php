@@ -120,6 +120,7 @@
                                 <option value="marketing">Marketing</option>
                                 <option value="production">Produksi</option>
                                 <option value="shipping">Pengiriman</option>
+                                <option value="superadmin">Super Administrator</option>
                               </select>
                             </div>
                         </div>
@@ -163,6 +164,7 @@
                                 <option value="marketing">Marketing</option>
                                 <option value="production">Produksi</option>
                                 <option value="shipping">Pengiriman</option>
+                                <option value="superadmin">Super Administrator</option>
                               </select>
                             </div>
                         </div>
