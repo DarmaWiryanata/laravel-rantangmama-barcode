@@ -69,7 +69,7 @@ class ProductionDetail extends Model
 
     static function getProductionDetailByReturnRusak()
     {
-        return ProductionDetail::selectRaw('`production_details`.`id` as `id`, `production_details`.`code` as `code`, `products`.`name` as `name`, IF(`production_details`.`status` = 3, "Retur", "Rusak") as `status`, `nb`')
+        return ProductionDetail::selectRaw('`production_details`.`id` as `id`, `production_details`.`code` as `code`, `products`.`name` as `name`, IF(`production_details`.`status` = 3, "Retur", "Rusak") as `status`, `nb`, `production_details`.`updated_at` as `updated_at`')
                                 ->leftJoin('productions', 'production_details.production_id', 'productions.id')
                                 ->leftJoin('products', 'productions.product_id', 'products.id')
                                 ->where('status', 3)

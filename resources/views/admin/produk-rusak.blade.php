@@ -90,7 +90,7 @@
                                         {{ $item->status }}
                                     </td>
                                     <td>
-                                        {{ Carbon\Carbon::parse($item->scan_date)->formatLocalized('%d %B %Y') }}
+                                        {{ $item->updated_at }}
                                     </td>
                                     <td>
                                         {{ $item->nb }}
