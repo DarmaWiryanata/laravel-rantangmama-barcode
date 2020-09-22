@@ -149,6 +149,12 @@ class ProduksiController extends Controller
         if (ProductionDetail::firstProductionDetailByCode($request->barcode) !== NULL) {
             if ($request->status !== 3 || $request->status !== 4) {
                 ProductionDetail::rusakUpdate($request);
+                $product = ProductionDetail::select('products.id as product_id', 'production_details.code as code')
+                                            ->join('productions', 'production_details.production_id', 'productions.id')
+                                            ->join('products', 'productions.product_id', 'products.id')
+                                            ->firstWhere('production_details.code', $request->barcode);
+                Product::decrementStock($product->product_id, 1);
+
                 if ($request->status == 3) {
                     return back()->with([
                         'success' => 'Produk '.$request->barcode.' berhasil dikembalikan dengan status "Retur"',
