@@ -74,7 +74,6 @@ class ProductionDetail extends Model
                                 ->leftJoin('products', 'productions.product_id', 'products.id')
                                 ->where('status', 3)
                                 ->orWhere('status', 4)
-                                ->orderBy('id', 'desc')
                                 ->get();
     }
 
