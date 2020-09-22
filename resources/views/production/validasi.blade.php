@@ -66,7 +66,7 @@
                                             {{ $item->name }}
                                         </td>
                                         <td>
-                                            {{ Carbon\Carbon::parse($item->scan_date)->formatLocalized('%d %B %Y') }}
+                                            {{ $item->scan_date }}
                                         </td>
                                     </tr>
                                 @endif
