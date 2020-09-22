@@ -3,9 +3,7 @@
 @section('js')
     <script>
         $(document).ready( function () {
-            $('#productionDetailTable').DataTable({
-              "order": [[ 3, "desc" ]]
-            });
+            $('#productionDetailTable').DataTable();
         } );
     </script>
 @endsection
