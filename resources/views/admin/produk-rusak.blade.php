@@ -93,7 +93,7 @@
                                         {{ Carbon\Carbon::parse($item->scan_date)->formatLocalized('%d %B %Y') }}
                                     </td>
                                     <td>
-                                        [keterangan produk]
+                                        {{ $item->nb }}
                                     </td>
                                 </tr>
                             @endforeach
