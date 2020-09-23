@@ -22,6 +22,7 @@
                     <th>Kode</th>
                     <th>Produk</th>
                     <th>Status</th>
+                    <th>Keterangan</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +31,7 @@
                         <td>{{ $item->code }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->status }}</td>
+                        <td>{{ $item->nb }}</td>
                     </tr>
                 @endforeach
             </tbody>
