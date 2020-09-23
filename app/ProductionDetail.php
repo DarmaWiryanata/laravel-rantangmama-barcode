@@ -219,6 +219,7 @@ class ProductionDetail extends Model
     {
         ProductionDetail::where('code', $request->barcode)->update([
             'shipping_scan'     => NULL,
+            'shipping_number'   => NULL,
             'status'            => $request->status,
             'nb'                => $request->nb
         ]);
