@@ -218,8 +218,6 @@ class ProductionDetail extends Model
     static function rusakUpdate($request)
     {
         ProductionDetail::where('code', $request->barcode)->update([
-            'production_scan'   => Carbon::now(),
-            'admin_scan'        => Carbon::now(),
             'shipping_scan'     => NULL,
             'status'            => $request->status,
             'nb'                => $request->nb
