@@ -54,6 +54,9 @@ class HomeController extends Controller
         } else if ($id == 8) {
             $productionDetail = Consignment::getConsignment();
             $productionDetail1 = "";
+        } else if ($id == 9) {
+            $productionDetail = ProductionDetail::getTransaction();
+            $productionDetail1 = "";
         }
 
         return view('executive.laporandata', compact('id', 'end', 'start', 'productionDetail', 'productionDetail1'));

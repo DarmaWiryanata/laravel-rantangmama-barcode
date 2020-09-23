@@ -286,4 +286,17 @@ class ProductionDetail extends Model
     {
         return json_encode([['name' => 'Kosong']]);
     }
+    static function getTransaction()
+    {
+        return ProductionDetail::join('productions', 'production_details.production_id', 'productions.id')
+                                ->join('products', 'productions.product_id', 'products.id')
+                                ->join('members', 'production_details.member_id', 'members.id')
+                                ->select('members.name as name', 'shipping_number', 'products.name as product_name', 'productions.price as price')
+                                ->selectRaw('count(*) as jumlah')
+                                ->groupBy('productions.product_id')
+                                ->groupBy('member_id')
+                                ->groupBy('productions.price')
+                                ->groupBy('shipping_number')
+                                ->get();
+    }
 }

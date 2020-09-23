@@ -243,6 +243,37 @@
             </tbody>
             
         </table>
+
+    @elseif ($id == 9)
+        {{-- <table id="example" class="display" style="width:100%"> --}}
+            <thead>
+                <tr>
+                    <th>Member</th>
+                    <th>Kode Pengiriman</th>
+                    <th>Jenis Produk</th>
+                    <th style="width:10%">Jumlah</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($productionDetail as $item)
+                    <tr>
+                        <td>
+                            {{ $item->name }}
+                        </td>
+                        <td>
+                            {{ $item->shipping_number }}
+                        </td>
+                        <td>
+                            {{ $item->product_name }}
+                        </td>
+                        <td>
+                            {{ $item->jumlah }}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+            
+        </table>
     @endif
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
