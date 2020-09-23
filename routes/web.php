@@ -138,6 +138,7 @@ Route::group(['prefix' => 'production'], function () {
 	Route::delete('/produksi/{id}', 'Production\HomeController@destroyProduction')->name('produksi.produksi.destroy');
 	Route::get('validasi', 'Production\HomeController@validasi')->name('production.validasi');
 	Route::post('production', 'Production\HomeController@production')->name('production.update');
+	Route::get('/cetak', 'Production\HomeController@cetak')->name('production.cetak');
 	Route::get('barcode', 'Production\HomeController@singleBarcode')->name('production.barcode');
 	Route::post('barcode', 'Production\HomeController@printBarcode')->name('production.barcode.print');
 });

@@ -274,6 +274,35 @@
             </tbody>
             
         </table>
+
+    @elseif ($id == 10)
+        {{-- <table id="example" class="display" style="width:100%"> --}}
+            <thead>
+                <tr>
+                    <th>Kode</th>
+                    <th>Jenis</th>
+                    <th>Tanggal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($productionDetail as $item)
+                    @if (isset($item->scan_date))
+                        <tr>
+                            <td>
+                                {{ $item->code }}
+                            </td>
+                            <td>
+                                {{ $item->name }}
+                            </td>
+                            <td>
+                                {{ $item->scan_date }}
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+            </tbody>
+            
+        </table>
     @endif
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

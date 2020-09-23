@@ -44,7 +44,12 @@
             </div>
 
             <div class="card">
-                <div class="card-header">Riwayat Validasi Produksi</div>
+                <div class="card-header">
+                    Riwayat Validasi Produksi
+                    <div class="float-right">
+                        <a href="{{ route('production.cetak') }}" class="btn btn-sm btn-success">Cetak Laporan</a>
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <table class="table table-striped" id="productionDetailTable">

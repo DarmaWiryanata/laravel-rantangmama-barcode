@@ -79,4 +79,13 @@ class HomeController extends Controller
     {
         return json_encode(Product::firstProduct($id));
     }
+
+    public function cetak()
+    {
+        $id = 10;
+        $productionDetail = ProductionDetail::getProductionDetailByProductionScan();
+        $productionDetail1 = "";
+
+        return view('executive.laporandata', compact('productionDetail', 'productionDetail1', 'id'));
+    }
 }
