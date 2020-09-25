@@ -35,6 +35,13 @@
                         </div>
                     @endif
 
+                    @if ($message = Session::get('danger'))
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
+                            {{ $message }}
+                        </div>
+                    @endif
+
                     @if ($errors->any())
                         <div class="alert alert-danger alert-block">
                             <ul>

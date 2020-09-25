@@ -300,4 +300,11 @@ class ProductionDetail extends Model
                                 ->groupBy('shipping_number')
                                 ->get();
     }
+    static function checkNull($id)
+    {
+        return ProductionDetail::where('production_id', $id)
+                            ->whereNotNull('production_scan')
+                            ->orWhereNotNull('status')
+                            ->count();
+    }
 }

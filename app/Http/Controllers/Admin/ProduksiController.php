@@ -114,11 +114,18 @@ class ProduksiController extends Controller
      */
     public function destroy($id)
     {
-        $data = Production::findOrFail($id);
-
-        Production::destroyProduksi($id);
-        ProductionDetail::destroyProductionDetail($id);
-        Product::decrementStock($id, $data->qty);
+        $data = Production::whereId($id)->first();
+        if ($data !== NULL) {
+            $hapus = ProductionDetail::checkNull($id);
+            if ($hapus == 0) {
+                // return "abc";
+                Production::destroyProduksi($id);
+                ProductionDetail::destroyProductionDetail($id);
+                Product::decrementStock($data->product_id, $data->qty);
+            } else {
+                return redirect()->route('admin.produksi.index')->with('danger', 'Produksi tidak dapat dihapus, produk telah digunakan');
+            }
+        }
 
         return redirect()->route('admin.produksi.index')->with('success', 'Produksi berhasil dihapus');
     }
