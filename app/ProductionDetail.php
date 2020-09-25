@@ -305,6 +305,7 @@ class ProductionDetail extends Model
         return ProductionDetail::where('production_id', $id)
                             ->whereNotNull('production_scan')
                             ->orWhereNotNull('status')
+                            ->where('production_id', $id)
                             ->count();
     }
 }
