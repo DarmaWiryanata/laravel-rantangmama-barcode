@@ -2,8 +2,13 @@
 
 @section('js')
     <script>
-        $(document).ready( function () {
-                $('.data div div div button').on('click', function() {
+        $(document).ready(function () {
+            
+            $('form').submit(function() {
+                $(this).find("button[type='submit']").prop('disabled', true);
+            });
+            
+            $('.data div div div button').on('click', function() {
                 var id = $(this).attr('data-value');
                 console.log(id);
                 $('#id').val(id);

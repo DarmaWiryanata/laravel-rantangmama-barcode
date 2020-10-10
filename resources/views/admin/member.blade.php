@@ -4,6 +4,10 @@
     <script>
         $(document).ready( function () {
             $('#memberTable').DataTable();
+            
+            $('form').submit(function() {
+                $(this).find("button[type='submit']").prop('disabled', true);
+            });
 
             $(document).on('click', '#memberTable tbody tr td button', function(e) {
                 var id = $(this).attr('data-value');
@@ -116,7 +120,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" class="btn btn-sm btn-primary mr-1" data-toggle="modal" data-target="#ubah" data-value="{{ $item->id }}">Ubah</span>
-                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                            <button type="submit" id="btn-hapus" class="btn btn-sm btn-danger">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -235,7 +239,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Tambah</button>
+                        <button type="submit" id="btn-tambah" class="btn btn-primary">Tambah</button>
                     </div>
                 </form>
             </div>
@@ -289,7 +293,7 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Ubah</button>
+                        <button type="submit" id="btn-ubah" class="btn btn-primary">Ubah</button>
                     </div>
                 </form>
             </div>

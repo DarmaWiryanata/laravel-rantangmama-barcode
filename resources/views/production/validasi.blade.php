@@ -6,6 +6,10 @@
             $('#productionDetailTable').DataTable({
               "order": [[ 2, "desc" ]]
             });
+            
+            $('form').submit(function() {
+                $(this).find("button[type='submit']").prop('disabled', true);
+            });
         } );
     </script>
 @endsection

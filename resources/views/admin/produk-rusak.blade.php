@@ -3,6 +3,11 @@
 @section('js')
     <script>
         $(document).ready( function () {
+            
+            $('form').submit(function() {
+                $(this).find("button[type='submit']").prop('disabled', true);
+            });
+            
             $('#productionDetailTable').DataTable({
               "order": [[ 3, "desc" ]]
             });
