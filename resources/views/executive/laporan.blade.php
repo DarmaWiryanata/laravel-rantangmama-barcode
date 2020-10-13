@@ -4,6 +4,10 @@
     <script>
         $(document).ready( function () {
             $('#laporanTable').DataTable();
+            
+            $('form').submit(function() {
+                $(this).find("button[type='submit']").prop('disabled', true);
+            });
 
             // $('#laporanTable tbody tr td button').on('click', function() {
             //     var id = $(this).attr('data-value');

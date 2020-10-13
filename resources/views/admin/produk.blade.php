@@ -4,6 +4,10 @@
     <script>
         $(document).ready( function () {
             $('#productTable').DataTable();
+            
+            $('form').submit(function() {
+                $(this).find("button[type='submit']").prop('disabled', true);
+            });
 
             $('#productTable tbody tr td button').on('click', function() {
                 var id = $(this).attr('data-value');
