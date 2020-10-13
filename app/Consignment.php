@@ -22,6 +22,18 @@ class Consignment extends Model
                             ->orderByDesc('consignments.qty')
                             ->distinct()
                             ->groupBy('consignments.member_id')
+                            ->leftJoin('members', 'consignments.member_id', 'members.id')
+                            ->leftJoin('products', 'consignments.product_id', 'products.id')
+                            ->where('consignments.qty', '>', 0)
+                            ->get();
+    }
+
+    static function getConsignmentReport()
+    {
+        return Consignment::select('consignments.id', 'consignments.member_id', 'members.name', 'products.name as product', 'consignments.shipping_number', 'consignments.qty')
+                            ->orderByDesc('consignments.qty')
+                            ->distinct()
+                            ->groupBy('consignments.member_id')
                             ->groupBy('consignments.shipping_number')
                             ->groupBy('consignments.product_id')
                             ->leftJoin('members', 'consignments.member_id', 'members.id')

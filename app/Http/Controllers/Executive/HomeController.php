@@ -52,7 +52,7 @@ class HomeController extends Controller
             $productionDetail = Production::getProductionByDate($request->awal);
             $productionDetail1 = "";
         } else if ($id == 8) {
-            $productionDetail = Consignment::getConsignment();
+            $productionDetail = Consignment::getConsignmentReport();
             $productionDetail1 = "";
         } else if ($id == 9) {
             $productionDetail = ProductionDetail::getTransaction();
