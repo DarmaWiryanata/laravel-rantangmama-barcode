@@ -36,7 +36,7 @@ class SoldLog extends Model
     static function getSoldLogByConsignmentProductSoldWithMember($awal, $akhir)
     {
         return SoldLog::select('members.name as member', 'products.name as name', 'sold_logs.price as price', 'sold_logs.shipping_number as shipping_number', 'sold_logs.created_at as created_at')
-                        ->selectRaw('COUNT(*) as qty, sold_logs.price * COUNT(*) as total')
+                        ->selectRaw('SUM(sold_logs.qty) as qty, sold_logs.price * SUM(sold_logs.qty) as total')
                         ->groupBy('sold_logs.shipping_number')
                         ->groupBy('sold_logs.product_id')
                         ->groupBy('sold_logs.price')

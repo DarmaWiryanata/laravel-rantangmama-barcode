@@ -128,14 +128,6 @@
                         <td style="text-right">{{ $item->total }}</td>
                     </tr>
                 @endforeach
-                {{-- <tr>
-                    <td>Gus Mang</td>
-                    <td>Rantang Mama Chicken Wings RM</td>
-                    <td>1</td>
-                    <td>10</td>
-                    <td>Rp. 20.000</td>
-                    <td>Rp. 200.000</td>
-                </tr> --}}
             </tbody>
             
         </table>
