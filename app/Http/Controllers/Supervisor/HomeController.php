@@ -49,7 +49,7 @@ class HomeController extends Controller
 
             SoldLog::consignmentToSoldLog($value['product_id'], $value);
 
-            Product::where('id', $value->product_id)->decrement('stock', $terjual);
+            Product::where('id', $value['product_id'])->decrement('stock', $terjual);
             Consignment::where('id', $value['id'])->decrement('qty', $total);
         }
 
