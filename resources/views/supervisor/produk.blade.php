@@ -24,20 +24,20 @@
                                             </td>
                                             <td>
                                                 `+ d[0]['items'][i].shipping_number +`
-                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][id]" value="`+ d[0]['items'][i].id +`">
-                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][member_id]" value="`+ d[0].member_id +`">
-                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][shipping_number]" value="`+ d[0]['items'][i].shipping_number +`">
-                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][product_id]" value="`+ d[0]['items'][i].product_id +`">
-                                                <input type="hidden" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][qty]" value="`+ d[0]['items'][i].qty +`">
+                                                <input type="hidden" class="form-control" name="items[`+ i +`][id]" value="`+ d[0]['items'][i].id +`">
+                                                <input type="hidden" class="form-control" name="items[`+ i +`][member_id]" value="`+ d[0].member_id +`">
+                                                <input type="hidden" class="form-control" name="items[`+ i +`][shipping_number]" value="`+ d[0]['items'][i].shipping_number +`">
+                                                <input type="hidden" class="form-control" name="items[`+ i +`][product_id]" value="`+ d[0]['items'][i].product_id +`">
+                                                <input type="hidden" class="form-control" name="items[`+ i +`][qty]" value="`+ d[0]['items'][i].qty +`">
                                             </td>
                                             <td>
                                                 `+ d[0]['items'][i].qty +`
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][terjual]" placeholder="0">
+                                                <input type="text" class="form-control" name="items[`+ i +`][terjual]" placeholder="0">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].product_id +`][retur]" placeholder="0">
+                                                <input type="text" class="form-control" name="items[`+ i +`][retur]" placeholder="0">
                                             </td>
                                         </tr>`);
                     }

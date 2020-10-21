@@ -48,9 +48,9 @@ class HomeController extends Controller
             $retur = ($value['retur'] == NULL) ? 0 : $value['retur'] ;
             $total = $terjual + $retur;
 
-            SoldLog::consignmentToSoldLog($key, $value);
+            SoldLog::consignmentToSoldLog($value->product_id, $value);
 
-            Product::where('id', $key)->decrement('stock', $terjual);
+            Product::where('id', $value->product_id)->decrement('stock', $terjual);
             Consignment::where('id', $value['id'])->decrement('qty', $total);
         }
 
