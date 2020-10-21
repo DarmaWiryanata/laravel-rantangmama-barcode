@@ -70,6 +70,16 @@
                         </div>
                     @endif
 
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-block">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <table class="table table-striped" id="konsinyasiTable">
                         <thead class="thead-light">
                             <tr>
@@ -107,7 +117,7 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('supervisor.update', 0) }}" method="post">
+            <form action="{{ route('supervisor.update', Auth::user()->id) }}" method="post">
                 @csrf
                 @method('PATCH')
                 <div class="modal-body">
@@ -141,35 +151,3 @@
     </div>
 </div>
 @endsection
-
-{{-- @section('js')
-    <script>
-        $(document).ready( function () {
-            $("#tabel tbody tr td button" ).on( "click", function() {
-                var id = $(this).attr('data-value');
-                $.get( "/supervisor/produk/" + id, function( data ) {
-                    console.log(JSON.parse(data));
-                    var d = JSON.parse(data);
-                    $('#name').val(d[0].name);
-                    for (var i = 0; i < d[0]['items'].length; i++) {
-                        $('#data').html(`<tr>
-                                            <td>
-                                                `+ d[0]['items'][i].name +`
-                                            </td>
-                                            <td>
-                                                `+ d[0]['items'][i].qty +`
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].id +`][terjual]" placeholder="0">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" name="items[`+ d[0]['items'][i].id +`][retur]" placeholder="0">
-                                            </td>
-                                        </tr>`);
-                    }
-                });
-                console.log($(this).attr('data-value'));
-            });
-        });
-    </script>
-@endsection --}}
