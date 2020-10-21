@@ -49,11 +49,11 @@ class SoldLog extends Model
     static function getSoldLogByProductSold($awal, $akhir)
     {
         return SoldLog::select('products.name as name', 'sold_logs.price as price', 'sold_logs.created_at as created_at')
-                                ->selectRaw('COUNT(*) as qty, sold_logs.price * COUNT(*) as total')
+                                ->selectRaw('SUM(*) as qty, sold_logs.price * SUM(*) as total')
                                 ->groupBy('sold_logs.product_id')
                                 ->groupBy('sold_logs.price')
                                 ->leftJoin('products', 'sold_logs.product_id', 'products.id')
                                 ->whereBetween('sold_logs.created_at', [$awal." 00:00:00", $akhir." 23:59:59"])
-                                ->get();
+                                ->toSql();
     }
 }
