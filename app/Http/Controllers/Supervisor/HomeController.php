@@ -33,7 +33,7 @@ class HomeController extends Controller
 
     public function update(Request $request, $id)
     {
-        // return $request;
+        return $request;
         foreach ($request['items'] as $key => $value) {
             // return $value['qty'];
             $terjual = ($value['terjual'] == NULL) ? 0 : $value['terjual'] ;
