@@ -54,6 +54,6 @@ class SoldLog extends Model
                                 ->groupBy('sold_logs.price')
                                 ->leftJoin('products', 'sold_logs.product_id', 'products.id')
                                 ->whereBetween('sold_logs.created_at', [$awal." 00:00:00", $akhir." 23:59:59"])
-                                ->toSql();
+                                ->get();
     }
 }
