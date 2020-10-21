@@ -49,7 +49,7 @@ class SoldLog extends Model
     static function getSoldLogByProductSold($awal, $akhir)
     {
         return SoldLog::select('products.name as name', 'sold_logs.price as price', 'sold_logs.created_at as created_at')
-                                ->selectRaw('SUM(*) as qty, sold_logs.price * SUM(*) as total')
+                                ->selectRaw('SUM(sold_logs.qty) as qty, sold_logs.price * SUM(sold_logs.qty) as total')
                                 ->groupBy('sold_logs.product_id')
                                 ->groupBy('sold_logs.price')
                                 ->leftJoin('products', 'sold_logs.product_id', 'products.id')
