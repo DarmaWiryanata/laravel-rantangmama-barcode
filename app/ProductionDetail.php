@@ -171,7 +171,7 @@ class ProductionDetail extends Model
                                 ->leftJoin('productions', 'production_details.production_id', 'productions.id')
                                 ->leftJoin('products', 'productions.product_id', 'products.id')
                                 ->where('production_details.status', 1)
-                                ->whereBetween('productions.created_at', [$awal." 00:00:00", $akhir." 23:59:59"])
+                                ->whereBetween('production_details.shipping_scan', [$awal." 00:00:00", $akhir." 23:59:59"])
                                 ->get();
     }
 
